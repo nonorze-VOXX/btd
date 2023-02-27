@@ -1,5 +1,5 @@
 /*
- * gamelib.h: ���ɮ��x�C��������class��interface
+ * gamelib.h: ¥»ÀÉ®×Àx¹CÀ¸¬ÛÃöªºclassªºinterface
  * Copyright (C) 2002-2008 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
  *
  * This file is part of game, a free game development framework for windows.
@@ -71,57 +71,60 @@
 #include <map>
 using namespace std;
 
-namespace game_framework {
+namespace game_framework
+{
+    /////////////////////////////////////////////////////////////////////////////
+    // ³o­Óclass´£¨Ñ°ÊºA(¥i¥H²¾°Ê)ªº¹Ï§Î
+    // ¨C­ÓPublic Interfaceªº¥Îªk³£­nÀ´¡AImplementation¥i¥H¤£À´
+    /////////////////////////////////////////////////////////////////////////////
 
-	/////////////////////////////////////////////////////////////////////////////
-	// �o��class���ѰʺA(�i�H����)���ϧ�
-	// �C��Public Interface���Ϊk���n���AImplementation�i�H����
-	/////////////////////////////////////////////////////////////////////////////
+    class CMovingBitmap
+    {
+    public:
+        CMovingBitmap();
+        int Height(); // ¨ú±o¹Ï§Îªº°ª«×
+        int Left(); // ¨ú±o¹Ï§Îªº¥ª¤W¨¤ªº x ®y¼Ð
+        void SetAnimation(int delay, bool _once);
+        void LoadBitmap(int, COLORREF = CLR_INVALID); // ¸ü¤J¹Ï¡A«ü©w¹Ïªº½s¸¹(resource)¤Î³z©ú¦â
+        void LoadBitmap(char*, COLORREF = CLR_INVALID); // ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
+        void LoadBitmap(vector<char*>, COLORREF = CLR_INVALID); // ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
+        void LoadBitmapByString(vector<string>, COLORREF = CLR_INVALID); // ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
+        void UnshowBitmap();
+        void SetTopLeft(int, int); // ±N¹Ïªº¥ª¤W¨¤®y¼Ð²¾¦Ü (x,y)
+        void ShowBitmap(); // ±N¹Ï¶K¨ì¿Ã¹õ
+        void ShowBitmap(double factor);
+        // ±N¹Ï¶K¨ì¿Ã¹õ factor < 1®ÉÁY¤p¡A>1®É©ñ¤j¡Cª`·N¡G»Ý­nVGA¥dµwÅéªº¤ä´©¡A§_«h·|«ÜºC
+        void SelectShowBitmap(int select);
+        int GetSelectShowBitmap();
+        void ToggleAnimation();
+        int Top(); // ¨ú±o¹Ï§Îªº¥ª¤W¨¤ªº y ®y¼Ð
+        int Width(); // ¨ú±o¹Ï§Îªº¼e«×
+        bool IsAnimationDone();
+        bool IsAnimation();
+        int GetMovingBitmapFrame();
+        string GetImageFilename();
+        COLORREF GetFilterColor();
 
-	class CMovingBitmap {
-	public:
-		CMovingBitmap();
-		int   Height();						// ���o�ϧΪ�����
-		int   Left();						// ���o�ϧΪ����W���� x �y��
-		void  SetAnimation(int delay, bool _once);
-		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// ���J�ϡA���w�Ϫ��s��(resource)�γz����
-		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// ���J�ϡA���w�Ϫ��ɦW�γz����
-		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// ���J�ϡA���w�Ϫ��ɦW�γz����
-		void  LoadBitmapByString(vector<string>, COLORREF = CLR_INVALID);	// ���J�ϡA���w�Ϫ��ɦW�γz����
-		void  UnshowBitmap();
-		void  SetTopLeft(int, int);			// �N�Ϫ����W���y�в��� (x,y)
-		void  ShowBitmap();					// �N�϶K��ù�
-		void  ShowBitmap(double factor);	// �N�϶K��ù� factor < 1���Y�p�A>1�ɩ�j�C�`�N�G�ݭnVGA�d�w�骺�䴩�A�_�h�|�ܺC
-		void  SelectShowBitmap(int select);
-		int   GetSelectShowBitmap();
-		void  ToggleAnimation();
-		int   Top();						// ���o�ϧΪ����W���� y �y��
-		int   Width();						// ���o�ϧΪ��e��
-		bool  IsAnimationDone();
-		bool  IsAnimation();
-		int   GetMovingBitmapFrame();
-		string GetImageFilename();
-		COLORREF GetFilterColor();
-	protected:
-		int selector = 0;
-		int delayCount = 10;
-		int animationCount = -1;
-		clock_t last_time = clock();
-		bool isAnimation = false;
-		bool isAnimationDone = true;
-		bool once = false;
-		vector<unsigned> SurfaceID;
-		COLORREF filter_color;
-		bool     isBitmapLoaded = false;	// whether a bitmap has been loaded
-		CRect    location;			// location of the bitmap
-	private:
-		string image_filename;
-	};
+    protected:
+        int selector = 0;
+        int delayCount = 10;
+        int animationCount = -1;
+        clock_t last_time = clock();
+        bool isAnimation = false;
+        bool isAnimationDone = true;
+        bool once = false;
+        vector<unsigned> SurfaceID;
+        COLORREF filter_color;
+        bool isBitmapLoaded = false; // whether a bitmap has been loaded
+        CRect location; // location of the bitmap
+    private:
+        string image_filename;
+    };
 
-	class CTextDraw {
-	public:
-		void static Print(CDC *pDC, int x, int y, string str);
-		void static ChangeFontLog(CDC* pDC, CFont* &fp, int size, string fontName, COLORREF color, int weight = 500);
-	};
-
+    class CTextDraw
+    {
+    public:
+        void static Print(CDC* pDC, int x, int y, string str);
+        void static ChangeFontLog(CDC* pDC, CFont* & fp, int size, string fontName, COLORREF color, int weight = 500);
+    };
 }
