@@ -38,10 +38,13 @@ void collision_effect_other(CMovingBitmap& character, CMovingBitmap& other, int 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
     collision_effect_other(character, chest_and_key, 1);
-    for (int i = 0; i < 3; i++)
-    {
-        collision_effect_other(character, door[i], 1);
-    }
+	if(phase == 5){
+		for (int i = 0; i < 3; i++)
+		{
+			collision_effect_other(character, door[i], 1);
+		}
+
+	}
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
