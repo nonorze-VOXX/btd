@@ -25,8 +25,23 @@ void CGameStateRun::OnBeginState()
 {
 }
 
+void collision_effect_other(CMovingBitmap& character, CMovingBitmap& other, int showBitmap)
+{
+    if ((character.Top() + character.Height() >= other.Top() &&
+            character.Top() <= other.Top() + other.Height())
+        && (character.Left() + character.Width() >= other.Left() &&
+            character.Left() <= other.Left() + other.Width()))
+    {
+        other.SelectShowBitmap(showBitmap);
+    }
+}
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+    collision_effect_other(character, chest_and_key, 1);
+    for (int i = 0; i < 3; i++)
+    {
+        collision_effect_other(character, door[i], 1);
+    }
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -47,8 +62,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	});
 	background.SetTopLeft(0, 0);
 
-	character.LoadBitmapByString({ "resources/gray.bmp" });
+    character.LoadBitmapByString({"resources/giraffe.bmp"});
 	character.SetTopLeft(150, 265);
+    bee.SetAnimation(1, false);
 
 	chest_and_key.LoadBitmapByString({ "resources/chest.bmp", "resources/chest_ignore.bmp" }, RGB(255, 255, 255));
 	chest_and_key.SetTopLeft(150, 430);
@@ -58,6 +74,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	ball.LoadBitmapByString({ "resources/ball-3.bmp", "resources/ball-2.bmp", "resources/ball-1.bmp", "resources/ball-ok.bmp" });
 	ball.SetTopLeft(150, 430);
+    ball.SetAnimation(4, true);
+    ball.ToggleAnimation();
 
 	for (int i = 0; i < 3; i++) {
 		door[i].LoadBitmapByString({ "resources/door_close.bmp", "resources/door_open.bmp" }, RGB(255, 255, 255));
@@ -67,6 +85,24 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+    int top = character.Top();
+    int left = character.Left();
+    if (nChar == 0x41)
+    {
+        character.SetTopLeft(left - 50, top);
+    }
+    if (nChar == 0x44)
+    {
+        character.SetTopLeft(left + 50, top);
+    }
+    if (nChar == 0x57)
+    {
+        character.SetTopLeft(left, top - 50);
+    }
+    if (nChar == 0x53)
+    {
+        character.SetTopLeft(left, top + 50);
+    }
 	if (nChar == VK_RETURN) {
 		if (phase == 1) {
 			if (sub_phase == 1) {
