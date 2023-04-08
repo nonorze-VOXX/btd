@@ -11,29 +11,16 @@ namespace Btd
 {
     enum UnitTestState
     {
-        ThrowableMove,
-        DartMonkeyShoot,
-        BloonFactoryTest,
-        BloonMoveTest,
-        BloonVectorMoveTest,
-        BloonPop,
-        TowerFocus,
-        NailMachineShoot,
+        Bez,
     };
 
     class TestEverything
     {
     private:
-        UnitTestState _unitTestState = DartMonkeyShoot;
-        Throwable _throwable;
-        DartMonkey _dartMonkey;
-        NailMachine _nailMachine;
-        Cannon _cannon;
-        IceTower _ice;
-        BloonFactory _balloonFactory;
-        TowerFactory _towerFactory;
-        Bloon _balloon;
-        vector<Bloon> BLOONS;
+        UnitTestState _unitTestState = Bez;
+        float BezCounter;
+        float BezDelta;
+        GameObject bezObject;
 
     public:
         TestEverything(TestEverything&&) = default;
@@ -41,6 +28,6 @@ namespace Btd
         void UnitInit();
         void UnitTest();
         void UnitShow();
-        void SetState(UnitTestState state) {_unitTestState = state;};
+        void SetState(UnitTestState state) { _unitTestState = state; };
     };
 }

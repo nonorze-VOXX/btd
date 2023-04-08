@@ -34,11 +34,14 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
     gm.OnMove();
+    ut.UnitTest();
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
     gm.OnInit();
+    ut.SetState(Btd::Bez);
+    ut.UnitInit();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -96,15 +99,15 @@ void GameOver(int size)
     //size 150
     int screenCenterX = SIZE_X / 2;
     int screenCenterY = SIZE_Y / 2;
-    int textLeft =screenCenterX -static_cast<int>(2.5*size);
+    int textLeft = screenCenterX - static_cast<int>(2.5 * size);
     int textTop = screenCenterY - size;
     int delta = size / 30;
     auto cdc = CDDraw::GetBackCDC();
     CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
-    CTextDraw::Print(cdc, textLeft+delta, textTop+delta, "game  over");
-    CTextDraw::Print(cdc, textLeft-delta, textTop+delta, "game  over");
-    CTextDraw::Print(cdc, textLeft+delta, textTop-delta, "game  over");
-    CTextDraw::Print(cdc, textLeft-delta, textTop-delta, "game  over");
+    CTextDraw::Print(cdc, textLeft + delta, textTop + delta, "game  over");
+    CTextDraw::Print(cdc, textLeft - delta, textTop + delta, "game  over");
+    CTextDraw::Print(cdc, textLeft + delta, textTop - delta, "game  over");
+    CTextDraw::Print(cdc, textLeft - delta, textTop - delta, "game  over");
 
     CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(0, 0, 0), 800);
     CTextDraw::Print(cdc, textLeft, textTop, "game  over");
@@ -115,6 +118,7 @@ void CGameStateRun::OnShow()
 {
     gm.OnShow();
     ShowGameStatusUI(gm.GetRound(), gm.GetLive(), gm.GetMoney());
+
     if (gm.GetLose())
     {
         GameOver(gameOverCounter++);
@@ -123,4 +127,5 @@ void CGameStateRun::OnShow()
             GotoGameState(GAME_STATE_INIT);
         }
     }
+    ut.UnitShow();
 }

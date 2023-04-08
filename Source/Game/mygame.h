@@ -42,6 +42,7 @@
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include "BtdClass/GameManager.h"
+#include "BtdClass/TestEverything.h"
 
 namespace game_framework
 {
@@ -108,6 +109,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         Btd::GameManager gm;
+        Btd::TestEverything ut;
         int gameOverCounter;
     };
 
