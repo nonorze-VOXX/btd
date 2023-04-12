@@ -95,11 +95,12 @@ namespace Btd
         return static_cast<int>(std::floor(tmp)) % 8;
     }
 
-    Vector2 BezierCurveNpoint(vector<Vector2> points, float n)
-    {
-        //TODO
-        return {0, 0};
-    }
+    // Vector2 BezierCurveNpoint(vector<Vector2> points, float n)
+    // {
+    //     //TODO
+    //     return {0, 0};
+    // }
+
 
     Vector2 BezierCurve4Point(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float n)
     {
@@ -112,5 +113,10 @@ namespace Btd
             Vector2MulFloat(d, pow(n, 3) * pow(1 - n, 0))
         );
         return Vector2Add(tmp, tmp1);
+    }
+
+    Vector2 BezierCurve4Point(vector<Vector2> points, float n)
+    {
+        return BezierCurve4Point(points[0], points[1], points[2], points[3], n);
     }
 }

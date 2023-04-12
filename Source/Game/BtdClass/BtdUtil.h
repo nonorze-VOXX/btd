@@ -85,7 +85,7 @@ namespace Btd
     Vector2 Spin45(Vector2 a);
     Vector2 Spin90(Vector2 a);
     int GetFrameIndexByVector2(Vector2 dir);
-    Vector2 BezierCurveNpoint(vector<Vector2> points, float n);
-    Vector2 BezierCurve4Point(vector<Vector2> points, float n);
+    // Vector2 BezierCurveNpoint(vector<Vector2> points, float n);
     Vector2 BezierCurve4Point(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float n);
+    Vector2 BezierCurve4Point(vector<Vector2> points, float n);
 }

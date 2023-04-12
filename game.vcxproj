@@ -245,6 +245,7 @@
         </ClCompile>
         <ClCompile Include="Source\Game\BtdClass\Bloon.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Bomb.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\Boomerang.cpp" />
         <ClCompile Include="Source\Game\BtdClass\BtdTimer.cpp" />
         <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
@@ -281,6 +282,7 @@
         <ClInclude Include="Source\Game\BtdClass\BloonFactory.h" />
         <ClCompile Include="Source\Game\BtdClass\BloonFactory.cpp" />
         <ClInclude Include="Source\Game\BtdClass\BloonDB.h" />
+        <ClInclude Include="Source\Game\BtdClass\Boomerang.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />
         <ClInclude Include="Source\Game\BtdClass\Bomb.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
