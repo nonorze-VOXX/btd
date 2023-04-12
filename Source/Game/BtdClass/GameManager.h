@@ -12,6 +12,7 @@ namespace Btd
         bool IsLose = false;
         int live = 10;
         int money = 0;
+        int willDecreaseMoney = 0;
 
     public:
         void OnBeginState(); // 設定每次重玩所需的變數
