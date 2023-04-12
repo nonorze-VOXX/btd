@@ -12,6 +12,7 @@
 #include "BtdClass/TowerFactory.h"
 
 using namespace game_framework;
+#define PRINT_MOUSE
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
@@ -57,6 +58,11 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
     gm.OnLButtonDown(nFlags, point);
+
+    mouseLocal = {
+        static_cast<float>(Btd::GetCursorPosX()) / static_cast<float>(SIZE_X),
+        static_cast<float>(Btd::GetCursorPosY()) / static_cast<float>(SIZE_Y)
+    };
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -88,15 +94,14 @@ void ShowGameStatusUI(int round, int lives, int money)
     CTextDraw::Print(pDC, 749, 97, "Lives:  " + to_string(lives));
 
     CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
-    CTextDraw::Print(pDC, 749, 152, "Build Towers");
-    CTextDraw::Print(pDC, 749, 152, "____________");
+    CTextDraw::Print(pDC, 749, 260, "Build Towers");
+    CTextDraw::Print(pDC, 749, 260, "____________");
 
     CDDraw::ReleaseBackCDC();
 }
 
 void GameOver(int size)
 {
-    //size 150
     int screenCenterX = SIZE_X / 2;
     int screenCenterY = SIZE_Y / 2;
     int textLeft = screenCenterX - static_cast<int>(2.5 * size);
@@ -114,6 +119,17 @@ void GameOver(int size)
     CDDraw::ReleaseBackCDC();
 }
 
+void PrintMouseLocal(Btd::Vector2 position)
+{
+    CDC* pDC = CDDraw::GetBackCDC();
+    CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
+
+    CTextDraw::Print(pDC, 749, 152, "X: " + to_string(position.X));
+    CTextDraw::Print(pDC, 749, 172, "Y: " + to_string(position.Y));
+
+    CDDraw::ReleaseBackCDC();
+}
+
 void CGameStateRun::OnShow()
 {
     gm.OnShow();
@@ -128,4 +144,7 @@ void CGameStateRun::OnShow()
         }
     }
     ut.UnitShow();
+#ifdef PRINT_MOUSE
+    PrintMouseLocal(mouseLocal);
+#endif
 }

@@ -17,7 +17,7 @@ namespace Btd
         int _maxPop = 0;
         int _poped = 0;
         int _canPenetrate = false;
-        DamageType _damageType;
+        DamageType::DamageType _damageType;
         // throwable can't hit same balloon in one second
         vector<pair<Bloon*, int>> cantHitBloons;
 
@@ -29,6 +29,7 @@ namespace Btd
         void SetMaxExistTime(float);
         void InitByCenter(Vector2 position);
 
+        void SetDamageType(DamageType::DamageType damageType);;
 
         virtual void Move();
 

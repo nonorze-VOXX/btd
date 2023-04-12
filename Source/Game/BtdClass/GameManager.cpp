@@ -18,6 +18,7 @@ namespace Btd
         db.LoadRounds();
         map->SetRounds(db.GetRounds());
         BloonFactory::SetNextRound(map->GetRounds()[round]);
+        BloonFactory::RoundRoute = 0;
         IsLose = false;
     }
 
@@ -168,7 +169,7 @@ namespace Btd
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {
-            bloon.ShowBitmap();
+            bloon.BloonShow();
         }
         switch (GameFlow)
         {

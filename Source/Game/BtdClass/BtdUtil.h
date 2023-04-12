@@ -58,12 +58,16 @@ namespace Btd
         int nextTime;
     };
 
-    enum DamageType
+
+    namespace DamageType
     {
-        Normal,
-        Boom,
-        Ice,
-    };
+        enum DamageType
+        {
+            Normal,
+            Boom,
+            Ice,
+        };
+    }
 
     enum GameFlow
     {

@@ -6,7 +6,7 @@
 
 namespace Btd
 {
-    //      normal ice boom
+    //      normal boom ice
     //normal
     //black
     //white
@@ -24,18 +24,35 @@ namespace Btd
     void Bloon::Setspeed(float speed)
     {
         _speed = speed;
+        _originSpeed = speed;
     }
 
     void Bloon::Update()
     {
-        if (GetActive() && _freezeTime <= 0)
+        if (_slowerTime > 0)
         {
-            Move(Map::GetRoute());
+            _slowerTime -= deltaTime;
+            _speed = _slowerSpeed;
         }
-        else if (_freezeTime > 0)
+        else
         {
-            _freezeTime -= deltaTime;
+            _speed = _originSpeed;
+            _isFreeze = false;
         }
+        if (GetActive())
+        {
+            Move(Map::GetRoute()[route]);
+        }
+    }
+
+    void Bloon::SetRoute(int n)
+    {
+        route = n;
+    }
+
+    int Bloon::Getroute()
+    {
+        return route;
     }
 
     float Bloon::GetSpeed()
@@ -79,19 +96,29 @@ namespace Btd
         return type;
     }
 
-    void Bloon::Pop(int damage, DamageType damageType)
+    void Bloon::Pop(int damage, DamageType::DamageType damageType)
     {
-        if (resistDamegeMap[type][damageType])
+        if (resistDamegeMap[type][damageType] &&
+            !(_isFreeze && damageType == DamageType::Normal)) // freeze bloon resist normal dmg
         {
-            _layer -= damage;
+            if (damageType == DamageType::Ice)
+            {
+                // if damageType == ice, damage = slowerTime
+                SlowerInPeriod(_speed, damage);
+                _isFreeze = true;
+            }
+            else
+            {
+                _layer -= damage;
+                if (_layer < 0)
+                {
+                    _isPoped = true;
+                    return;
+                }
+                SetFrameIndexOfBitmap(_layer);
+                Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
+            }
         }
-        if (_layer < 0)
-        {
-            _isPoped = true;
-            return;
-        }
-        SetFrameIndexOfBitmap(_layer);
-        Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
     }
 
     bool Bloon::IsPoped()
@@ -114,9 +141,10 @@ namespace Btd
         _layer = layer;
     }
 
-    void Bloon::SetFreezeTime(int time)
+    void Bloon::SlowerInPeriod(float subSpeed, int time)
     {
-        _freezeTime = time;
+        _slowerSpeed = _speed - subSpeed;
+        _slowerTime = time;
     }
 
     bool Bloon::IsGoaled()
@@ -127,5 +155,16 @@ namespace Btd
     int Bloon::GetLayer()
     {
         return _layer;
+    }
+
+    void Bloon::BloonShow()
+    {
+        ShowBitmap();
+        if (_isFreeze)
+        {
+            // _frost.SetCenter(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
+            //_frost.SetTopLeft(GetLeft(), GetTop());
+            //_frost.ShowBitmap();
+        }
     }
 }
