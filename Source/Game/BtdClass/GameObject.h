@@ -24,6 +24,7 @@ namespace Btd
         void SetBottomCenter(int x, int y);
         Vector2 GetBottomCenter();
         bool IsCursorFocus();
+        bool IsClicked();
         void SetClicked(bool clicked);
         void SetHeight(int height);
         void SetWidth(int width);

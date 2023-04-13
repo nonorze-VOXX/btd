@@ -60,6 +60,11 @@ namespace Btd
         return false;
     }
 
+    bool GameObject::IsClicked()
+    {
+        return _isClicked;
+    }
+
     void GameObject::SetClicked(bool clicked)
     {
         _isClicked = clicked;

@@ -8,8 +8,8 @@ namespace Btd
 {
     Tower::Tower()
     {
-        _isUpgrade[0] = false;
-        _isUpgrade[1] = false;
+        IsUpgrade[0] = false;
+        IsUpgrade[1] = false;
         _isMovable = true;
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
@@ -85,11 +85,25 @@ namespace Btd
         shootTimecounter = tome;
     }
 
+    void Tower::Init()
+    {
+        UpgradeButton[0].LoadEmptyBitmap(60, 60);
+        UpgradeButton[1].LoadEmptyBitmap(60, 60);
+        UpgradeButton[0].SetTopLeft(740, 400);
+        UpgradeButton[1].SetTopLeft(820, 400);
+    }
+
+    void Tower::Upgrade(int level)
+    {
+    }
+
     void Tower::TowerShow()
     {
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
+            this->UpgradeButton[0].ShowBitmap();
+            this->UpgradeButton[1].ShowBitmap();
         }
         this->ShowBitmap();
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)

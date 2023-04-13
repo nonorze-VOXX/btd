@@ -18,6 +18,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             dartMonkey->SetFrameIndexOfBitmap(6);
             dartMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             dartMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            dartMonkey->Init();
             TowerVector.push_back(dartMonkey);
             break;
         }
@@ -34,6 +35,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             cannon->SetFrameIndexOfBitmap(6);
             cannon->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             cannon->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            cannon->Init();
             TowerVector.push_back(cannon);
             break;
         }
@@ -47,6 +49,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             nailMachine->SetActive(false);
             nailMachine->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             nailMachine->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            nailMachine->Init();
             TowerVector.push_back(nailMachine);
             break;
         }
@@ -60,6 +63,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->SetShootDeltaTime(3);
             ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            ice->Init();
             TowerVector.push_back(ice);
         }
     default:
@@ -67,11 +71,27 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
     }
 }
 
+bool handleUpgradeButtonClicked (int towerIndex)
+{
+    bool isBtnClicked = false;
+    for (int i=0; i<2; i++)
+    {
+        if (Btd::TowerFactory::TowerVector[towerIndex]->IsClicked() &&
+            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeButton[i].IsCursorFocus())
+        {
+            isBtnClicked = true;
+            Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);
+        }
+    }
+    return  isBtnClicked;
+}
+
 void Btd::TowerFactory::HandleTowerClicked()
 {
     for (int i=0; i<(int)TowerVector.size(); i++)
     {
-        if (TowerVector[i]->IsCursorFocus())
+        if (TowerVector[i]->IsCursorFocus() ||
+            handleUpgradeButtonClicked(i))
         {
             TowerVector[i]->SetClicked(true);
         }

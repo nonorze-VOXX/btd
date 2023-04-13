@@ -17,7 +17,6 @@ namespace Btd
         ~Tower() override = default;
         Tower(Tower&&) = default;
         void Update() override;
-        void SetUpgrade(int level);
         bool IsMovable();
         void SetIsMove(bool move);
         Vector2 getLocation();
@@ -38,10 +37,13 @@ namespace Btd
         void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
+        void Init();
         GameObject RangeCircle;
+        GameObject UpgradeButton[2];
+        bool IsUpgrade[2];
+        virtual void Upgrade(int level);
 
     protected:
-        bool _isUpgrade[2];
         bool _isMovable;
         // int _speed;
         int _range;
