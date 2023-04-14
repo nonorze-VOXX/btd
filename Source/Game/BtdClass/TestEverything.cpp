@@ -45,6 +45,7 @@ namespace Btd
         switch (_unitTestState)
         {
         case Bez:
+          
             auto position = BezierCurve4Point(
                 {static_cast<float>(0), static_cast<float>(250)},
                 {static_cast<float>(500), static_cast<float>(0)},
