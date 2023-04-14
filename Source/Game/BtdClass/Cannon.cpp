@@ -20,4 +20,24 @@ namespace Btd
         bomb->SetDamageType(DamageType::Boom);
         throwablePool.push(bomb);
     }
+
+    void Cannon::Upgrade(int level)
+    {
+        if (!IsUpgrade[level])
+        {
+            switch (level)
+            {
+            case 0:
+                ThrowablePath = {"resources/towers/bomb/bomb.bmp", "resources/towers/bomb/bomb_1_big.bmp",
+                                             "resources/towers/bomb/bomb_2_big.bmp", "resources/towers/bomb/bomb_3_big.bmp", "resources/towers/bomb/bomb_4_big.bmp"};
+                break;
+            case 1:
+                _range = 250;
+                break;
+            default:
+                break;
+            }
+        }
+        IsUpgrade[level] = true;
+    }
 }

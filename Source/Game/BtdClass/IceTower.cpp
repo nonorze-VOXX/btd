@@ -30,6 +30,8 @@ namespace Btd
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap((float)_range / 100.0);
+            this->UpgradeButton[0].ShowBitmap();
+            this->UpgradeButton[1].ShowBitmap();
         }
         for (int i=0; i<(int)throwables.size(); i++)
         {
