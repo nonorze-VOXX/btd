@@ -16,6 +16,8 @@ namespace Btd
             };
         }
 
+        void UpdateThrowable() override;
+
 
         void Shoot(Vector2 target) override;
         void PushThrowablePool() override;

@@ -4,6 +4,8 @@
 #include "map.h"
 #include "Tower.h"
 
+#include "BoomerangMonkey.h"
+
 namespace Btd
 {
     Tower::Tower()

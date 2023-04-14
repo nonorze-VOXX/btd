@@ -1,6 +1,7 @@
 #pragma once
 #include "BloonFactory.h"
 #include "Boomerang.h"
+#include "BoomerangMonkey.h"
 #include "DartMonkey.h"
 #include "NailMachine.h"
 #include "Throwable.h"
@@ -14,6 +15,7 @@ namespace Btd
     {
         Bez,
         BoomerangTest,
+        BoomerangMonkeyTest,
     };
 
     class TestEverything
@@ -24,6 +26,7 @@ namespace Btd
         float BezDelta;
         GameObject bezObject;
         Boomerang _boomerang;
+        shared_ptr<BoomerangMonkey> bm;
 
     public:
         TestEverything(TestEverything&&) = default;

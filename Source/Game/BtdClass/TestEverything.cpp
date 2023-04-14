@@ -33,8 +33,26 @@ namespace Btd
                 {static_cast<float>(0), static_cast<float>(250)}
             });
 
-            break;
-
+        case BoomerangMonkeyTest:
+            bm = make_shared<BoomerangMonkey>(BoomerangMonkey());
+            bm->LoadBitmapByString({
+                                       "resources/towers/monkey/tower_monkey_1.bmp",
+                                       "resources/towers/monkey/tower_monkey_2.bmp",
+                                       "resources/towers/monkey/tower_monkey_3.bmp",
+                                       "resources/towers/monkey/tower_monkey_4.bmp",
+                                       "resources/towers/monkey/tower_monkey_5.bmp",
+                                       "resources/towers/monkey/tower_monkey_6.bmp",
+                                       "resources/towers/monkey/tower_monkey_7.bmp",
+                                       "resources/towers/monkey/tower_monkey_8.bmp"
+                                   }, RGB(0, 0, 0));
+            bm->SetCenter(300, 300);
+            bm->SetIsMove(false);
+            bm->SetShootDeltaTime(3);
+            bm->SetActive(true);
+            bm->SetFrameIndexOfBitmap(6);
+            bm->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"},
+                                               RGB(0, 0, 0));
+            bm->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
         default:
             break;
         }
@@ -45,7 +63,7 @@ namespace Btd
         switch (_unitTestState)
         {
         case Bez:
-          
+
             auto position = BezierCurve4Point(
                 {static_cast<float>(0), static_cast<float>(250)},
                 {static_cast<float>(500), static_cast<float>(0)},
@@ -66,6 +84,13 @@ namespace Btd
             break;
         case BoomerangTest:
             _boomerang.Update();
+            if (_boomerang.GetCenter().X > 100)
+            {
+                _unitTestState = BoomerangMonkeyTest;
+            }
+            break;
+        case BoomerangMonkeyTest:
+            bm->Update();
             break;
         default: ;
         }
@@ -81,6 +106,10 @@ namespace Btd
         case BoomerangTest:
             _boomerang.ShowBitmap();
             break;
+        case BoomerangMonkeyTest:
+            bm->TowerShow();
+            break;
+
         default:
             break;
         }

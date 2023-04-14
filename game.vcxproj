@@ -352,6 +352,14 @@
         <Content Include="Resources\towers\bomb\bomb.bmp" />
         <Content Include="Resources\towers\bomb\tower_bomb.bmp" />
         <Content Include="Resources\towers\ice\ice.bmp" />
+        <Content Include="Resources\towers\monkey\dart_1.bmp" />
+        <Content Include="Resources\towers\monkey\dart_2.bmp" />
+        <Content Include="Resources\towers\monkey\dart_3.bmp" />
+        <Content Include="Resources\towers\monkey\dart_4.bmp" />
+        <Content Include="Resources\towers\monkey\dart_5.bmp" />
+        <Content Include="Resources\towers\monkey\dart_6.bmp" />
+        <Content Include="Resources\towers\monkey\dart_7.bmp" />
+        <Content Include="Resources\towers\monkey\dart_8.bmp" />
         <Content Include="Resources\towers\monkey\tower_monkey_1.bmp" />
         <Content Include="Resources\towers\monkey\tower_monkey_2.bmp" />
         <Content Include="Resources\towers\monkey\tower_monkey_3.bmp" />

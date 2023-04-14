@@ -35,7 +35,7 @@ namespace Btd
         void SetShootDeltaTime(float time);
         virtual void Shoot(Vector2 target);
         virtual void PushThrowablePool();
-        void UpdateThrowable();
+        virtual void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
         GameObject RangeCircle;
