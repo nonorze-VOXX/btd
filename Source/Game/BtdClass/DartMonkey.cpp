@@ -7,6 +7,7 @@ namespace Btd
     {
         _range = 160;
         _isPenetrate = false;
+        shootDeltaTime = 3;
         ThrowablePath = {
             "resources/towers/monkey/dart_1.bmp", "resources/towers/monkey/dart_2.bmp",
             "resources/towers/monkey/dart_3.bmp", "resources/towers/monkey/dart_4.bmp",
@@ -37,19 +38,17 @@ namespace Btd
 
     void DartMonkey::Upgrade(int level)
     {
-        if (!IsUpgrade[level])
+        Tower::Upgrade(level);
+        switch (level)
         {
-            switch (level)
-            {
-            case 0:
-                _isPenetrate = true;
-                break;
-            case 1:
-                _range = 300;
-                break;
-            default:
-                break;
-            }
+        case 0:
+            _isPenetrate = true;
+            break;
+        case 1:
+            _range = 300;
+            break;
+        default:
+            break;
         }
         IsUpgrade[level] = true;
     }

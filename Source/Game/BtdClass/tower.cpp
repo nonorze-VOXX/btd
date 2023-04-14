@@ -95,6 +95,10 @@ namespace Btd
 
     void Tower::Upgrade(int level)
     {
+        if (!IsUpgrade[level])
+        {
+            return;
+        }
     }
 
     void Tower::TowerShow()

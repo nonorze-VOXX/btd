@@ -8,6 +8,7 @@ namespace Btd
     IceTower::IceTower()
     {
         _range = 150;
+        shootDeltaTime = 3;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
         _freezeTime = 150;
     }
