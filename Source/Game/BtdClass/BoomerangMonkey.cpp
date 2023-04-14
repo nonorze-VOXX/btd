@@ -32,15 +32,17 @@ void Btd::BoomerangMonkey::Shoot(Vector2 target)
     Vector2 targetDirection = {
         target.X - GetCenter().X, target.Y - GetCenter().Y
     };
-    vector<Vector2> route = {{0, 0}, {200, -100}, {200, 600}, {0, 0}};
-    const float angle = atan2(targetDirection.X, targetDirection.Y);
+    vector<Vector2> route = {{0, 0}, {500, 200}, {200, -600}, {0, 0}};
+    const float angle = -atan2(-targetDirection.Y, targetDirection.X);//space angke transform
     for (int i = 0; i < 4; i++)
     {
-        route[i] = Spin(route[i], static_cast<float>(angle/3.14*180));
+        route[i] = Spin(route[i], angle);
         route[i] = Vector2Add(GetCenter(), route[i]);
     }
 
     BoomerangNext->SetRoute(route);
+    BoomerangNext->SetPenetrate(true);
+    BoomerangNext->SetMaxExistTime(1000000);
     Tower::Shoot(target);
 }
 

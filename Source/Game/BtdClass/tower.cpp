@@ -15,6 +15,7 @@ namespace Btd
         _isMovable = true;
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
+        shootTimecounter = 0;
     }
 
     bool Tower::IsMovable()

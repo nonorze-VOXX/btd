@@ -9,7 +9,7 @@ void Boomerang::Move()
     _position = BezierCurve4Point(route, BezierTime);
     SetTopLeft(static_cast<int>(_position.X), static_cast<int>(_position.Y));
     BezierTime += static_cast<float>(0.05);
-    if (BezierTime > 1)
+    if (BezierTime >= 1.01)
     {
         SetActive(false);
     }
