@@ -73,7 +73,7 @@ bool handleUpgradeButtonClicked (int towerIndex)
     for (int i=0; i<2; i++)
     {
         if (Btd::TowerFactory::TowerVector[towerIndex]->IsClicked() &&
-            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeButton[i].IsCursorFocus())
+            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].IsCursorFocus())
         {
             isBtnClicked = true;
             Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);

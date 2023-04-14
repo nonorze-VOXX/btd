@@ -87,10 +87,10 @@ namespace Btd
 
     void Tower::Init()
     {
-        UpgradeButton[0].LoadEmptyBitmap(60, 60);
-        UpgradeButton[1].LoadEmptyBitmap(60, 60);
-        UpgradeButton[0].SetTopLeft(740, 400);
-        UpgradeButton[1].SetTopLeft(820, 400);
+        UpgradeBtn[0].Init();
+        UpgradeBtn[1].Init();
+        UpgradeBtn[0].SetTopLeft(750, 400);
+        UpgradeBtn[1].SetTopLeft(860, 400);
     }
 
     void Tower::Upgrade(int level)
@@ -106,8 +106,8 @@ namespace Btd
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
-            this->UpgradeButton[0].ShowBitmap();
-            this->UpgradeButton[1].ShowBitmap();
+            this->UpgradeBtn[0].ShowBitmap();
+            this->UpgradeBtn[1].ShowBitmap();
         }
         this->ShowBitmap();
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)

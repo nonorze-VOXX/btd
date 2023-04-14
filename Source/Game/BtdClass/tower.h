@@ -7,6 +7,7 @@
 #include <queue>
 #include <string>
 #include "Bloon.h"
+#include "UpgradeButton.h"
 
 namespace Btd
 {
@@ -39,7 +40,7 @@ namespace Btd
         void SetShootTimeCounter(float);
         void Init();
         GameObject RangeCircle;
-        GameObject UpgradeButton[2];
+        UpgradeButton UpgradeBtn[2];
         bool IsUpgrade[2];
         virtual void Upgrade(int level);
 
