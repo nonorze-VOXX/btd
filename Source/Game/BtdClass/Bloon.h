@@ -21,8 +21,13 @@ namespace Btd
         int route = 0;
         bool _isFreeze;
         GameObject _frost;
+        int _explodeTime;
+        bool _isExplode;
 
     public:
+        int GetExplodeTime() const;
+        void SetExplodeTime(int explodeTime);
+
         Bloon()
         {
             _layer = 0;
@@ -30,6 +35,8 @@ namespace Btd
             _slowerTime = 0;
             _isFreeze = false;
             _frost.LoadBitmapByString({"resources/bloon/frost.bmp"}, RGB(0, 0, 0));
+            _explodeTime = 30;
+            _isExplode = false;
         };
 
         Bloon(int layer): _layer(layer)
@@ -70,5 +77,6 @@ namespace Btd
         void SlowerInPeriod(float subSpeed, int time);
         int GetLayer();
         void BloonShow();
+        void ShowExplode();
     };
 }

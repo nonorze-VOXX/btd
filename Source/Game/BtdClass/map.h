@@ -29,6 +29,8 @@ namespace Btd
         static vector<vector<Vector2>> GetRoute();
         static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
+        int GetInitMoney();
+        int GetInitLives();
 
     protected:
         std::vector<GameObject> _road;
