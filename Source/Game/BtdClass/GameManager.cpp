@@ -35,7 +35,7 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        map->HandleButtonClicked();
+        willDecreaseMoney = map->HandleButtonClicked(money);
         TowerFactory::HandleTowerClicked();
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
@@ -43,6 +43,7 @@ namespace Btd
         {
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
+            money -= willDecreaseMoney;
         }
         switch (GameFlow)
         {
