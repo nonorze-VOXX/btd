@@ -99,13 +99,13 @@ void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
     }
 }
 
-void showInfoText()
+void showInfoText(Btd::Map map)
 {
     CDC* pDC = CDDraw::GetBackCDC();
     CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
     CTextDraw::Print(pDC, 749, 25, "Round:   1");
-    CTextDraw::Print(pDC, 749, 61, "Money: 650");
-    CTextDraw::Print(pDC, 749, 97, "Lives:  40");
+    CTextDraw::Print(pDC, 749, 61, "Money: " + to_string(map.GetInitMoney()));
+    CTextDraw::Print(pDC, 749, 97, "Lives:  " + to_string(map.GetInitLives()));
 
     CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
     CTextDraw::Print(pDC, 749, 152, "Build Towers");
@@ -122,5 +122,5 @@ void CGameStateInit::OnShow()
     {
         _mapButton[i].ShowBitmap();
     }
-    showInfoText();
+    showInfoText(*map);
 }

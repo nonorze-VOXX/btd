@@ -243,7 +243,17 @@ namespace Btd
             return true;
         }
         return false;
-    };
+    }
+
+    int Map::GetInitMoney()
+    {
+        return InitMoney;
+    }
+
+    int Map::GetInitLives()
+    {
+        return InitLives;
+    }
 
     vector<vector<UnitRound>> Map::GetRounds()
     {
