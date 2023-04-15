@@ -35,16 +35,20 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        willDecreaseMoney = map->HandleButtonClicked(money);
+        if(TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable() )
+        {
+            willDecreaseMoney = map->HandleButtonClicked(money);
+        }
         TowerFactory::HandleTowerClicked();
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
+            money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
         }
-        money -= willDecreaseMoney;
         switch (GameFlow)
         {
         case Prepare:
