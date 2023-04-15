@@ -203,12 +203,13 @@ namespace Btd
     {
         for (int i = 0; i < 5; i++)
         {
-            if (_factoryButton[i].IsCursorFocus() && priceTable[i] < money)
+            if (_factoryButton[i].IsCursorFocus() && priceTable[i] <= money)
             {
                 _factoryButton[i].SetClicked(true);
                 return priceTable[i];
             }
         }
+        return 0;
     }
 
     GameObject Map::GetBackground()
