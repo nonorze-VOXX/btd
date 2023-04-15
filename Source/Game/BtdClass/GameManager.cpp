@@ -217,6 +217,10 @@ namespace Btd
         {
             live = 0;
         }
+        if (nChar == 'M')
+        {
+            money = 48763;
+        }
     }
 
     shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
