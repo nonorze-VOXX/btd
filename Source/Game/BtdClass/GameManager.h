@@ -13,6 +13,7 @@ namespace Btd
         int live = 10;
         int money = 0;
         bool BloonPause = false;
+        int willDecreaseMoney = 0;
 
     public:
         void OnBeginState(); // 設定每次重玩所需的變數

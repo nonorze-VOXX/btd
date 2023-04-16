@@ -22,13 +22,15 @@ namespace Btd
         void InitFactoryButton();
         void ShowFactoryButton();
         void UpdateFactoryButton();
-        void HandleButtonClicked();
+        int HandleButtonClicked(int money);
         GameObject GetBackground();
         vector<vector<UnitRound>> GetRounds();
         void SetRounds(vector<vector<UnitRound>> round);
         static vector<vector<Vector2>> GetRoute();
         static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
+        int GetInitMoney();
+        int GetInitLives();
 
     protected:
         std::vector<GameObject> _road;
@@ -38,6 +40,7 @@ namespace Btd
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
         int buttonNumber=0;
+        vector<int> priceTable = {200, 360, 650, 850, 3600,400};
     };
 }
 

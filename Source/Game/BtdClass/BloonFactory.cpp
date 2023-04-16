@@ -12,6 +12,6 @@ namespace Btd
     vector<string> BloonFactory::balloonPath = {
         "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
         "Resources/bloon/bloon_yellow.bmp", "Resources/bloon/bloon_black.bmp",
-        "Resources/bloon/bloon_white.bmp",
+        "Resources/bloon/bloon_white.bmp", "Resources/bloon/explode.bmp"
     };
 }

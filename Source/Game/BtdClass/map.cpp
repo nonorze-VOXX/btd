@@ -203,15 +203,17 @@ namespace Btd
         }
     }
 
-    void Map::HandleButtonClicked()
+    int Map::HandleButtonClicked(int money)
     {
         for (int i = 0; i < buttonNumber; i++)
         {
-            if (_factoryButton[i].IsCursorFocus())
+            if (_factoryButton[i].IsCursorFocus() && priceTable[i] <= money)
             {
                 _factoryButton[i].SetClicked(true);
+                return priceTable[i];
             }
         }
+        return 0;
     }
 
     GameObject Map::GetBackground()
@@ -245,7 +247,17 @@ namespace Btd
             return true;
         }
         return false;
-    };
+    }
+
+    int Map::GetInitMoney()
+    {
+        return InitMoney;
+    }
+
+    int Map::GetInitLives()
+    {
+        return InitLives;
+    }
 
     vector<vector<UnitRound>> Map::GetRounds()
     {
