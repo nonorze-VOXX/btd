@@ -209,6 +209,7 @@ namespace Btd
                 return priceTable[i];
             }
         }
+        return 0;
     }
 
     GameObject Map::GetBackground()
