@@ -9,8 +9,8 @@ namespace Btd
 
     void UpgradeButton::Init()
     {
-        LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/cantBuy.bmp"
-        , "resources/button/cantBuy.bmp"});
+        LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"
+        , "resources/button/alreadyBought.bmp"});
     }
 
     void UpgradeButton::Update()

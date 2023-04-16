@@ -78,6 +78,10 @@ bool handleUpgradeButtonClicked (int towerIndex)
             isBtnClicked = true;
             Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);
         }
+        if (Btd::TowerFactory::TowerVector[towerIndex]->IsUpgrade[i])
+        {
+            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(2);
+        }
     }
     return  isBtnClicked;
 }
