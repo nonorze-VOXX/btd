@@ -87,10 +87,14 @@ namespace Btd
 
     void Tower::Init()
     {
-        UpgradeBtn[0].Init();
-        UpgradeBtn[1].Init();
-        UpgradeBtn[0].SetTopLeft(750, 400);
-        UpgradeBtn[1].SetTopLeft(860, 400);
+        int location[2][2] = {{750, 400}, {860, 400}};
+        for (int i=0; i<2; i++)
+        {
+            UpgradeBtn[i].LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"
+            , "resources/button/alreadyBought.bmp"});
+            UpgradeBtn[i].SetTopLeft(location[i][0], location[i][1]);
+            
+        }
     }
 
     void Tower::Upgrade(int level)
