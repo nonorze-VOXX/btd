@@ -35,12 +35,17 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        map->HandleButtonClicked();
+        if(TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable() )
+        {
+            willDecreaseMoney = map->HandleButtonClicked(money);
+        }
         TowerFactory::HandleTowerClicked();
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
+            money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
         }
@@ -215,6 +220,10 @@ namespace Btd
         if (nChar == 'P')
         {
             live = 0;
+        }
+        if (nChar == 'M')
+        {
+            money = 48763;
         }
     }
 

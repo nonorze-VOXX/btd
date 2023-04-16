@@ -16,6 +16,16 @@ namespace Btd
         {true, true, false}
     };
 
+    int Bloon::GetExplodeTime() const
+    {
+        return _explodeTime;
+    }
+
+    void Bloon::SetExplodeTime(int explodeTime)
+    {
+        _explodeTime = explodeTime;
+    }
+
     void Bloon::SetNowRouteTarget(int target)
     {
         nowRouteTarget = target;
@@ -42,6 +52,10 @@ namespace Btd
         if (GetActive())
         {
             Move(Map::GetRoute()[route]);
+        }
+        if (_isExplode)
+        {
+            ShowExplode();
         }
     }
 
@@ -110,13 +124,12 @@ namespace Btd
             else
             {
                 _layer -= damage;
-                if (_layer < 0)
+                _explodeTime = 30;
+                _isExplode = true;
+                if (_layer >= 0)
                 {
-                    _isPoped = true;
-                    return;
+                    Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
                 }
-                SetFrameIndexOfBitmap(_layer);
-                Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
             }
         }
     }
@@ -165,6 +178,25 @@ namespace Btd
             // _frost.SetCenter(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
             //_frost.SetTopLeft(GetLeft(), GetTop());
             //_frost.ShowBitmap();
+        }
+    }
+
+    void Bloon::ShowExplode()
+    {
+        if (_explodeTime != 0)
+        {
+            SetFrameIndexOfBitmap(6);
+            SetExplodeTime(_explodeTime - deltaTime);
+        }
+        else
+        {
+            _isExplode = false;
+            if (_layer < 0)
+            {
+                _isPoped = true;
+                return;
+            }
+            SetFrameIndexOfBitmap(_layer);
         }
     }
 }
