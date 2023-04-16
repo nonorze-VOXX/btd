@@ -40,7 +40,7 @@ namespace Btd
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
-        TowerFactory::HandleTowerClicked();
+        money -= TowerFactory::HandleTowerClicked(money);
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)

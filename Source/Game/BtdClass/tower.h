@@ -43,6 +43,7 @@ namespace Btd
         UpgradeButton UpgradeBtn[2];
         bool IsUpgrade[2];
         virtual void Upgrade(int level);
+        int UpgradePrice[2] = {0, 0};
 
     protected:
         bool _isMovable;

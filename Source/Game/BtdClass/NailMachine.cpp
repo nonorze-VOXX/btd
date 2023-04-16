@@ -10,6 +10,8 @@ namespace Btd
         _range = 120;
         shootDeltaTime = 5.5;
         ThrowablePath = {"resources/towers/nail/nail.bmp"};
+        UpgradePrice[0] = 180;
+        UpgradePrice[1] = 90;
     }
 
     void NailMachine::Update()

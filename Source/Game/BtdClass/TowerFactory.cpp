@@ -67,7 +67,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
     }
 }
 
-bool handleUpgradeButtonClicked (int towerIndex)
+bool handleUpgradeButtonClicked (int towerIndex, int money, int *willDecreaseMoney)
 {
     bool isBtnClicked = false;
     for (int i=0; i<2; i++)
@@ -76,7 +76,12 @@ bool handleUpgradeButtonClicked (int towerIndex)
             Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].IsCursorFocus())
         {
             isBtnClicked = true;
-            Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);
+            if (!Btd::TowerFactory::TowerVector[towerIndex]->IsUpgrade[i] &&
+                Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i] <= money)
+            {
+                Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);
+                (*willDecreaseMoney) += Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i];
+            }
         }
         if (Btd::TowerFactory::TowerVector[towerIndex]->IsUpgrade[i])
         {
@@ -86,12 +91,13 @@ bool handleUpgradeButtonClicked (int towerIndex)
     return  isBtnClicked;
 }
 
-void Btd::TowerFactory::HandleTowerClicked()
+int Btd::TowerFactory::HandleTowerClicked(int money)
 {
+    int willDecreaseMoney = 0;
     for (int i=0; i<(int)TowerVector.size(); i++)
     {
         if (TowerVector[i]->IsCursorFocus() ||
-            handleUpgradeButtonClicked(i))
+            handleUpgradeButtonClicked(i, money, &willDecreaseMoney))
         {
             TowerVector[i]->SetClicked(true);
         }
@@ -100,4 +106,5 @@ void Btd::TowerFactory::HandleTowerClicked()
             TowerVector[i]->SetClicked(false);
         }
     }
+    return willDecreaseMoney;
 }

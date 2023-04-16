@@ -11,6 +11,8 @@ namespace Btd
         shootDeltaTime = 3;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
         _freezeTime = 150;
+        UpgradePrice[0] = 270;
+        UpgradePrice[1] = 180;
     }
 
     void IceTower::PushThrowablePool()

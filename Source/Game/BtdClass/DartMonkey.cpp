@@ -14,6 +14,8 @@ namespace Btd
             "resources/towers/monkey/dart_5.bmp", "resources/towers/monkey/dart_6.bmp",
             "resources/towers/monkey/dart_7.bmp", "resources/towers/monkey/dart_8.bmp"
         };
+        UpgradePrice[0] = 180;
+        UpgradePrice[1] = 80;
     }
 
     void DartMonkey::Shoot(Vector2 target)
