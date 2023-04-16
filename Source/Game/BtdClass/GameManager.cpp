@@ -45,10 +45,10 @@ namespace Btd
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
+            money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
         }
-        money -= willDecreaseMoney;
         switch (GameFlow)
         {
         case Prepare:
