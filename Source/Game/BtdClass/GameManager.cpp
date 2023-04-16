@@ -47,8 +47,8 @@ namespace Btd
         {
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
-            money -= willDecreaseMoney;
         }
+        money -= willDecreaseMoney;
         switch (GameFlow)
         {
         case Prepare:
@@ -220,6 +220,10 @@ namespace Btd
         if (nChar == 'P')
         {
             live = 0;
+        }
+        if (nChar == 'M')
+        {
+            money = 48763;
         }
     }
 
