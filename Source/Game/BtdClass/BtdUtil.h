@@ -16,7 +16,8 @@ namespace Btd
         nail,
         ice,
         bomb,
-        super
+        super,
+        boomerang
     };
 
     namespace Layer

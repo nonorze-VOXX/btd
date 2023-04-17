@@ -165,27 +165,31 @@ namespace Btd
 
     void Map::InitFactoryButton()
     {
+        buttonNumber = 6;
         vector<string> filePath = {
             "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
-            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp"
+            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp","resources/button/button_super.bmp"
         };
-        vector<TowerType> attributes = {dart, nail, ice, bomb, super};
+        vector<TowerType> attributes = {dart, nail, ice, bomb, super,boomerang};
         float start = 740, space = 47;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
-            {start + space * 3, 300}, {start + space * 4, 300}
+            {start + space * 3, 300}, {start + space * 4, 300} ,
+            {start , 300+space}
         };
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < buttonNumber; i++)
         {
-            _factoryButton[i].LoadBitmapByString({filePath[i]});
-            _factoryButton[i].SetAttribute(attributes[i]);
-            _factoryButton[i].SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
+            FactoryButton factoryButton =FactoryButton();
+            factoryButton.LoadBitmapByString({filePath[i]});
+            factoryButton.SetAttribute(attributes[i]);
+            factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
+            _factoryButton.push_back(factoryButton);
         }
     }
 
     void Map::ShowFactoryButton()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < buttonNumber; i++)
         {
             _factoryButton[i].ShowBitmap();
         }
@@ -193,7 +197,7 @@ namespace Btd
 
     void Map::UpdateFactoryButton()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < buttonNumber; i++)
         {
             _factoryButton[i].Update();
         }
@@ -201,7 +205,7 @@ namespace Btd
 
     void Map::HandleButtonClicked()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < buttonNumber; i++)
         {
             if (_factoryButton[i].IsCursorFocus())
             {

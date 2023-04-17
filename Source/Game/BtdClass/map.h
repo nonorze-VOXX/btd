@@ -33,10 +33,11 @@ namespace Btd
     protected:
         std::vector<GameObject> _road;
         GameObject _background;
-        FactoryButton _factoryButton[5];
+        vector<FactoryButton> _factoryButton;
         static vector<vector<Vector2>> _route;
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
+        int buttonNumber=0;
     };
 }
 
