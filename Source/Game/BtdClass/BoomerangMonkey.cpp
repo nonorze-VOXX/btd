@@ -34,9 +34,11 @@ void Btd::BoomerangMonkey::Shoot(Vector2 target)
     };
     vector<Vector2> route = {{0, 0}, {500, 200}, {200, -600}, {0, 0}};
     const float angle = -atan2(-targetDirection.Y, targetDirection.X);//space angke transform
+    const float scale = (float) _range/300.F; //origin route is use 300 range generate
     for (int i = 0; i < 4; i++)
     {
         route[i] = Spin(route[i], angle);
+        route[i] = Scale(route[i],scale);
         route[i] = Vector2Add(GetCenter(), route[i]);
     }
 

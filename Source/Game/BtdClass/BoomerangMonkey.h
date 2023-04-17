@@ -9,7 +9,7 @@ namespace Btd
     public:
         BoomerangMonkey()
         {
-            _range = 300;
+            _range = 100;
             ThrowablePath = {
                 "resources/towers/bomb/bomb.bmp", "resources/towers/bomb/bomb_1.bmp",
                 "resources/towers/bomb/bomb_2.bmp", "resources/towers/bomb/bomb_3.bmp"

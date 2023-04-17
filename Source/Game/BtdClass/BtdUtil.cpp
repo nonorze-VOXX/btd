@@ -120,4 +120,12 @@ namespace Btd
             sin(angle) * v.X + cos(angle) * v.Y
         };
     }
+    Vector2 Scale(Vector2 v, float scale)
+    {
+        return {
+            v.X*scale,
+            v.Y*scale
+        };
+    }
+    
 }

@@ -93,4 +93,5 @@ namespace Btd
     Vector2 BezierCurve4Point(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float n);
     Vector2 BezierCurve4Point(vector<Vector2> points, float n);
     Vector2 Spin(Vector2, float angle);
+    Vector2 Scale(Vector2 v, float scale);
 }
