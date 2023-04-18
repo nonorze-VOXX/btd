@@ -69,7 +69,13 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
     case boomerang:
         {
             shared_ptr<BoomerangMonkey> boomerangMonkey = make_shared<BoomerangMonkey>(BoomerangMonkey());
-            boomerangMonkey->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
+            boomerangMonkey->LoadBitmapByString({
+                "resources/towers/boomerang/BoomerangTower_1.bmp", "resources/towers/boomerang/BoomerangTower_2.bmp",
+                "resources/towers/boomerang/BoomerangTower_3.bmp", "resources/towers/boomerang/BoomerangTower_4.bmp",
+                "resources/towers/boomerang/BoomerangTower_5.bmp", "resources/towers/boomerang/BoomerangTower_6.bmp",
+                "resources/towers/boomerang/BoomerangTower_7.bmp", "resources/towers/boomerang/BoomerangTower_8.bmp"
+            }, RGB(255,255,255));
+            boomerangMonkey->SetFrameIndexOfBitmap(6);
             boomerangMonkey->SetCenter(GetCursorPosX(), GetCursorPosY());
             boomerangMonkey->SetIsMove(true);
             boomerangMonkey->SetActive(false);

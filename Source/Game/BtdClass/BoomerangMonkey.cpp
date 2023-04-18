@@ -45,6 +45,7 @@ void Btd::BoomerangMonkey::Shoot(Vector2 target)
     BoomerangNext->SetRoute(route);
     BoomerangNext->SetPenetrate(true);
     BoomerangNext->SetMaxExistTime(1000000);
+    SetFrameIndexOfBitmap(GetFrameIndexByVector2(targetDirection));
     Tower::Shoot(target);
 }
 
