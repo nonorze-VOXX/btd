@@ -168,7 +168,7 @@ namespace Btd
         buttonNumber = 6;
         vector<string> filePath = {
             "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
-            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp","resources/button/button_super.bmp"
+            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp","resources/button/button_boomerang.bmp"
         };
         vector<TowerType> attributes = {dart, nail, ice, bomb, super,boomerang};
         float start = 740, space = 47;
@@ -180,7 +180,7 @@ namespace Btd
         for (int i = 0; i < buttonNumber; i++)
         {
             FactoryButton factoryButton =FactoryButton();
-            factoryButton.LoadBitmapByString({filePath[i]});
+            factoryButton.LoadBitmapByString({filePath[i]},RGB(255,255,255));
             factoryButton.SetAttribute(attributes[i]);
             factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
             _factoryButton.push_back(factoryButton);
