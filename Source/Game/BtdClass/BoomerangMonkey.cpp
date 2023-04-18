@@ -52,6 +52,7 @@ void Btd::BoomerangMonkey::PushThrowablePool()
 {
     auto boomerang = make_shared<Boomerang>(Boomerang());
     boomerang->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
+    boomerang->SetAnimation(30,false);
     boomerang->SetDamageType(DamageType::Normal);
     boomerang->SetRoute({{100, 500}, {500, 0}, {0, 500}, {100, 500}});
     throwablePool.push(boomerang);

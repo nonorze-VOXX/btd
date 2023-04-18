@@ -11,8 +11,10 @@ namespace Btd
         {
             _range = 100;
             ThrowablePath = {
-                "resources/towers/bomb/bomb.bmp", "resources/towers/bomb/bomb_1.bmp",
-                "resources/towers/bomb/bomb_2.bmp", "resources/towers/bomb/bomb_3.bmp"
+                "resources/towers/boomerang/Boomerang_1.bmp", "resources/towers/boomerang/Boomerang_2.bmp",
+                "resources/towers/boomerang/Boomerang_3.bmp", "resources/towers/boomerang/Boomerang_4.bmp",
+                "resources/towers/boomerang/Boomerang_5.bmp", "resources/towers/boomerang/Boomerang_6.bmp",
+                "resources/towers/boomerang/Boomerang_7.bmp", "resources/towers/boomerang/Boomerang_8.bmp"
             };
         }
 
