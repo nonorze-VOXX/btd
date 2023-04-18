@@ -87,6 +87,14 @@ bool handleUpgradeButtonClicked (int towerIndex, int money, int *willDecreaseMon
         {
             Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(2);
         }
+        else if (Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i] > money)
+        {
+            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(0);
+        }
+        else
+        {
+            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(1);
+        }
     }
     return  isBtnClicked;
 }
