@@ -1,6 +1,8 @@
 ﻿#include "stdafx.h"
 #include "TowerFactory.h"
 
+#include "BoomerangMonkey.h"
+
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
     switch (attribute)
@@ -62,6 +64,28 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             TowerVector.push_back(ice);
         }
+    case super:
+        break;
+    case boomerang:
+        {
+            shared_ptr<BoomerangMonkey> boomerangMonkey = make_shared<BoomerangMonkey>(BoomerangMonkey());
+            boomerangMonkey->LoadBitmapByString({
+                "resources/towers/boomerang/BoomerangTower_1.bmp", "resources/towers/boomerang/BoomerangTower_2.bmp",
+                "resources/towers/boomerang/BoomerangTower_3.bmp", "resources/towers/boomerang/BoomerangTower_4.bmp",
+                "resources/towers/boomerang/BoomerangTower_5.bmp", "resources/towers/boomerang/BoomerangTower_6.bmp",
+                "resources/towers/boomerang/BoomerangTower_7.bmp", "resources/towers/boomerang/BoomerangTower_8.bmp"
+            }, RGB(255,255,255));
+            boomerangMonkey->SetFrameIndexOfBitmap(6);
+            boomerangMonkey->SetCenter(GetCursorPosX(), GetCursorPosY());
+            boomerangMonkey->SetIsMove(true);
+            boomerangMonkey->SetActive(false);
+            boomerangMonkey->SetShootDeltaTime(3);
+            boomerangMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            boomerangMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            TowerVector.push_back(boomerangMonkey);
+        }
+        
+        break;
     default:
         break;
     }

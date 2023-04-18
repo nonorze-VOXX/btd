@@ -12,6 +12,7 @@ namespace Btd
         bool IsLose = false;
         int live = 10;
         int money = 0;
+        bool BloonPause = false;
         int willDecreaseMoney = 0;
 
     public:
