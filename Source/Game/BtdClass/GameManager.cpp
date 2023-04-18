@@ -149,7 +149,6 @@ namespace Btd
                 BloonFactory::SetNextRound(map->GetRounds()[round]);
                 GameFlow = Prepare;
                 money += 100;
-                // todo gold ++
             }
 
             break;
