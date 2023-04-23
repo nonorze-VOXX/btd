@@ -23,30 +23,41 @@ namespace Btd
                 size_t pos = 0;
                 std::string token;
                 std::string time;
+                std::string num;
                 vector<UnitRound> nextRound;
                 while ((pos = s.find(delimiter)) != std::string::npos)
                 {
                     token = s.substr(0, pos);
                     s.erase(0, pos + delimiter.length());
+                    
                     pos = s.find(delimiter);
                     time = s.substr(0, pos);
                     s.erase(0, pos + delimiter.length());
-                    UnitRound nextBloon;
-                    nextBloon.nextTime = stoi(time);
-
-                    if (token == "red")
-                        nextBloon.type = Layer::red;
-                    if (token == "blue")
-                        nextBloon.type = Layer::blue;
-                    if (token == "green")
-                        nextBloon.type = Layer::green;
-                    if (token == "yellow")
-                        nextBloon.type = Layer::yellow;
-                    if (token == "black")
-                        nextBloon.type = Layer::black;
-                    if (token == "white")
-                        nextBloon.type = Layer::white;
-                    nextRound.push_back(nextBloon);
+                    
+                    pos = s.find(delimiter);
+                    num = s.substr(0, pos);
+                    s.erase(0, pos + delimiter.length());
+                    int loopTimes = stoi(num);
+                    Layer::NormalBloonLayer nextLayer = Layer::red;
+                    if (token == "red"||token=="r")
+                        nextLayer = Layer::red;
+                    if (token == "blue"||token=="b")
+                        nextLayer = Layer::blue;
+                    if (token == "green"||token =="g")
+                        nextLayer = Layer::green;
+                    if (token == "yellow"||token=="y")
+                        nextLayer = Layer::yellow;
+                    if (token == "black"||token=="bl")
+                        nextLayer = Layer::black;
+                    if (token == "white"||token=="w")
+                        nextLayer = Layer::white;
+                    for(int j=0;j<loopTimes;j++)
+                    {
+                        UnitRound nextBloon{};
+                        nextBloon.nextTime = stoi(time);
+                        nextBloon.type = nextLayer;
+                        nextRound.push_back(nextBloon);
+                    }
                 }
                 _roundses.push_back(nextRound);
             }
