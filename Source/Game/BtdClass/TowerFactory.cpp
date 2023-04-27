@@ -20,6 +20,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             dartMonkey->SetFrameIndexOfBitmap(6);
             dartMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             dartMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            dartMonkey->SetCollider({static_cast<float>(dartMonkey->GetWidth())*0.4F,static_cast<float>(dartMonkey->GetHeight())*0.4F});
             TowerVector.push_back(dartMonkey);
             break;
         }
@@ -36,6 +37,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             cannon->SetFrameIndexOfBitmap(6);
             cannon->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             cannon->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            cannon->SetCollider({100,100});
             TowerVector.push_back(cannon);
             break;
         }
@@ -49,6 +51,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             nailMachine->SetActive(false);
             nailMachine->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             nailMachine->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            nailMachine->SetCollider({static_cast<float>(nailMachine->GetWidth())*0.4F,static_cast<float>(nailMachine->GetHeight())*0.4F});
             TowerVector.push_back(nailMachine);
             break;
         }
@@ -82,6 +85,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->SetShootDeltaTime(3);
             boomerangMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             boomerangMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            boomerangMonkey->SetCollider({static_cast<float>(boomerangMonkey->GetWidth()),static_cast<float>(boomerangMonkey->GetHeight())});
             TowerVector.push_back(boomerangMonkey);
         }
         

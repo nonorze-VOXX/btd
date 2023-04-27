@@ -46,12 +46,17 @@ namespace Btd
 
     Vector2 GameObject::GetBottomCenter()
     {
-        return {static_cast<float>(GetLeft()) + GetWidth() / 2, static_cast<float>(GetTop()) + GetHeight()};
+        return {static_cast<float>(GetLeft()) +(float) GetWidth() / 2, static_cast<float>(GetTop()) +(float) GetHeight()};
     }
 
 
     bool GameObject::IsCursorFocus()
     {
+        GameObject mouse;
+        mouse.LoadEmptyBitmap(1,1);
+        mouse.SetTopLeft(GetCursorPosX(),GetCursorPosY());
+        mouse.SetCollider({1,1});
+        return Btd::IsOverlap(mouse,*this);
         if (GetLeft() < GetCursorPosX() && GetCursorPosX() < GetLeft() + GetWidth() &&
             GetTop() < GetCursorPosY() && GetCursorPosY() < GetTop() + GetHeight())
         {
@@ -77,16 +82,27 @@ namespace Btd
         locations[frameIndex].right += bias;
     }
 
+    void GameObject::SetCollider(Vector2 r)
+    {
+        Collider = r;
+    }
+
+    Vector2 GameObject::GetCollider()
+    {
+        
+        return (Collider.X==0.F)?Vector2{static_cast<float>(GetWidth()),static_cast<float>(GetHeight())}:Collider;
+    }
+
     bool IsOverlap(GameObject& character, GameObject& other)
     {
-        if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
-                character.GetTop() <= other.GetTop() + other.GetHeight())
-            && (character.GetLeft() + character.GetWidth() >= other.GetLeft() &&
-                character.GetLeft() <= other.GetLeft() + other.GetWidth()))
-        {
-            return true;
-        }
-        return false;
+        auto delta =Vector2Sub( character.GetCenter(),other.GetCenter());
+        auto charaCollider = character.GetCollider();
+        auto otherCollider = other.GetCollider();
+        Vector2 colliderDistance = {
+            (charaCollider.X + otherCollider.X) / 2.F,
+            (charaCollider.Y + otherCollider.Y) / 2.F
+        };
+        return (abs(delta.X)<colliderDistance.X&&abs(delta.Y)<colliderDistance.Y); 
     }
 
     bool IsCursorInObj(GameObject obj)
