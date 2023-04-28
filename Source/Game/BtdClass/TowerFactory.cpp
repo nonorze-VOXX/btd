@@ -74,26 +74,16 @@ bool handleUpgradeButtonClicked (int towerIndex, int money, int *willDecreaseMon
     {
         if (Btd::TowerFactory::TowerVector[towerIndex]->IsClicked() &&
             Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].IsCursorFocus())
+        // upgrade btn clicked
         {
             isBtnClicked = true;
             if (!Btd::TowerFactory::TowerVector[towerIndex]->IsUpgrade[i] &&
                 Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i] <= money)
+            // can upgrade
             {
                 Btd::TowerFactory::TowerVector[towerIndex]->Upgrade(i);
                 (*willDecreaseMoney) += Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i];
             }
-        }
-        if (Btd::TowerFactory::TowerVector[towerIndex]->IsUpgrade[i])
-        {
-            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(2);
-        }
-        else if (Btd::TowerFactory::TowerVector[towerIndex]->UpgradePrice[i] > money)
-        {
-            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(0);
-        }
-        else
-        {
-            Btd::TowerFactory::TowerVector[towerIndex]->UpgradeBtn[i].SetFrameIndexOfBitmap(1);
         }
     }
     return  isBtnClicked;

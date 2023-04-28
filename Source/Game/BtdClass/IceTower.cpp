@@ -7,10 +7,10 @@ namespace Btd
 {
     IceTower::IceTower()
     {
-        _range = 150;
-        shootDeltaTime = 3;
+        _range = 80;
+        shootDeltaTime = 6;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
-        _freezeTime = 150;
+        _freezeTime = 250;
         UpgradePrice[0] = 270;
         UpgradePrice[1] = 180;
     }
@@ -20,7 +20,7 @@ namespace Btd
         shared_ptr<IceGas> iceGas = make_shared<IceGas>(IceGas());
         iceGas->LoadBitmapByString(ThrowablePath, RGB(0, 0, 0));
         iceGas->SetSpeed(0);
-        iceGas->SetMaxExistTime(150);
+        iceGas->SetMaxExistTime(70);
         iceGas->SetPenetrate(true);
         iceGas->SetRealCenter(GetCenter());
         iceGas->SetRange(_range);
@@ -40,8 +40,25 @@ namespace Btd
         {
             throwables[i]->SetCenter((int)GetCenter().X - (_range - 75),
                 (int)GetCenter().Y - (_range - 75));
-            throwables[i]->ShowBitmap(_range / 75);
+            throwables[i]->ShowBitmap(_range / 75.0);
         }
         this->ShowBitmap();
+    }
+
+    void IceTower::Upgrade(int level)
+    {
+        Tower::Upgrade(level);
+        switch (level)
+        {
+        case 0:
+            _freezeTime = 350;
+            break;
+        case 1:
+            _range = 120;
+            break;
+        default:
+            break;
+        }
+        IsUpgrade[level] = true;
     }
 }

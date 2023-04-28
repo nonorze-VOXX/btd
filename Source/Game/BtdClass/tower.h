@@ -44,6 +44,7 @@ namespace Btd
         bool IsUpgrade[2];
         virtual void Upgrade(int level);
         int UpgradePrice[2] = {0, 0};
+        void HandleUpgradeBtnFrame (int money);
 
     protected:
         bool _isMovable;

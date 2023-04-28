@@ -170,6 +170,7 @@ namespace Btd
         map->ShowFactoryButton();
         for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
+            TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
             TowerFactory::TowerVector[i]->TowerShow();
         }
         for (auto& bloon : BloonFactory::BloonVector)

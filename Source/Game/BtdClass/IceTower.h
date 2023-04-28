@@ -9,6 +9,7 @@ namespace Btd
         IceTower();
         void PushThrowablePool() override;
         void TowerShow() override;
+        void Upgrade(int level) override;
     private:
         int _freezeTime;
     };

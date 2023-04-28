@@ -80,6 +80,28 @@ namespace Btd
         return target;
     }
 
+    void Tower::HandleUpgradeBtnFrame(int money)
+    {
+        for (int i=0; i<2; i++)
+        {
+            if (IsUpgrade[i])
+            // already bought
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(2);
+            }
+            else if (UpgradePrice[i] > money)
+            // can't buy
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(0);
+            }
+            else
+            // not buy
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(1);
+            }
+        }
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;
@@ -110,8 +132,11 @@ namespace Btd
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
-            this->UpgradeBtn[0].ShowBitmap();
-            this->UpgradeBtn[1].ShowBitmap();
+            if (!_isMovable)
+            {
+                this->UpgradeBtn[0].ShowBitmap();
+                this->UpgradeBtn[1].ShowBitmap();
+            }
         }
         this->ShowBitmap();
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)
