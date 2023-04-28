@@ -128,8 +128,8 @@ namespace Btd
             GameObject tmpRoad;
             string filePath = "resources/map/" + roadPath[type] + "/roads/road_" + std::to_string(i + 1) + ".bmp";
             tmpRoad.LoadBitmapByString({filePath});
-            tmpRoad.SetHeight(tmpRoad.GetHeight() - 10);
-            tmpRoad.SetWidth(tmpRoad.GetWidth() - 10);
+            // tmpRoad.SetHeight(tmpRoad.GetHeight() - 10);
+            // tmpRoad.SetWidth(tmpRoad.GetWidth() - 10);
             tmpRoad.SetTopLeft(static_cast<int>(location[type][i].X), static_cast<int>(location[type][i].Y));
             tmpRoad.SetTag("road");
             _road.push_back(tmpRoad);

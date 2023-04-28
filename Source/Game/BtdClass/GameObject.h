@@ -11,6 +11,7 @@ namespace Btd
         string _tag = "default";
         int deltaTime = 10;
         bool _isClicked;
+        Vector2 Collider={0,0};
 
     public:
         virtual ~GameObject() = default;
@@ -28,6 +29,8 @@ namespace Btd
         void SetClicked(bool clicked);
         void SetHeight(int height);
         void SetWidth(int width);
+        void SetCollider(Vector2);
+        Vector2 GetCollider();
     };
 
     bool IsOverlap(GameObject& character, GameObject& other);
