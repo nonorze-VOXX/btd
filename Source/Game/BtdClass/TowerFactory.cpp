@@ -82,6 +82,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->SetShootDeltaTime(3);
             boomerangMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             boomerangMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            boomerangMonkey->Init();
             TowerVector.push_back(boomerangMonkey);
         }
         
