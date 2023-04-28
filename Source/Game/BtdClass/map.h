@@ -35,11 +35,12 @@ namespace Btd
     protected:
         std::vector<GameObject> _road;
         GameObject _background;
-        FactoryButton _factoryButton[5];
+        vector<FactoryButton> _factoryButton;
         static vector<vector<Vector2>> _route;
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
-        vector<int> priceTable = {200, 360, 650, 850, 3600};
+        int buttonNumber=0;
+        vector<int> priceTable = {200, 360, 650, 850, 3600,400};
     };
 }
 

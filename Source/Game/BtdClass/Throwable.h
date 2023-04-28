@@ -31,7 +31,7 @@ namespace Btd
 
         void SetDamageType(DamageType::DamageType damageType);;
 
-        void Move();
+        virtual void Move();
 
         void SetSpeed(float speed);
 

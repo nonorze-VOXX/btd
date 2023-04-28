@@ -4,10 +4,12 @@
 #include "BloonFactory.h"
 #include "TowerFactory.h"
 
+
 namespace Btd
 {
     void GameManager::OnBeginState()
     {
+        BloonPause=false;
         GameFlow = Prepare;
         round = 0;
         TowerFactory::TowerVector.clear();
@@ -147,7 +149,6 @@ namespace Btd
                 BloonFactory::SetNextRound(map->GetRounds()[round]);
                 GameFlow = Prepare;
                 money += 100;
-                // todo gold ++
             }
 
             break;
@@ -160,7 +161,10 @@ namespace Btd
         {
             m->Update();
         }
+        if(!BloonPause)
+        {
         BloonFactory::UpdateBloon();
+        }
     }
 
     void GameManager::OnShow()
@@ -221,6 +225,10 @@ namespace Btd
         if (nChar == 'P')
         {
             live = 0;
+        }
+        if (nChar == 'U')
+        {
+            BloonPause = !BloonPause;
         }
         if (nChar == 'M')
         {

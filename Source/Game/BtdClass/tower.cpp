@@ -4,6 +4,8 @@
 #include "map.h"
 #include "Tower.h"
 
+#include "BoomerangMonkey.h"
+
 namespace Btd
 {
     Tower::Tower()
@@ -13,6 +15,7 @@ namespace Btd
         _isMovable = true;
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
+        shootTimecounter = 0;
     }
 
     bool Tower::IsMovable()
