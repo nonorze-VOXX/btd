@@ -78,17 +78,6 @@ namespace Btd
     {
         Vector2 nowLocal = GetBottomCenter();
         Vector2 target = route[nowRouteTarget];
-        if (static_cast<int>(target.X) == static_cast<int>(nowLocal.X) && static_cast<int>(target.Y) == static_cast<int>
-            (nowLocal.Y))
-        {
-            if (nowRouteTarget != static_cast<int>(route.size()) - 1)
-                nowRouteTarget++;
-            else
-            {
-                SetActive(false);
-                _isGoaled = true;
-            }
-        }
         target = route[nowRouteTarget];
         Vector2 deltaMove = Vector2Sub(target, nowLocal);
         Vector2 moveDirection = Normailize(deltaMove);
@@ -101,6 +90,13 @@ namespace Btd
         {
             x = static_cast<int>(target.X);
             y = static_cast<int>(target.Y);
+            if (nowRouteTarget != static_cast<int>(route.size()) - 1)
+                nowRouteTarget++;
+            else
+            {
+                SetActive(false);
+                _isGoaled = true;
+            }
         }
         SetBottomCenter(x, y);
     }
