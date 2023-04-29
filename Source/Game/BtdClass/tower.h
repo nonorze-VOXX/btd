@@ -34,6 +34,7 @@ namespace Btd
         float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
         virtual void Shoot(Vector2 target);
+        void SetMaxPop(int i);
         virtual void PushThrowablePool();
         virtual void UpdateThrowable();
         float GetShootTimeCounter();
@@ -47,6 +48,7 @@ namespace Btd
         int _range;
         int _buyMoney;
         int _sellMoney;
+        int _maxPop=1;
         Vector2 _location;
         GameObject throwableFactory;
         queue<shared_ptr<Throwable>> throwablePool;

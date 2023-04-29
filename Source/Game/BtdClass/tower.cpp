@@ -16,6 +16,7 @@ namespace Btd
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
         shootTimecounter = 0;
+        _maxPop=1;
     }
 
     bool Tower::IsMovable()
@@ -130,7 +131,6 @@ namespace Btd
             else
             {
                 shootTimecounter += static_cast<float>(delayCount) / 100.F;
-                // shootTimecounter += 1;
             }
         }
     }
@@ -155,9 +155,14 @@ namespace Btd
         next->SetActive(true);
         next->InitByCenter(GetCenter());
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
+        next->SetMaxPop(_maxPop);
         throwables.push_back(next);
     }
 
+    void Tower::SetMaxPop(int i )
+    {
+        _maxPop=i;
+    }
     void Tower::SetThrowablePath(vector<string> name)
     {
         ThrowablePath = name;

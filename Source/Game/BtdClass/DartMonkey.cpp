@@ -28,11 +28,6 @@ namespace Btd
     void DartMonkey::PushThrowablePool()
     {
         auto dart = make_shared<Throwable>(Throwable());
-        if (_isUpgrade[0])
-        {
-            // dart monkey first upgrade can let throwable penetrate
-            dart->SetPenetrate(true);
-        }
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
         throwablePool.push(dart);
