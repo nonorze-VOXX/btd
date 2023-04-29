@@ -16,6 +16,7 @@ namespace Btd
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
         shootTimecounter = 0;
+        InitUpgradeBtn();
     }
 
     bool Tower::IsMovable()
@@ -110,7 +111,7 @@ namespace Btd
         shootTimecounter = tome;
     }
 
-    void Tower::Init()
+    void Tower::InitUpgradeBtn()
     {
         int location[2][2] = {{750, 400}, {860, 400}};
         for (int i=0; i<2; i++)
@@ -118,7 +119,6 @@ namespace Btd
             UpgradeBtn[i].LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"
             , "resources/button/alreadyBought.bmp"});
             UpgradeBtn[i].SetTopLeft(location[i][0], location[i][1]);
-            
         }
     }
 

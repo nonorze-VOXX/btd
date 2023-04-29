@@ -8,9 +8,9 @@ namespace Btd
     IceTower::IceTower()
     {
         _range = 80;
-        shootDeltaTime = 6;
+        shootDeltaTime = 9;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
-        _freezeTime = 250;
+        _freezeTime = 450;
         UpgradePrice[0] = 270;
         UpgradePrice[1] = 180;
     }
@@ -33,8 +33,11 @@ namespace Btd
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap((float)_range / 100.0);
-            this->UpgradeBtn[0].ShowBitmap();
-            this->UpgradeBtn[1].ShowBitmap();
+            if (!_isMovable)
+            {
+                this->UpgradeBtn[0].ShowBitmap();
+                this->UpgradeBtn[1].ShowBitmap();
+            }
         }
         for (int i=0; i<(int)throwables.size(); i++)
         {
@@ -51,7 +54,7 @@ namespace Btd
         switch (level)
         {
         case 0:
-            _freezeTime = 350;
+            _freezeTime = 600;
             break;
         case 1:
             _range = 120;

@@ -38,7 +38,7 @@ namespace Btd
         virtual void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
-        void Init();
+        void InitUpgradeBtn();
         GameObject RangeCircle;
         Button UpgradeBtn[2];
         bool IsUpgrade[2];
