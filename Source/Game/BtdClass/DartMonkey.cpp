@@ -28,6 +28,12 @@ namespace Btd
     void DartMonkey::PushThrowablePool()
     {
         auto dart = make_shared<Throwable>(Throwable());
+        //FIXME TODO
+        // way1
+        //when update clean throwable pool and set max pop
+        //way2
+        //at shoot set maxpop
+        // two way to prevent throwable is not get new max pop 
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
         throwablePool.push(dart);
