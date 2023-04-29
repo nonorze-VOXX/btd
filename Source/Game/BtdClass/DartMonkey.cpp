@@ -5,7 +5,7 @@ namespace Btd
 {
     DartMonkey::DartMonkey()
     {
-        _range = 160;
+        _range = 140;
         _isPenetrate = false;
         shootDeltaTime = 3;
         ThrowablePath = {
@@ -47,7 +47,7 @@ namespace Btd
             _isPenetrate = true;
             break;
         case 1:
-            _range = 300;
+            _range = 180;
             break;
         default:
             break;
