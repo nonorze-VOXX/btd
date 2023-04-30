@@ -7,6 +7,7 @@
 #include <queue>
 #include <string>
 #include "Bloon.h"
+#include "Button.h"
 
 namespace Btd
 {
@@ -17,7 +18,6 @@ namespace Btd
         ~Tower() override = default;
         Tower(Tower&&) = default;
         void Update() override;
-        void SetUpgrade(int level);
         bool IsMovable();
         void SetIsMove(bool move);
         Vector2 getLocation();
@@ -38,10 +38,15 @@ namespace Btd
         virtual void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
+        void InitUpgradeBtn();
         GameObject RangeCircle;
+        Button UpgradeBtn[2];
+        bool IsUpgrade[2];
+        virtual void Upgrade(int level);
+        int UpgradePrice[2] = {0, 0};
+        void HandleUpgradeBtnFrame (int money);
 
     protected:
-        bool _isUpgrade[2];
         bool _isMovable;
         // int _speed;
         int _range;

@@ -10,7 +10,9 @@ namespace Btd {
 		DartMonkey();
 		void Shoot(Vector2 target) override;
         void PushThrowablePool();
+		void Upgrade(int level) override;
 	private:
+		bool _isPenetrate;
 	};
 
 }

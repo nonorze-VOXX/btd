@@ -14,7 +14,7 @@ namespace Btd
         ~TowerFactory() {};
         static vector<shared_ptr<Tower>> TowerVector;
         static void MakeTower (TowerType attribute);
-        static void HandleTowerClicked();
+        static int HandleTowerClicked(int money);
     private: 
     };
 }

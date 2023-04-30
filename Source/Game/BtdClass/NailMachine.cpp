@@ -7,8 +7,11 @@ namespace Btd
 {
     NailMachine::NailMachine()
     {
-        _range = 300;
+        _range = 120;
+        shootDeltaTime = 5.5;
         ThrowablePath = {"resources/towers/nail/nail.bmp"};
+        UpgradePrice[0] = 180;
+        UpgradePrice[1] = 90;
     }
 
     void NailMachine::Update()
@@ -51,4 +54,24 @@ namespace Btd
         nail->SetSpeed(5);
         throwablePool.push(nail);
     }
+
+    void NailMachine::Upgrade(int level)
+    {
+        Tower::Upgrade(level);
+        
+        switch (level)
+        {
+        case 0:
+            shootDeltaTime = 3.5;
+            break;
+        case 1:
+            _range = 160;
+            break;
+        default:
+            break;
+        }
+        IsUpgrade[level] = true;
+        
+    }
+
 }

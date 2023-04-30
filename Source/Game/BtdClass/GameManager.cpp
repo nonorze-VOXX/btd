@@ -42,7 +42,7 @@ namespace Btd
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
-        TowerFactory::HandleTowerClicked();
+        money -= TowerFactory::HandleTowerClicked(money);
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
@@ -174,6 +174,7 @@ namespace Btd
         map->ShowFactoryButton();
         for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
+            TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
             TowerFactory::TowerVector[i]->TowerShow();
         }
         for (auto& bloon : BloonFactory::BloonVector)
