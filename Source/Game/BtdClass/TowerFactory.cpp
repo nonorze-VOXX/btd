@@ -2,6 +2,7 @@
 #include "TowerFactory.h"
 
 #include "BoomerangMonkey.h"
+#include "Spikes.h"
 
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
@@ -85,6 +86,18 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(boomerangMonkey);
         }
         
+        break;
+    case spikes:
+        {
+            shared_ptr<Spikes> spikes = make_shared<Spikes>(Spikes());
+            spikes->LoadBitmapByString({"resources/towers/spikes.bmp"}, RGB(255, 255, 255));
+            spikes->SetCenter(GetCursorPosX(), GetCursorPosY());
+            spikes->SetFrameIndexOfBitmap(0);
+            spikes->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            spikes->SetIsMove(true);
+            spikes->SetActive(false);
+            TowerVector.push_back(spikes);
+        }
         break;
     default:
         break;

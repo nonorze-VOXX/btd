@@ -3,5 +3,7 @@
 
 namespace Btd
 {
-    
+    Spikes::Spikes()
+    {
+    }
 }

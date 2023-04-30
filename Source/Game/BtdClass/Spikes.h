@@ -1,11 +1,13 @@
 ﻿#pragma once
-#include "Throwable.h"
+#include "Tower.h"
 
 namespace Btd
 {
-    class Spikes : public Btd::Throwable
+    class Spikes : public Tower
     {
     public:
+        Spikes();
+        // ~Spikes() = default;
         
     };
     
