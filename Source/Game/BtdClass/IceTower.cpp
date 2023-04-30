@@ -30,22 +30,15 @@ namespace Btd
 
     void IceTower::TowerShow()
     {
-        if (_isClicked)
-        {
-            this->RangeCircle.ShowBitmap((float)_range / 100.0);
-            if (!_isMovable)
-            {
-                this->UpgradeBtn[0].ShowBitmap();
-                this->UpgradeBtn[1].ShowBitmap();
-            }
-        }
         for (int i=0; i<(int)throwables.size(); i++)
         {
+            Vector2 tmp = throwables[i]->GetCenter();
             throwables[i]->SetCenter((int)GetCenter().X - (_range - 75),
                 (int)GetCenter().Y - (_range - 75));
             throwables[i]->ShowBitmap(_range / 75.0);
+            throwables[i]->SetCenter((int)tmp.X,(int)tmp.Y);
         }
-        this->ShowBitmap();
+        Tower::TowerShow();
     }
 
     void IceTower::Upgrade(int level)

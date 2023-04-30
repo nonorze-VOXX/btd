@@ -141,11 +141,11 @@ namespace Btd
                 this->UpgradeBtn[1].ShowBitmap();
             }
         }
-        this->ShowBitmap();
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)
         {
             throwables[i]->ShowBitmap();
         }
+        this->ShowBitmap();
     }
 
     float Tower::GetShootDeltaTime()
