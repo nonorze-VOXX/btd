@@ -59,6 +59,11 @@ namespace Btd
         return Btd::IsOverlap(mouse,*this);
     }
 
+    bool GameObject::IsClicked()
+    {
+        return _isClicked;
+    }
+
     void GameObject::SetClicked(bool clicked)
     {
         _isClicked = clicked;
