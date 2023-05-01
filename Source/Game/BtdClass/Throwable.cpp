@@ -79,7 +79,8 @@ namespace Btd
             {
                 BloonFactory::BloonVector[i].Pop(1, DamageType::Normal);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
-                if (_canPenetrate == false)
+                _poped+=1;
+                if ( _poped>=_maxPop)
                 {
                     _isActive = false;
                     break;
@@ -100,16 +101,17 @@ namespace Btd
         }
     }
 
-    void Throwable::SetPenetrate(bool penetrate)
-    {
-        _canPenetrate = penetrate;
-    }
-
     Throwable::Throwable()
     {
         _maxExistTime = -1;
+        _poped=0;
+        _maxPop=1;
     }
 
+    void Throwable::SetMaxPop(int i)
+    {
+        _maxPop=i;
+    }
     Vector2 Throwable::GetMoveDirection() const
     {
         return _moveDirection;

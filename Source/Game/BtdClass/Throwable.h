@@ -16,13 +16,13 @@ namespace Btd
         float _damage = 0;
         int _maxPop = 0;
         int _poped = 0;
-        int _canPenetrate = false;
         DamageType::DamageType _damageType;
         // throwable can't hit same balloon in one second
         vector<pair<Bloon*, int>> cantHitBloons;
 
     public:
         Throwable();
+        void SetMaxPop(int i);
         Vector2 GetMoveDirection() const;
 
         void Update() override;
@@ -43,6 +43,5 @@ namespace Btd
 
         void UpdateCantHitBloons();
 
-        void SetPenetrate(bool penetrate);
     };
 }

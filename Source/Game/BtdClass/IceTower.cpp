@@ -21,7 +21,7 @@ namespace Btd
         iceGas->LoadBitmapByString(ThrowablePath, RGB(0, 0, 0));
         iceGas->SetSpeed(0);
         iceGas->SetMaxExistTime(70);
-        iceGas->SetPenetrate(true);
+        iceGas->SetMaxExistTime(150);
         iceGas->SetRealCenter(GetCenter());
         iceGas->SetRange(_range);
         iceGas->SetFreezeTime(_freezeTime);

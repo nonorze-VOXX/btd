@@ -6,7 +6,6 @@ namespace Btd
     DartMonkey::DartMonkey()
     {
         _range = 140;
-        _isPenetrate = false;
         shootDeltaTime = 3;
         ThrowablePath = {
             "resources/towers/monkey/dart_1.bmp", "resources/towers/monkey/dart_2.bmp",
@@ -32,7 +31,6 @@ namespace Btd
     void DartMonkey::PushThrowablePool()
     {
         auto dart = make_shared<Throwable>(Throwable());
-        dart->SetPenetrate(_isPenetrate);
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
         throwablePool.push(dart);
@@ -44,7 +42,7 @@ namespace Btd
         switch (level)
         {
         case 0:
-            _isPenetrate = true;
+            SetMaxPop(2);
             break;
         case 1:
             _range = 180;
