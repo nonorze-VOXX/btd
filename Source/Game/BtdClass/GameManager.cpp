@@ -59,7 +59,8 @@ namespace Btd
 
         // place spikes
         if (!TowerFactory::SpikesVector.empty() &&
-                     TowerFactory::SpikesVector.back()->IsMovable())
+             TowerFactory::SpikesVector.back()->tower.IsMovable() &&
+            TowerFactory::SpikesVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
             money -= willDecreaseMoney;
             TowerFactory::SpikesVector.back()->SetIsMove(false);
@@ -132,6 +133,17 @@ namespace Btd
             else
             {
                 TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+            }
+        }
+        if (!TowerFactory::SpikesVector.empty())
+        {
+            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::SpikesVector.back()).tower)))
+            {
+                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
+            }
+            else
+            {
+                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
             }
         }
         map->UpdateFactoryButton();

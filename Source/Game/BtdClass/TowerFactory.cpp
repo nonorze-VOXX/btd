@@ -97,6 +97,8 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             spikes->SetFrameIndexOfBitmap(0);
             spikes->SetIsMove(true);
             spikes->SetActive(false);
+            spikes->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            spikes->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             SpikesVector.push_back(spikes);
         }
         break;

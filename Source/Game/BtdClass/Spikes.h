@@ -16,14 +16,16 @@ namespace Btd
         void ShowBitmap();
         bool IsCursorFocus();
         void SetClicked(bool clicked);
-        void SetDamageType(DamageType::DamageType damageType);;
+        void SetDamageType(DamageType::DamageType damageType);
         void DetectHitBalloon();
         void UpdateCantHitBloons();
         void Update();
-
+        Vector2 GetCenter();
+        
+        Tower tower;
+        Throwable throwable;
     private:
-        Tower _tower;
-        Throwable _throwable;
+        int _range;
     };
     
 }

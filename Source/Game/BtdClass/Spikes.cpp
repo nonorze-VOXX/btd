@@ -5,82 +5,94 @@ namespace Btd
 {
     Spikes::Spikes()
     {
-        _throwable.SetMaxExistTime(-1);
-        _throwable.SetPenetrate(true);
-        _throwable.setCantHtBloonTime(0);
+        throwable.SetMaxExistTime(-1);
+        throwable.SetPenetrate(true);
+        throwable.setCantHtBloonTime(0);
+        _range = 25;
     }
 
     void Spikes::LoadBitmapByString(vector<string> filepaths, COLORREF color)
     {
-        _tower.LoadBitmapByString(filepaths, color);
-        _throwable.LoadBitmapByString(filepaths, color);
+        tower.LoadBitmapByString(filepaths, color);
+        throwable.LoadBitmapByString(filepaths, color);
     }
 
     void Spikes::SetCenter(int x, int y)
     {
-        _tower.SetCenter(x, y);
-        _throwable.SetCenter(x, y);
+        tower.SetCenter(x, y);
+        throwable.SetCenter(x, y);
     }
 
     void Spikes::SetFrameIndexOfBitmap(int frameIndex)
     {
-        _tower.SetFrameIndexOfBitmap(frameIndex);
-        _throwable.SetFrameIndexOfBitmap(frameIndex);
+        tower.SetFrameIndexOfBitmap(frameIndex);
+        throwable.SetFrameIndexOfBitmap(frameIndex);
     }
 
     void Spikes::SetIsMove(bool isMove)
     {
-        _tower.SetIsMove(isMove);
+        tower.SetIsMove(isMove);
     }
 
     void Spikes::SetActive(bool active)
     {
-        _tower.SetActive(active);
-        _throwable.SetActive(active);
+        tower.SetActive(active);
+        throwable.SetActive(active);
     }
 
     bool Spikes::IsMovable()
     {
-        return _tower.IsMovable();
+        return tower.IsMovable();
     }
 
     void Spikes::ShowBitmap()
     {
-        _tower.ShowBitmap();
-        _throwable.ShowBitmap();
+        tower.ShowBitmap();
+        throwable.ShowBitmap();
+        if (tower.IsMovable())
+        {
+            tower.RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
+        }
     }
 
     bool Spikes::IsCursorFocus()
     {
-        return _tower.IsCursorFocus();
+        return tower.IsCursorFocus();
     }
 
     void Spikes::SetClicked(bool clicked)
     {
-        _tower.SetClicked(clicked);
+        tower.SetClicked(clicked);
     }
 
     void Spikes::SetDamageType(DamageType::DamageType damageType)
     {
-        _throwable.SetDamageType(damageType);
+        throwable.SetDamageType(damageType);
     }
 
     void Spikes::DetectHitBalloon()
     {
-        _throwable.DetectHitBalloon();
+        throwable.DetectHitBalloon();
     }
 
     void Spikes::UpdateCantHitBloons()
     {
-        _throwable.UpdateCantHitBloons();
+        throwable.UpdateCantHitBloons();
     }
 
     void Spikes::Update()
     {
-        if (_throwable.GetActive())
+        if (throwable.GetActive())
         {
             DetectHitBalloon();
             UpdateCantHitBloons();
         }
+        tower.RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                              static_cast<int>(GetCenter().Y) - (_range - 100));
+    }
+
+    Vector2 Spikes::GetCenter()
+    {
+        return tower.GetCenter();
     }
 }
