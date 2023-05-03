@@ -195,4 +195,9 @@ namespace Btd
             SetFrameIndexOfBitmap(_layer);
         }
     }
+
+    bool Bloon::IsExplode()
+    {
+        return _isExplode;
+    }
 }

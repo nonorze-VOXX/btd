@@ -35,7 +35,7 @@ namespace Btd
             _slowerTime = 0;
             _isFreeze = false;
             _frost.LoadBitmapByString({"resources/bloon/frost.bmp"}, RGB(0, 0, 0));
-            _explodeTime = 30;
+            _explodeTime = 20;
             _isExplode = false;
         };
 
@@ -78,5 +78,6 @@ namespace Btd
         int GetLayer();
         void BloonShow();
         void ShowExplode();
+        bool IsExplode();
     };
 }

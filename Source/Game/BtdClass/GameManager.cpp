@@ -181,6 +181,10 @@ namespace Btd
         {
             m->Update();
         }
+        for (auto& s : TowerFactory::SpikesVector)
+        {
+            s->Update();
+        }
         if(!BloonPause)
         {
         BloonFactory::UpdateBloon();
