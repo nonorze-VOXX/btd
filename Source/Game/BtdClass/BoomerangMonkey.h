@@ -23,5 +23,7 @@ namespace Btd
 
         void Shoot(Vector2 target) override;
         void PushThrowablePool() override;
+		void Upgrade(int level) override;
+        
     };
 }

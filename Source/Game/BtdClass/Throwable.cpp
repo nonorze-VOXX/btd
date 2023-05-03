@@ -80,7 +80,8 @@ namespace Btd
             {
                 BloonFactory::BloonVector[i].Pop(1, DamageType::Normal);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
-                if (_canPenetrate == false)
+                _poped+=1;
+                if ( _poped>=_maxPop)
                 {
                     _isActive = false;
                     break;
@@ -94,7 +95,7 @@ namespace Btd
         for (int i = 0; i < static_cast<int>(cantHitBloons.size()); i++)
         {
             cantHitBloons[i].second += deltaTime;
-            if (cantHitBloons[i].second > _cnatHitBloonTime)
+            if (cantHitBloons[i].second > _cantHitBloonTime)
             {
                 cantHitBloons.erase(cantHitBloons.begin() + i);
             }
@@ -108,15 +109,21 @@ namespace Btd
 
     void Throwable::setCantHtBloonTime(int time)
     {
-        _cnatHitBloonTime = time;
+        _cantHitBloonTime = time;
     }
 
     Throwable::Throwable()
     {
         _maxExistTime = -1;
-        _cnatHitBloonTime = 1000;
+        _cantHitBloonTime = 1000;
+        _poped=0;
+        _maxPop=1;
     }
 
+    void Throwable::SetMaxPop(int i)
+    {
+        _maxPop=i;
+    }
     Vector2 Throwable::GetMoveDirection() const
     {
         return _moveDirection;
