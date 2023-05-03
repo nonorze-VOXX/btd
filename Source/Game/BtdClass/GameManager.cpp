@@ -37,12 +37,17 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        if(TowerFactory::TowerVector.empty() ||
-            !TowerFactory::TowerVector.back()->IsMovable() )
+        if((TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable()) &&
+            (TowerFactory::SpikesVector.empty() ||
+            !TowerFactory::SpikesVector.back()->IsMovable()))
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
+        
         money -= TowerFactory::HandleTowerClicked(money);
+
+        // place tower
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
@@ -50,6 +55,15 @@ namespace Btd
             money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
+        }
+
+        // place spikes
+        if (!TowerFactory::SpikesVector.empty() &&
+                     TowerFactory::SpikesVector.back()->IsMovable())
+        {
+            money -= willDecreaseMoney;
+            TowerFactory::SpikesVector.back()->SetIsMove(false);
+            TowerFactory::SpikesVector.back()->SetActive(true);
         }
         switch (GameFlow)
         {
@@ -76,6 +90,12 @@ namespace Btd
             TowerFactory::TowerVector.back()->IsMovable())
         {
             TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
+                                                        GetCursorPosY());
+        }
+        if (!TowerFactory::SpikesVector.empty() &&
+            TowerFactory::SpikesVector.back()->IsMovable())
+        {
+            TowerFactory::SpikesVector.back()->SetCenter(GetCursorPosX(),
                                                         GetCursorPosY());
         }
     }
@@ -176,6 +196,10 @@ namespace Btd
         {
             TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
             TowerFactory::TowerVector[i]->TowerShow();
+        }
+        for (int i=0; i<static_cast<int>(TowerFactory::SpikesVector.size()); i++)
+        {
+            TowerFactory::SpikesVector[i]->ShowBitmap();
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {

@@ -4,6 +4,8 @@
 #include "BoomerangMonkey.h"
 #include "Spikes.h"
 
+vector<shared_ptr<Btd::Spikes>> Btd::TowerFactory::SpikesVector = {};
+
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
     switch (attribute)
@@ -93,10 +95,9 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             spikes->LoadBitmapByString({"resources/towers/spikes.bmp"}, RGB(255, 255, 255));
             spikes->SetCenter(GetCursorPosX(), GetCursorPosY());
             spikes->SetFrameIndexOfBitmap(0);
-            spikes->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             spikes->SetIsMove(true);
             spikes->SetActive(false);
-            TowerVector.push_back(spikes);
+            SpikesVector.push_back(spikes);
         }
         break;
     default:
