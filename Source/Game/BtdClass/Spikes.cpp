@@ -6,8 +6,8 @@ namespace Btd
     Spikes::Spikes()
     {
         throwable.SetMaxExistTime(-1);
-        throwable.SetPenetrate(true);
-        throwable.setCantHtBloonTime(0);
+        throwable.SetCantHtBloonTime(0);
+        throwable.SetMaxPop(10);
         _range = 25;
     }
 

@@ -150,3 +150,15 @@ int Btd::TowerFactory::HandleTowerClicked(int money)
     }
     return willDecreaseMoney;
 }
+
+void Btd::TowerFactory::UpdateSpikesVector()
+{
+    for (int i=static_cast<int>(SpikesVector.size())-1; i>=0; i--)
+    {
+        if (SpikesVector[i]->tower.IsMovable() == false &&
+            SpikesVector[i]->throwable.GetActive() == false)
+        {
+            SpikesVector.erase(SpikesVector.begin() + i);
+        }
+    }
+}

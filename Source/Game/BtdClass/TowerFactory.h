@@ -17,6 +17,7 @@ namespace Btd
         static vector<shared_ptr<Spikes>> SpikesVector;
         static void MakeTower (TowerType attribute);
         static int HandleTowerClicked(int money);
+        static void UpdateSpikesVector();
     private: 
     };
 }

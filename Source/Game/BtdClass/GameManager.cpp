@@ -147,6 +147,7 @@ namespace Btd
             }
         }
         map->UpdateFactoryButton();
+        TowerFactory::UpdateSpikesVector();
 
         switch (GameFlow)
         {
@@ -171,6 +172,7 @@ namespace Btd
                 break;
             }
         case Win:
+            TowerFactory::SpikesVector.clear();
             round++;
             if (round >= static_cast<int>(map->GetRounds().size()))
             {

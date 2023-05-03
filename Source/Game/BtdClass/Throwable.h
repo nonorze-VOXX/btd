@@ -47,6 +47,6 @@ namespace Btd
 
         void SetPenetrate(bool penetrate);
 
-        void setCantHtBloonTime(int time);
+        void SetCantHtBloonTime(int time);
     };
 }

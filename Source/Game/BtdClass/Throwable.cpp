@@ -107,7 +107,7 @@ namespace Btd
         _canPenetrate = penetrate;
     }
 
-    void Throwable::setCantHtBloonTime(int time)
+    void Throwable::SetCantHtBloonTime(int time)
     {
         _cantHitBloonTime = time;
     }
