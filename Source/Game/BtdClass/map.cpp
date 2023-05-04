@@ -165,18 +165,19 @@ namespace Btd
 
     void Map::InitFactoryButton()
     {
-        buttonNumber = 7;
+        buttonNumber = 8;
         vector<string> filePath = {
             "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
-            "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_super.bmp",
-            "resources/button/button_boomerang.bmp"
+            "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_glue.bmp"
+            , "resources/button/button_boomerang.bmp", "resources/button/button_super.bmp"
         };
-        vector<TowerType> attributes = {dart, nail, ice, bomb, spikes, super,boomerang};
-        float start = 740, space = 47;
+        vector<TowerType> attributes = {dart, nail, ice, bomb, spikes, glue, boomerang, super};
+        float start = 750, space = 56;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
-            {start + space * 3, 300}, {start + space * 4, 300} ,
-            {start , 300+space}, {start + space, 300+space}
+            {start + space * 3, 300}, {start, 300 + space} ,
+            {start + space * 1 , 300+space}, {start + space * 2, 300 + space},
+            {start + space * 3, 300 + space}
         };
         for (int i = 0; i < buttonNumber; i++)
         {
@@ -192,7 +193,7 @@ namespace Btd
     {
         for (int i = 0; i < buttonNumber; i++)
         {
-            _factoryButton[i].ShowBitmap();
+            _factoryButton[i].ShowBitmap(1.2);
         }
     }
 
