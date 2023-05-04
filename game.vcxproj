@@ -255,6 +255,7 @@
         <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameManager.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\Glue.cpp" />
         <ClCompile Include="Source\Game\BtdClass\IceGas.cpp" />
         <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
         <ClCompile Include="Source\Game\BtdClass\map.cpp" />
@@ -296,6 +297,7 @@
         <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
         <ClInclude Include="Source\Game\BtdClass\GameManager.h" />
         <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
+        <ClInclude Include="Source\Game\BtdClass\Glue.h" />
         <ClInclude Include="Source\Game\BtdClass\IceGas.h" />
         <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
         <ClInclude Include="Source\Game\BtdClass\map.h" />
