@@ -16,7 +16,6 @@ namespace Btd
         float _damage = 0;
         int _maxPop = 0;
         int _poped = 0;
-        int _canPenetrate = false;
         int _cantHitBloonTime;
         DamageType::DamageType _damageType;
         // throwable can't hit same balloon in one second
@@ -44,8 +43,6 @@ namespace Btd
         virtual void DetectHitBalloon();
 
         void UpdateCantHitBloons();
-
-        void SetPenetrate(bool penetrate);
 
         void SetCantHtBloonTime(int time);
     };
