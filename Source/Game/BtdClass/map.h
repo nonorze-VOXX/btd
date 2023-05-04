@@ -29,6 +29,7 @@ namespace Btd
         static vector<vector<Vector2>> GetRoute();
         static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
+        bool IsOverSidebar(GameObject target);
         int GetInitMoney();
         int GetInitLives();
 

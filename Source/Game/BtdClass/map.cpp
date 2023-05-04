@@ -244,6 +244,11 @@ namespace Btd
                 return true;
             }
         }
+        return false;
+    }
+
+    bool Map::IsOverSidebar(GameObject target)
+    {
         if (Btd::IsOverlap(_sidebar, target))
         {
             return true;
