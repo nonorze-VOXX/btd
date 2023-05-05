@@ -1,6 +1,5 @@
 ﻿#pragma once
-#include "IceGas.h"
-#include "Tower.h"
+#include "tower.h"
 
 namespace Btd
 {
@@ -21,7 +20,7 @@ namespace Btd
         void UpdateCantHitBloons();
         
         Tower tower;
-        IceGas throwable;
+        Throwable throwable;
     private:
         int _range;
     };

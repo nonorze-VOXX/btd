@@ -100,6 +100,12 @@ namespace Btd
             TowerFactory::SpikesVector.back()->SetCenter(GetCursorPosX(),
                                                         GetCursorPosY());
         }
+        if (!TowerFactory::GlueVector.empty() &&
+            TowerFactory::GlueVector.back()->IsMovable())
+        {
+            TowerFactory::GlueVector.back()->SetCenter(GetCursorPosX(),
+                                                        GetCursorPosY());
+        }
     }
 
     void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
@@ -220,6 +226,10 @@ namespace Btd
         for (int i=0; i<static_cast<int>(TowerFactory::SpikesVector.size()); i++)
         {
             TowerFactory::SpikesVector[i]->ShowBitmap();
+        }
+        for (int i=0; i<static_cast<int>(TowerFactory::GlueVector.size()); i++)
+        {
+            TowerFactory::GlueVector[i]->ShowBitmap();
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {
