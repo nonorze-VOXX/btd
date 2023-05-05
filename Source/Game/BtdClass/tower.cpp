@@ -10,12 +10,14 @@ namespace Btd
 {
     Tower::Tower()
     {
-        _isUpgrade[0] = false;
-        _isUpgrade[1] = false;
+        IsUpgrade[0] = false;
+        IsUpgrade[1] = false;
         _isMovable = true;
         _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
         shootTimecounter = 0;
+        InitUpgradeBtn();
+        _maxPop=1;
     }
 
     bool Tower::IsMovable()
@@ -83,9 +85,50 @@ namespace Btd
         return target;
     }
 
+    void Tower::HandleUpgradeBtnFrame(int money)
+    {
+        for (int i=0; i<2; i++)
+        {
+            if (IsUpgrade[i])
+            // already bought
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(2);
+            }
+            else if (UpgradePrice[i] > money)
+            // can't buy
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(0);
+            }
+            else
+            // not buy
+            {
+                UpgradeBtn[i].SetFrameIndexOfBitmap(1);
+            }
+        }
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;
+    }
+
+    void Tower::InitUpgradeBtn()
+    {
+        int location[2][2] = {{750, 400}, {860, 400}};
+        for (int i=0; i<2; i++)
+        {
+            UpgradeBtn[i].LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"
+            , "resources/button/alreadyBought.bmp"});
+            UpgradeBtn[i].SetTopLeft(location[i][0], location[i][1]);
+        }
+    }
+
+    void Tower::Upgrade(int level)
+    {
+        if (!IsUpgrade[level])
+        {
+            return;
+        }
     }
 
     void Tower::TowerShow()
@@ -93,12 +136,17 @@ namespace Btd
         if (_isClicked)
         {
             this->RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
+            if (!_isMovable)
+            {
+                this->UpgradeBtn[0].ShowBitmap();
+                this->UpgradeBtn[1].ShowBitmap();
+            }
         }
-        this->ShowBitmap();
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)
         {
             throwables[i]->ShowBitmap();
         }
+        this->ShowBitmap();
     }
 
     float Tower::GetShootDeltaTime()
@@ -130,7 +178,6 @@ namespace Btd
             else
             {
                 shootTimecounter += static_cast<float>(delayCount) / 100.F;
-                // shootTimecounter += 1;
             }
         }
     }
@@ -155,9 +202,14 @@ namespace Btd
         next->SetActive(true);
         next->InitByCenter(GetCenter());
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
+        next->SetMaxPop(_maxPop);
         throwables.push_back(next);
     }
 
+    void Tower::SetMaxPop(int i )
+    {
+        _maxPop=i;
+    }
     void Tower::SetThrowablePath(vector<string> name)
     {
         ThrowablePath = name;

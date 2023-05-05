@@ -5,13 +5,16 @@ namespace Btd
 {
     DartMonkey::DartMonkey()
     {
-        _range = 160;
+        _range = 140;
+        shootDeltaTime = 3;
         ThrowablePath = {
             "resources/towers/monkey/dart_1.bmp", "resources/towers/monkey/dart_2.bmp",
             "resources/towers/monkey/dart_3.bmp", "resources/towers/monkey/dart_4.bmp",
             "resources/towers/monkey/dart_5.bmp", "resources/towers/monkey/dart_6.bmp",
             "resources/towers/monkey/dart_7.bmp", "resources/towers/monkey/dart_8.bmp"
         };
+        UpgradePrice[0] = 180;
+        UpgradePrice[1] = 80;
     }
 
     void DartMonkey::Shoot(Vector2 target)
@@ -28,13 +31,25 @@ namespace Btd
     void DartMonkey::PushThrowablePool()
     {
         auto dart = make_shared<Throwable>(Throwable());
-        if (_isUpgrade[0])
-        {
-            // dart monkey first upgrade can let throwable penetrate
-            dart->SetPenetrate(true);
-        }
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
         throwablePool.push(dart);
+    }
+
+    void DartMonkey::Upgrade(int level)
+    {
+        Tower::Upgrade(level);
+        switch (level)
+        {
+        case 0:
+            SetMaxPop(2);
+            break;
+        case 1:
+            _range = 180;
+            break;
+        default:
+            break;
+        }
+        IsUpgrade[level] = true;
     }
 }

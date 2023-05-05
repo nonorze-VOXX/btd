@@ -57,12 +57,11 @@ namespace Btd
         mouse.SetTopLeft(GetCursorPosX(),GetCursorPosY());
         mouse.SetCollider({1,1});
         return Btd::IsOverlap(mouse,*this);
-        if (GetLeft() < GetCursorPosX() && GetCursorPosX() < GetLeft() + GetWidth() &&
-            GetTop() < GetCursorPosY() && GetCursorPosY() < GetTop() + GetHeight())
-        {
-            return true;
-        }
-        return false;
+    }
+
+    bool GameObject::IsClicked()
+    {
+        return _isClicked;
     }
 
     void GameObject::SetClicked(bool clicked)

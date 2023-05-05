@@ -26,11 +26,9 @@ namespace Btd
             {
                 BloonFactory::BloonVector[i].Pop(_freezeTime, DamageType::Ice);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
-                if (_canPenetrate == false)
-                {
-                    _isActive = false;
-                    break;
-                }
+                // merciless refactoring
+                _isActive = false;
+                break;
             }
         }
     }

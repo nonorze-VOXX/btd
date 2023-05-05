@@ -9,5 +9,6 @@ namespace Btd
         NailMachine();
         void Update() override;
         void PushThrowablePool();
+        void Upgrade(int level) override;
     };
 }
