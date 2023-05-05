@@ -81,6 +81,18 @@ namespace Btd
                 next.Setspeed(3);
                 next.SetType(BloonType::white);
                 break;
+            case Layer::rainbow:
+                next.SetFrameIndexOfBitmap(Layer::rainbow);
+                next.SetLayer(0);
+                next.Setspeed(3);
+                next.SetType(BloonType::rainbow);
+                break;
+            case Layer::lead:
+                next.SetFrameIndexOfBitmap(Layer::lead);
+                next.SetLayer(0);
+                next.Setspeed(2);
+                next.SetType(BloonType::lead);
+                break;
             default:
                 next.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
                 next.SetLayer(type);
@@ -127,6 +139,12 @@ namespace Btd
                         Vector2 position = b.GetBottomCenter();
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
+                    }else if (type == BloonType::rainbow || type == BloonType::lead)
+                    {
+                        int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
+                        Vector2 position = b.GetBottomCenter();
+                        MakeBloonByPosition(Layer::black, position, nowRouteTarget, b.Getroute());
+                        MakeBloonByPosition(Layer::white, position, nowRouteTarget, b.Getroute());
                     }
                     BloonPool.push(BloonVector[i]);
                     BloonVector.erase(BloonVector.begin() + i);

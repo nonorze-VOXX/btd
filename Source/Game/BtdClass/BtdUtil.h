@@ -30,6 +30,8 @@ namespace Btd
             yellow,
             black,
             white,
+            rainbow,
+            lead,
         };
     }
 
@@ -39,7 +41,9 @@ namespace Btd
         {
             normal,
             black,
-            white
+            white,
+            rainbow,
+            lead,
         };
     }
 

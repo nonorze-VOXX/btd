@@ -181,7 +181,7 @@ namespace Btd
     {
         if (_explodeTime != 0)
         {
-            SetFrameIndexOfBitmap(6);
+            SetFrameIndexOfBitmap(8);
             SetExplodeTime(_explodeTime - deltaTime);
         }
         else

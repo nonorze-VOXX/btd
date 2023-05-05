@@ -222,6 +222,14 @@ namespace Btd
         {
             BloonFactory::MakeBloon(Layer::white);
         }
+        if (nChar == 'C')
+        {
+            BloonFactory::MakeBloon(Layer::rainbow);
+        }
+        if (nChar == 'V')
+        {
+            BloonFactory::MakeBloon(Layer::lead);
+        }
         if (nChar == 'P')
         {
             live = 0;
