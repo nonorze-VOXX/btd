@@ -5,6 +5,7 @@ namespace Btd
 {
     Glue::Glue()
     {
+        _range = 35;
     }
 
     void Glue::LoadBitmapByString(vector<string> filepaths, COLORREF color)
@@ -67,5 +68,21 @@ namespace Btd
     void Glue::UpdateCantHitBloons()
     {
         throwable.UpdateCantHitBloons();
+    }
+
+    void Glue::Update()
+    {
+        if (throwable.GetActive())
+        {
+            DetectHitBalloon();
+            UpdateCantHitBloons();
+        }
+        tower.RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                              static_cast<int>(GetCenter().Y) - (_range - 100));
+    }
+
+    Vector2 Glue::GetCenter()
+    {
+        return tower.GetCenter();
     }
 }

@@ -67,6 +67,17 @@ namespace Btd
             TowerFactory::SpikesVector.back()->SetIsMove(false);
             TowerFactory::SpikesVector.back()->SetActive(true);
         }
+        
+        // place glue
+        if (!TowerFactory::GlueVector.empty() &&
+             TowerFactory::GlueVector.back()->tower.IsMovable() &&
+            TowerFactory::GlueVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
+        {
+            money -= willDecreaseMoney;
+            TowerFactory::GlueVector.back()->SetIsMove(false);
+            TowerFactory::GlueVector.back()->SetActive(true);
+        }
+        
         switch (GameFlow)
         {
         case Prepare:
@@ -130,6 +141,7 @@ namespace Btd
 
     void GameManager::OnMove()
     {
+        // tower range circle
         if (!TowerFactory::TowerVector.empty())
         {
             if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
@@ -143,6 +155,7 @@ namespace Btd
                 TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
             }
         }
+        // spikes range circle
         if (!TowerFactory::SpikesVector.empty())
         {
             if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::SpikesVector.back()).tower)))
@@ -152,6 +165,18 @@ namespace Btd
             else
             {
                 TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
+            }
+        }
+        // glue range circle
+        if (!TowerFactory::GlueVector.empty())
+        {
+            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::GlueVector.back()).tower)))
+            {
+                TowerFactory::GlueVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
+            }
+            else
+            {
+                TowerFactory::GlueVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
             }
         }
         map->UpdateFactoryButton();
@@ -206,6 +231,10 @@ namespace Btd
         for (auto& s : TowerFactory::SpikesVector)
         {
             s->Update();
+        }
+        for (auto& g : TowerFactory::GlueVector)
+        {
+            g->Update();
         }
         if(!BloonPause)
         {

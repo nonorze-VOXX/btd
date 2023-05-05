@@ -18,6 +18,8 @@ namespace Btd
         void SetDamageType(DamageType::DamageType damageType);
         void DetectHitBalloon();
         void UpdateCantHitBloons();
+        void Update();
+        Vector2 GetCenter();
         
         Tower tower;
         Throwable throwable;
