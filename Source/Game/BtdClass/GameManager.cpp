@@ -241,41 +241,53 @@ namespace Btd
 
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
-        if (nChar == 'A')
+        switch (nChar)
         {
-            BloonFactory::MakeBloon(Layer::red);
-        }
-        if (nChar == 'S')
-        {
-            BloonFactory::MakeBloon(Layer::blue);
-        }
-        if (nChar == 'D')
-        {
-            BloonFactory::MakeBloon(Layer::green);
-        }
-        if (nChar == 'F')
-        {
-            BloonFactory::MakeBloon(Layer::yellow);
-        }
-        if (nChar == 'Z')
-        {
-            BloonFactory::MakeBloon(Layer::black);
-        }
-        if (nChar == 'X')
-        {
-            BloonFactory::MakeBloon(Layer::white);
-        }
-        if (nChar == 'P')
-        {
-            live = 0;
-        }
-        if (nChar == 'U')
-        {
-            BloonPause = !BloonPause;
-        }
-        if (nChar == 'M')
-        {
-            money = 48763;
+        case 'A':
+            {
+                BloonFactory::MakeBloon(Layer::red);
+                break;
+            }
+        case 'S':
+            {
+                BloonFactory::MakeBloon(Layer::blue);
+                break;
+            }
+        case 'D':
+            {
+                BloonFactory::MakeBloon(Layer::green);
+                break;
+            }
+        case 'F':
+            {
+                BloonFactory::MakeBloon(Layer::yellow);
+                break;
+            }
+        case 'Z':
+            {
+                BloonFactory::MakeBloon(Layer::black);
+                break;
+            }
+        case 'X':
+            {
+                BloonFactory::MakeBloon(Layer::white);
+                break;
+            }
+        case 'P':
+            {
+                live = 0;
+                break;
+            }
+        case 'U':
+            {
+                BloonPause = !BloonPause;
+                break;
+            }
+        case 'M':
+            {
+                money = 48763;
+                break;
+            }
         }
     }
 
