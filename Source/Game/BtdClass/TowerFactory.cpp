@@ -2,6 +2,9 @@
 #include "TowerFactory.h"
 
 #include "BoomerangMonkey.h"
+#include "Spikes.h"
+
+vector<shared_ptr<Btd::Spikes>> Btd::TowerFactory::SpikesVector = {};
 
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
@@ -90,6 +93,19 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
         }
         
         break;
+    case spikes:
+        {
+            shared_ptr<Spikes> spikes = make_shared<Spikes>(Spikes());
+            spikes->LoadBitmapByString({"resources/towers/spikes.bmp"}, RGB(255, 255, 255));
+            spikes->SetCenter(GetCursorPosX(), GetCursorPosY());
+            spikes->SetFrameIndexOfBitmap(0);
+            spikes->SetIsMove(true);
+            spikes->SetActive(false);
+            spikes->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            spikes->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            SpikesVector.push_back(spikes);
+        }
+        break;
     default:
         break;
     }
@@ -133,4 +149,16 @@ int Btd::TowerFactory::HandleTowerClicked(int money)
         }
     }
     return willDecreaseMoney;
+}
+
+void Btd::TowerFactory::UpdateSpikesVector()
+{
+    for (int i=static_cast<int>(SpikesVector.size())-1; i>=0; i--)
+    {
+        if (SpikesVector[i]->tower.IsMovable() == false &&
+            SpikesVector[i]->throwable.GetActive() == false)
+        {
+            SpikesVector.erase(SpikesVector.begin() + i);
+        }
+    }
 }

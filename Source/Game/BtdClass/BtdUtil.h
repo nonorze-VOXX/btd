@@ -16,6 +16,8 @@ namespace Btd
         nail,
         ice,
         bomb,
+        spikes,
+        glue,
         super,
         boomerang
     };

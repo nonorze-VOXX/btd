@@ -29,6 +29,7 @@ namespace Btd
         static vector<vector<Vector2>> GetRoute();
         static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
+        bool IsOverSidebar(GameObject target);
         int GetInitMoney();
         int GetInitLives();
 
@@ -40,7 +41,7 @@ namespace Btd
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
         int buttonNumber=0;
-        vector<int> priceTable = {200, 360, 650, 850, 3600,400};
+        vector<int> priceTable = {200, 360, 650, 850, 30, 30, 3600, 400};
     };
 }
 
