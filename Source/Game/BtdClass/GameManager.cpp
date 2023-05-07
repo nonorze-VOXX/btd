@@ -13,6 +13,7 @@ namespace Btd
         GameFlow = Prepare;
         round = 0;
         TowerFactory::TowerVector.clear();
+        TowerFactory::SpikesVector.clear();
         map->InitFactoryButton();
         BloonFactory::ClearActiveBloon();
         live = map->InitLives;
