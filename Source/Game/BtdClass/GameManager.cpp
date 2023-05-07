@@ -273,6 +273,16 @@ namespace Btd
                 BloonFactory::MakeBloon(Layer::white);
                 break;
             }
+        case 'C':
+            {
+                BloonFactory::MakeBloon(Layer::rainbow);
+                break;
+            }
+        case 'V':
+            {
+                BloonFactory::MakeBloon(Layer::lead);
+                break;
+            }
         case 'P':
             {
                 live = 0;

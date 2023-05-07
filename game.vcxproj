@@ -315,10 +315,12 @@
         <ResourceCompile Include="Source\Core\game.rc" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="Resources\bloon\bloon_rainbow.bmp" />
         <Content Include="Resources\bloon\bloon_black.bmp" />
         <Content Include="Resources\bloon\bloon_blue.bmp" />
         <Content Include="Resources\bloon\bloon_green.bmp" />
         <Content Include="Resources\bloon\bloon_red.bmp" />
+        <Content Include="Resources\bloon\frost.bmp" />
         <Content Include="Resources\bomb.bmp" />
          <Content Include="Resources\bloon\bloon_white.bmp" />
         <Content Include="Resources\bloon\bloon_yellow.bmp" />

@@ -6,14 +6,19 @@
 
 namespace Btd
 {
+    //[bloontype][damagetype]
     //      normal boom ice
     //normal
     //black
     //white
-    bool Bloon::resistDamegeMap[3][3] = {
+    //rainbow
+    //lead
+    bool Bloon::resistDamegeMap[5][3] = {
         {true, true, true},
         {true, false, true},
-        {true, true, false}
+        {true, true, false},
+        {true, true, true},
+        {false, true, false},
     };
 
     int Bloon::GetExplodeTime() const
@@ -78,7 +83,6 @@ namespace Btd
     {
         Vector2 nowLocal = GetBottomCenter();
         Vector2 target = route[nowRouteTarget];
-        target = route[nowRouteTarget];
         Vector2 deltaMove = Vector2Sub(target, nowLocal);
         Vector2 moveDirection = Normailize(deltaMove);
         float speed = GetSpeed();
@@ -181,7 +185,7 @@ namespace Btd
     {
         if (_explodeTime != 0)
         {
-            SetFrameIndexOfBitmap(6);
+            SetFrameIndexOfBitmap(8);
             SetExplodeTime(_explodeTime - deltaTime);
         }
         else
