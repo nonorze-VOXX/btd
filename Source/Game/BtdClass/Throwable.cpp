@@ -75,7 +75,8 @@ namespace Btd
                 }
             }
             if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
-                !isHited) //not in cant hit bloon)
+                !isHited /*not in cant hit bloon*/ &&
+                !BloonFactory::BloonVector[i].IsExplode() /*bloon is not explode*/)
             {
                 BloonFactory::BloonVector[i].Pop(1, DamageType::Normal);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
@@ -94,16 +95,22 @@ namespace Btd
         for (int i = 0; i < static_cast<int>(cantHitBloons.size()); i++)
         {
             cantHitBloons[i].second += deltaTime;
-            if (cantHitBloons[i].second > 1000)
+            if (cantHitBloons[i].second > _cantHitBloonTime)
             {
                 cantHitBloons.erase(cantHitBloons.begin() + i);
             }
         }
     }
 
+    void Throwable::SetCantHtBloonTime(int time)
+    {
+        _cantHitBloonTime = time;
+    }
+
     Throwable::Throwable()
     {
         _maxExistTime = -1;
+        _cantHitBloonTime = 1000;
         _poped=0;
         _maxPop=1;
     }

@@ -37,12 +37,17 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        if(TowerFactory::TowerVector.empty() ||
-            !TowerFactory::TowerVector.back()->IsMovable() )
+        if((TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable()) &&
+            (TowerFactory::SpikesVector.empty() ||
+            !TowerFactory::SpikesVector.back()->IsMovable()))
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
+        
         money -= TowerFactory::HandleTowerClicked(money);
+
+        // place tower
         if (!TowerFactory::TowerVector.empty() &&
             TowerFactory::TowerVector.back()->IsMovable() &&
             TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
@@ -50,6 +55,16 @@ namespace Btd
             money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
+        }
+
+        // place spikes
+        if (!TowerFactory::SpikesVector.empty() &&
+             TowerFactory::SpikesVector.back()->tower.IsMovable() &&
+            TowerFactory::SpikesVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
+        {
+            money -= willDecreaseMoney;
+            TowerFactory::SpikesVector.back()->SetIsMove(false);
+            TowerFactory::SpikesVector.back()->SetActive(true);
         }
         switch (GameFlow)
         {
@@ -76,6 +91,12 @@ namespace Btd
             TowerFactory::TowerVector.back()->IsMovable())
         {
             TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
+                                                        GetCursorPosY());
+        }
+        if (!TowerFactory::SpikesVector.empty() &&
+            TowerFactory::SpikesVector.back()->IsMovable())
+        {
+            TowerFactory::SpikesVector.back()->SetCenter(GetCursorPosX(),
                                                         GetCursorPosY());
         }
     }
@@ -105,6 +126,7 @@ namespace Btd
         if (!TowerFactory::TowerVector.empty())
         {
             if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                map->IsOverSidebar(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
                 isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
             {
                 TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
@@ -114,7 +136,19 @@ namespace Btd
                 TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
             }
         }
+        if (!TowerFactory::SpikesVector.empty())
+        {
+            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::SpikesVector.back()).tower)))
+            {
+                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
+            }
+            else
+            {
+                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
+            }
+        }
         map->UpdateFactoryButton();
+        TowerFactory::UpdateSpikesVector();
 
         switch (GameFlow)
         {
@@ -139,6 +173,7 @@ namespace Btd
                 break;
             }
         case Win:
+            TowerFactory::SpikesVector.clear();
             round++;
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
@@ -161,6 +196,10 @@ namespace Btd
         {
             m->Update();
         }
+        for (auto& s : TowerFactory::SpikesVector)
+        {
+            s->Update();
+        }
         if(!BloonPause)
         {
         BloonFactory::UpdateBloon();
@@ -176,6 +215,10 @@ namespace Btd
         {
             TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
             TowerFactory::TowerVector[i]->TowerShow();
+        }
+        for (int i=0; i<static_cast<int>(TowerFactory::SpikesVector.size()); i++)
+        {
+            TowerFactory::SpikesVector[i]->ShowBitmap();
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {

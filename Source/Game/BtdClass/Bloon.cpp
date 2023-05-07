@@ -199,4 +199,20 @@ namespace Btd
             SetFrameIndexOfBitmap(_layer);
         }
     }
+
+    bool Bloon::IsExplode()
+    {
+        return _isExplode;
+    }
+
+    void Bloon::Init()
+    {
+        _layer = 0;
+        _isPoped = false;
+        _slowerTime = 0;
+        _isFreeze = false;
+        _frost.LoadBitmapByString({"resources/bloon/frost.bmp"}, RGB(0, 0, 0));
+        _explodeTime = 20;
+        _isExplode = false;
+    }
 }

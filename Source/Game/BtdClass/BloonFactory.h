@@ -67,6 +67,7 @@ namespace Btd
                 BloonPool.push(tmpBloon);
             }
             auto next = BloonPool.front();
+            next.Init();
             switch (type)
             {
             case Layer::black:

@@ -117,6 +117,11 @@ namespace Btd
                 {622, 46}, {368, 48}, {368, 0}
             },
             {
+                {48, 0}, {113, 364}, {382, 403}, {386, 500},
+                {498, 354}, {542, 357}, {615, 398}, {303, 644},
+                {305, 692}, {430, 0}, {475, 85}, {586, 134},
+                {333, 251}, {331, 90}, {196, 92}, {196, 89},
+                {80, 476}, {79, 515}, {106, 596}, {186, 625}
             }
         };
         for (int i = 0; i < 3; i++)
@@ -165,17 +170,19 @@ namespace Btd
 
     void Map::InitFactoryButton()
     {
-        buttonNumber = 6;
+        buttonNumber = 8;
         vector<string> filePath = {
             "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
-            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp","resources/button/button_boomerang.bmp"
+            "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_glue.bmp"
+            , "resources/button/button_boomerang.bmp", "resources/button/button_super.bmp"
         };
-        vector<TowerType> attributes = {dart, nail, ice, bomb, super,boomerang};
-        float start = 740, space = 47;
+        vector<TowerType> attributes = {dart, nail, ice, bomb, spikes, glue, boomerang, super};
+        float start = 750, space = 56;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
-            {start + space * 3, 300}, {start + space * 4, 300} ,
-            {start , 300+space}
+            {start + space * 3, 300}, {start, 300 + space} ,
+            {start + space * 1 , 300+space}, {start + space * 2, 300 + space},
+            {start + space * 3, 300 + space}
         };
         for (int i = 0; i < buttonNumber; i++)
         {
@@ -191,7 +198,7 @@ namespace Btd
     {
         for (int i = 0; i < buttonNumber; i++)
         {
-            _factoryButton[i].ShowBitmap();
+            _factoryButton[i].ShowBitmap(1.2);
         }
     }
 
@@ -242,6 +249,11 @@ namespace Btd
                 return true;
             }
         }
+        return false;
+    }
+
+    bool Map::IsOverSidebar(GameObject target)
+    {
         if (Btd::IsOverlap(_sidebar, target))
         {
             return true;
