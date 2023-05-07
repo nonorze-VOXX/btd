@@ -43,21 +43,20 @@ namespace Btd
         case MapType::medium:
             SetRoute({
                 {
-                    {mapSize.X * -0.05F, mapSize.Y * 0.5F},
-                    {mapSize.X * 0.14F, mapSize.Y * 0.5F},
-                    {mapSize.X * 0.14F, mapSize.Y * 0.22F},
-                    {mapSize.X * 0.32F, mapSize.Y * 0.22F},
-                    {mapSize.X * 0.32F, mapSize.Y * 0.72F},
-                    {mapSize.X * 0.07F, mapSize.Y * 0.72F},
-                    {mapSize.X * 0.07F, mapSize.Y * 0.90F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.90F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.63F},
-                    {mapSize.X * 0.47F, mapSize.Y * 0.63F},
-                    {mapSize.X * 0.47F, mapSize.Y * 0.4F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.4F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.13F},
-                    {mapSize.X * 0.40F, mapSize.Y * 0.13F},
-                    {mapSize.X * 0.40F, mapSize.Y * -0.18F},
+                    {mapSize.X * 0.12F, mapSize.Y * -0.05F},
+                    {mapSize.X * 0.12F, mapSize.Y * 0.41F},
+                    {mapSize.X * 0.26F, mapSize.Y * 0.41F},
+                    {mapSize.X * 0.26F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.11F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.11F, mapSize.Y * 0.83F},
+                    {mapSize.X * 0.39F, mapSize.Y * 0.83F},
+                    {mapSize.X * 0.39F, mapSize.Y * 0.21F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.21F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.41F},
+                    {mapSize.X * 0.52F, mapSize.Y * 0.41F},
+                    {mapSize.X * 0.52F, mapSize.Y * 0.61F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.61F},
+                    {mapSize.X * 0.65F, mapSize.Y * 1.02F},
                 }
             });
             break;
@@ -110,11 +109,10 @@ namespace Btd
                 {502, 507}
             },
             {
-                {0, 320}, {105, 124}, {170, 124},
-                {285, 190}, {285, 390}, {43, 510},
-                {43, 575}, {110, 636}, {620, 426},
-                {429, 428}, {429, 249}, {496, 249},
-                {622, 46}, {368, 48}, {368, 0}
+                {89, 0}, {123, 276}, {221, 312}, {71, 435},
+                {70, 479}, {119, 591}, {351, 121}, {392, 120},
+                {630, 161}, {487, 279}, {485, 322}, {525, 436},
+                {616, 483}, 
             },
             {
                 {48, 0}, {113, 364}, {382, 403}, {386, 500},
