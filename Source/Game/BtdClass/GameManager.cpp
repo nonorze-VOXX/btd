@@ -41,7 +41,9 @@ namespace Btd
         if((TowerFactory::TowerVector.empty() ||
             !TowerFactory::TowerVector.back()->IsMovable()) &&
             (TowerFactory::SpikesVector.empty() ||
-            !TowerFactory::SpikesVector.back()->IsMovable()))
+            !TowerFactory::SpikesVector.back()->IsMovable()) && 
+            (TowerFactory::GlueVector.empty() ||
+            !TowerFactory::GlueVector.back()->IsMovable()))
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
@@ -181,6 +183,7 @@ namespace Btd
         }
         map->UpdateFactoryButton();
         TowerFactory::UpdateSpikesVector();
+        TowerFactory::UpdateGlueVector();
 
         switch (GameFlow)
         {

@@ -174,3 +174,15 @@ void Btd::TowerFactory::UpdateSpikesVector()
         }
     }
 }
+
+void Btd::TowerFactory::UpdateGlueVector()
+{
+    for (int i=static_cast<int>(GlueVector.size())-1; i>=0; i--)
+    {
+        if (GlueVector[i]->tower.IsMovable() == false &&
+            GlueVector[i]->throwable.GetActive() == false)
+        {
+            GlueVector.erase(GlueVector.begin() + i);
+        }
+    }
+}
