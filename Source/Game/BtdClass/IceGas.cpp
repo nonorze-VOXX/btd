@@ -6,6 +6,7 @@ namespace Btd
     IceGas::IceGas()
     {
         _speed = 0;
+        _maxPop = 25;
     }
 
     void IceGas::DetectHitBalloon()
@@ -27,7 +28,6 @@ namespace Btd
                 BloonFactory::BloonVector[i].Pop(_freezeTime, DamageType::Ice);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 // merciless refactoring
-                _isActive = false;
                 break;
             }
         }

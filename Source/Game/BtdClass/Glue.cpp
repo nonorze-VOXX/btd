@@ -5,7 +5,8 @@ namespace Btd
 {
     Glue::Glue()
     {
-        _range = 35;
+        _range = 37;
+        throwable.SetMaxPop(20);
     }
 
     void Glue::LoadBitmapByString(vector<string> filepaths, COLORREF color)

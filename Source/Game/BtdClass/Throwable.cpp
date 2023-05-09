@@ -78,7 +78,7 @@ namespace Btd
                 !isHited /*not in cant hit bloon*/ &&
                 !BloonFactory::BloonVector[i].IsExplode() /*bloon is not explode*/)
             {
-                BloonFactory::BloonVector[i].Pop(1, _damageType);
+                BloonFactory::BloonVector[i].Pop(_damage, _damageType);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 _poped+=1;
                 if ( _poped>=_maxPop)
@@ -105,6 +105,11 @@ namespace Btd
     void Throwable::SetCantHtBloonTime(int time)
     {
         _cantHitBloonTime = time;
+    }
+
+    void Throwable::SetDamage(int damage)
+    {
+        _damage = damage;
     }
 
     Throwable::Throwable()

@@ -40,14 +40,15 @@ namespace Btd
     {
         _speed = speed;
         _originSpeed = speed;
+        _slowerSpeed = _originSpeed * 0.35F + 0.3F;  // if too slow, some bloons won't move
     }
 
     void Bloon::Update()
     {
-        if (_slowerTime > 0)
+        if (_freezeTime > 0)
         {
-            _slowerTime -= deltaTime;
-            _speed = _slowerSpeed;
+            _freezeTime -= deltaTime;
+            _speed = 0;
         }
         else
         {
@@ -118,8 +119,12 @@ namespace Btd
             if (damageType == DamageType::Ice)
             {
                 // if damageType == ice, damage = slowerTime
-                SlowerInPeriod(_speed, damage);
+                FreezeInPeriod(damage);
                 _isFreeze = true;
+            }
+            else if (damageType == DamageType::Glue)
+            {
+                _originSpeed = _slowerSpeed;
             }
             else
             {
@@ -154,10 +159,9 @@ namespace Btd
         _layer = layer;
     }
 
-    void Bloon::SlowerInPeriod(float subSpeed, int time)
+    void Bloon::FreezeInPeriod(int time)
     {
-        _slowerSpeed = _speed - subSpeed;
-        _slowerTime = time;
+        _freezeTime = time;
     }
 
     bool Bloon::IsGoaled()
@@ -209,7 +213,7 @@ namespace Btd
     {
         _layer = 0;
         _isPoped = false;
-        _slowerTime = 0;
+        _freezeTime = 0;
         _isFreeze = false;
         _frost.LoadBitmapByString({"resources/bloon/frost.bmp"}, RGB(0, 0, 0));
         _explodeTime = 20;

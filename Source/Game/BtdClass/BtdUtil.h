@@ -73,6 +73,7 @@ namespace Btd
             Normal,
             Boom,
             Ice,
+            Glue,
         };
     }
 

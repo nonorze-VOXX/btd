@@ -113,6 +113,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             glue->SetCenter(GetCursorPosX(), GetCursorPosY());
             glue->SetIsMove(true);
             glue->SetActive(false);
+            glue->throwable.SetDamageType(DamageType::Glue);
             glue->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             glue->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             GlueVector.push_back(glue);

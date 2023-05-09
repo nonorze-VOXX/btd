@@ -13,7 +13,7 @@ namespace Btd
         float _speed = 0;
         float _existTime = 0;
         float _maxExistTime = -1; // every throwable except bomb maxExistTime is -1 (because no use)
-        float _damage = 0;
+        int _damage = 1;
         int _maxPop = 0;
         int _poped = 0;
         int _cantHitBloonTime;
@@ -45,5 +45,7 @@ namespace Btd
         void UpdateCantHitBloons();
 
         void SetCantHtBloonTime(int time);
+
+        void SetDamage(int damage);
     };
 }
