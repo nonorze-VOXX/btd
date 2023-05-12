@@ -13,12 +13,12 @@ namespace Btd
     //white
     //rainbow
     //lead
-    bool Bloon::resistDamegeMap[5][3] = {
-        {true, true, true},
-        {true, false, true},
-        {true, true, false},
-        {true, true, true},
-        {false, true, false},
+    bool Bloon::resistDamegeMap[5][4] = {
+        {true, true, true, true},
+        {true, false, true, true},
+        {true, true, false, true},
+        {true, true, true, true},
+        {false, true, false, true},
     };
 
     int Bloon::GetExplodeTime() const

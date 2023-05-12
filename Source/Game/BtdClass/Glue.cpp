@@ -6,7 +6,9 @@ namespace Btd
     Glue::Glue()
     {
         _range = 37;
-        throwable.SetMaxPop(20);
+        throwable.SetMaxPop(21);
+        throwable.SetMaxExistTime(-1);
+        throwable.SetCantHtBloonTime(999999999);
     }
 
     void Glue::LoadBitmapByString(vector<string> filepaths, COLORREF color)
@@ -76,7 +78,7 @@ namespace Btd
         if (throwable.GetActive())
         {
             DetectHitBalloon();
-            UpdateCantHitBloons();
+            // UpdateCantHitBloons();
         }
         tower.RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
                               static_cast<int>(GetCenter().Y) - (_range - 100));

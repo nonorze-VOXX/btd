@@ -81,6 +81,7 @@ namespace Btd
                 BloonFactory::BloonVector[i].Pop(_damage, _damageType);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 _poped+=1;
+                TRACE("%d\n", _poped);
                 if ( _poped>=_maxPop)
                 {
                     _isActive = false;
@@ -118,6 +119,7 @@ namespace Btd
         _cantHitBloonTime = 1000;
         _poped=0;
         _maxPop=1;
+        cantHitBloons = {};
     }
 
     void Throwable::SetMaxPop(int i)

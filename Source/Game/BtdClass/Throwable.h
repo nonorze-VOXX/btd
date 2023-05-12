@@ -19,7 +19,7 @@ namespace Btd
         int _cantHitBloonTime;
         DamageType::DamageType _damageType;
         // throwable can't hit same balloon in one second
-        vector<pair<Bloon*, int>> cantHitBloons;
+        vector<pair<Bloon*, int>> cantHitBloons = {};
 
     public:
         Throwable();
