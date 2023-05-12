@@ -61,7 +61,7 @@ namespace Btd
         throwablePool.push(boomerang);
     }
 
-    void Btd::BoomerangMonkey::Upgrade(int level)
+    void BoomerangMonkey::Upgrade(int level)
     {
         Tower::Upgrade(level);
         switch (level)
