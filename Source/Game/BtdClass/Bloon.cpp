@@ -3,6 +3,8 @@
 #include "Bloon.h"
 
 #include "map.h"
+#include "../../Library/audio.h"
+
 
 namespace Btd
 {
@@ -190,6 +192,8 @@ namespace Btd
         }
         else
         {
+            game_framework::CAudio *audio = game_framework::CAudio::Instance();
+            audio->Play((int)BtdSound::POP,true);
             _isExplode = false;
             if (_layer < 0)
             {

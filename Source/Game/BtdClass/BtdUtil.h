@@ -37,6 +37,13 @@ namespace Btd
         };
     }
 
+    enum class BtdSound
+    {
+        BACKGROUND,
+        POP,
+        LEAD,
+    };
+
     namespace BloonType
     {
         enum BloonType
