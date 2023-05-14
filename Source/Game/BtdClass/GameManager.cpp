@@ -242,6 +242,13 @@ namespace Btd
 
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
+        if((TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable()) &&
+            (TowerFactory::SpikesVector.empty() ||
+            !TowerFactory::SpikesVector.back()->IsMovable()))
+        {
+            willDecreaseMoney = map->HandleShortCut(nChar,money);
+        }
         switch (nChar)
         {
         case 'A':

@@ -10,7 +10,7 @@ namespace Btd
         float Y;
     };
 
-    enum TowerType
+    enum class TowerType
     {
         dart,
         nail,

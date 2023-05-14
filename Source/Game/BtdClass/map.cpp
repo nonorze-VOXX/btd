@@ -94,6 +94,7 @@ namespace Btd
         }
     }
 
+
     void Map::InitRoad(MapType::MapType type)
     {
         int roadSize[3];
@@ -174,7 +175,9 @@ namespace Btd
             "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_glue.bmp"
             , "resources/button/button_boomerang.bmp", "resources/button/button_super.bmp"
         };
-        vector<TowerType> attributes = {dart, nail, ice, bomb, spikes, glue, boomerang, super};
+        vector<TowerType> attributes = {
+            TowerType::dart, TowerType::nail, TowerType::ice, TowerType::bomb,
+            TowerType::spikes, TowerType::glue, TowerType::boomerang, TowerType::super};
         float start = 750, space = 56;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
@@ -217,6 +220,46 @@ namespace Btd
                 _factoryButton[i].SetClicked(true);
                 return priceTable[i];
             }
+        }
+        return 0;
+    }
+
+    int Map::HandleShortCut(UINT uint,int money)
+    {
+        TowerType target ;
+        switch (uint)
+        {
+        case 'Q':
+            target = TowerType::dart;
+            break;
+        case 'W':
+            target = TowerType::boomerang;
+            break;
+        case 'E':
+            target = TowerType::nail;
+            break;
+        case 'R':
+            target = TowerType::bomb;
+            break;
+        case 'T':
+            target = TowerType::ice;
+            break;
+        case 'Y':
+            target = TowerType::super;
+            break;
+        case 'U':
+            target = TowerType::spikes;
+            break;
+        case 'I':
+            target = TowerType::glue;
+            break;
+        default:
+            return 0;
+        }
+        if( priceTable[(int)target] <= money )
+        {
+            _factoryButton[(int)target].SetClicked(true);
+            return priceTable[(int)target];
         }
         return 0;
     }

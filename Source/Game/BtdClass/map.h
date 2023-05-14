@@ -13,6 +13,7 @@ namespace Btd
         Map() = default;
         ~Map() override = default;
         void SetRoutesByMap(MapType::MapType type);
+        int HandleShortCut(UINT uint, int money);
         const int InitMoney = 650;
         const int InitLives = 40;
         virtual void InitRoad(MapType::MapType type);
