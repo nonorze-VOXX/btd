@@ -192,10 +192,10 @@ namespace Btd
             TowerType::spikes, TowerType::glue, TowerType::boomerang, TowerType::super};
         float start = 750, space = 56;
         vector<Vector2> locations = {
-            {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
-            {start + space * 3, 300}, {start, 300 + space} ,
-            {start + space * 1 , 300+space}, {start + space * 2, 300 + space},
-            {start + space * 3, 300 + space}
+            {start, 192}, {start + space * 1, 192}, {start + space * 2, 192},
+            {start + space * 3, 192}, {start, 192 + space} ,
+            {start + space * 1 , 192+space}, {start + space * 2, 192 + space},
+            {start + space * 3, 192 + space}
         };
         for (int i = 0; i < buttonNumber; i++)
         {

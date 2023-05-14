@@ -114,7 +114,7 @@ namespace Btd
 
     void Tower::InitUpgradeBtn()
     {
-        int location[2][2] = {{750, 450}, {860, 450}};
+        int location[2][2] = {{750, 342}, {860, 342}};
         for (int i=0; i<2; i++)
         {
             UpgradeBtn[i].LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"

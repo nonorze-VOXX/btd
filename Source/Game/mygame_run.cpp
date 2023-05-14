@@ -99,8 +99,8 @@ void ShowGameStatusUI(int round, int lives, int money)
     CTextDraw::Print(pDC, 749, 97, "Lives:  " + to_string(lives));
 
     CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
-    CTextDraw::Print(pDC, 749, 260, "Build Towers");
-    CTextDraw::Print(pDC, 749, 260, "____________");
+    CTextDraw::Print(pDC, 749, 152, "Build Towers");
+    CTextDraw::Print(pDC, 749, 152, "____________");
 
     CDDraw::ReleaseBackCDC();
 }
@@ -129,8 +129,8 @@ void PrintMouseLocal(Btd::Vector2 position)
     CDC* pDC = CDDraw::GetBackCDC();
     CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
 
-    CTextDraw::Print(pDC, 749, 152, "X: " + to_string(position.X));
-    CTextDraw::Print(pDC, 749, 172, "Y: " + to_string(position.Y));
+    CTextDraw::Print(pDC, 10, 682, "X: " + to_string(position.X));
+    CTextDraw::Print(pDC, 10, 702, "Y: " + to_string(position.Y));
 
     CDDraw::ReleaseBackCDC();
 }
