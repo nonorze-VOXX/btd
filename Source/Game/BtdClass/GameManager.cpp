@@ -42,7 +42,7 @@ namespace Btd
             strcpy(target,local.c_str());
             audio->Load(i,target);
         }
-        // audio->Play((int)BtdSound::BACKGROUND,true);
+        audio->Play((int)BtdSound::BACKGROUND,true);
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);

@@ -125,6 +125,9 @@ namespace Btd
             }
             else
             {
+                game_framework::CAudio *audio = game_framework::CAudio::Instance();
+                audio->Play((int)BtdSound::POP,false);
+                
                 _layer -= damage;
                 _explodeTime = 30;
                 _isExplode = true;
@@ -133,6 +136,10 @@ namespace Btd
                     Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
                 }
             }
+        }else if(type == BloonType::lead)
+        {
+            game_framework::CAudio *audio = game_framework::CAudio::Instance();
+            audio->Play((int)BtdSound::LEAD,false);
         }
     }
 
@@ -192,8 +199,6 @@ namespace Btd
         }
         else
         {
-            game_framework::CAudio *audio = game_framework::CAudio::Instance();
-            audio->Play((int)BtdSound::POP,true);
             _isExplode = false;
             if (_layer < 0)
             {
