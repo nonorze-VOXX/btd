@@ -8,8 +8,7 @@ namespace Btd
         _range = 37;
         throwable.SetMaxPop(20);
         throwable.SetMaxExistTime(-1);
-        throwable.SetCantHtBloonTime(9999999);
-        throwable.SetDamageType(DamageType::Ice);
+        throwable.SetCantHtBloonTime(9999999); // a glue only hit a bloon once
     }
 
     void Glue::LoadBitmapByString(vector<string> filepaths, COLORREF color)
