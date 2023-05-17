@@ -251,42 +251,42 @@ namespace Btd
         }
         switch (nChar)
         {
-        case 'A':
+        case '1':
             {
                 BloonFactory::MakeBloon(Layer::red);
                 break;
             }
-        case 'S':
+        case '2':
             {
                 BloonFactory::MakeBloon(Layer::blue);
                 break;
             }
-        case 'D':
+        case '3':
             {
                 BloonFactory::MakeBloon(Layer::green);
                 break;
             }
-        case 'F':
+        case '4':
             {
                 BloonFactory::MakeBloon(Layer::yellow);
                 break;
             }
-        case 'Z':
+        case '5':
             {
                 BloonFactory::MakeBloon(Layer::black);
                 break;
             }
-        case 'X':
+        case '6':
             {
                 BloonFactory::MakeBloon(Layer::white);
                 break;
             }
-        case 'C':
+        case '7':
             {
                 BloonFactory::MakeBloon(Layer::rainbow);
                 break;
             }
-        case 'V':
+        case '8':
             {
                 BloonFactory::MakeBloon(Layer::lead);
                 break;

@@ -18,8 +18,8 @@ namespace Btd
         bomb,
         spikes,
         glue,
+        boomerang,
         super,
-        boomerang
     };
 
     namespace Layer

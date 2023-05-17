@@ -243,25 +243,25 @@ namespace Btd
             target = TowerType::dart;
             break;
         case 'W':
-            target = TowerType::boomerang;
+            target = TowerType::nail;
             break;
         case 'E':
-            target = TowerType::nail;
+            target = TowerType::ice;
             break;
         case 'R':
             target = TowerType::bomb;
             break;
-        case 'T':
-            target = TowerType::ice;
-            break;
-        case 'Y':
-            target = TowerType::super;
-            break;
-        case 'U':
+        case 'A':
             target = TowerType::spikes;
             break;
-        case 'I':
+        case 'S':
             target = TowerType::glue;
+            break;
+        case 'D':
+            target = TowerType::boomerang;
+            break;
+        case 'F':
+            target = TowerType::super;
             break;
         default:
             return 0;
