@@ -6,9 +6,10 @@ namespace Btd
     Glue::Glue()
     {
         _range = 37;
-        throwable.SetMaxPop(21);
+        throwable.SetMaxPop(20);
         throwable.SetMaxExistTime(-1);
-        throwable.SetCantHtBloonTime(999999999);
+        throwable.SetCantHtBloonTime(9999999);
+        throwable.SetDamageType(DamageType::Ice);
     }
 
     void Glue::LoadBitmapByString(vector<string> filepaths, COLORREF color)

@@ -23,6 +23,7 @@ namespace Btd
         GameObject _frost;
         int _explodeTime;
         bool _isExplode;
+        int _id = 0;  // bloon unique id
 
     public:
         int GetExplodeTime() const;
@@ -73,5 +74,7 @@ namespace Btd
         void ShowExplode();
         bool IsExplode();
         void Init();
+        void SetId(int id);
+        int GetId();
     };
 }

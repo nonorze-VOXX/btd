@@ -219,4 +219,14 @@ namespace Btd
         _explodeTime = 20;
         _isExplode = false;
     }
+
+    void Bloon::SetId(int id)
+    {
+        _id = id;
+    }
+
+    int Bloon::GetId()
+    {
+        return  _id;
+    }
 }

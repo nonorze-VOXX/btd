@@ -17,7 +17,7 @@ namespace Btd
             bool isHited = false;
             for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
-                if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
+                if (cantHitBloons[j].first == BloonFactory::BloonVector[i].GetId())
                 {
                     isHited = true;
                     break;
@@ -35,7 +35,7 @@ namespace Btd
                 else
                 {
                     BloonFactory::BloonVector[i].Pop(1, _damageType);
-                    cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
+                    cantHitBloons.push_back({BloonFactory::BloonVector[i].GetId(), 0});
                 }
                 _speed = 0;
             }

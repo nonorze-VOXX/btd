@@ -16,10 +16,10 @@ namespace Btd
         int _damage = 1;
         int _maxPop = 0;
         int _poped = 0;
-        int _cantHitBloonTime;
-        DamageType::DamageType _damageType;
+        int _cantHitBloonTime = 0;
+        DamageType::DamageType _damageType = DamageType::Normal;
         // throwable can't hit same balloon in one second
-        vector<pair<Bloon*, int>> cantHitBloons = {};
+        vector<pair<int, int>> cantHitBloons = {};
 
     public:
         Throwable();

@@ -68,7 +68,7 @@ namespace Btd
             bool isHited = false;
             for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
-                if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
+                if (cantHitBloons[j].first == BloonFactory::BloonVector[i].GetId())
                 {
                     isHited = true;
                     break;
@@ -79,9 +79,8 @@ namespace Btd
                 !BloonFactory::BloonVector[i].IsExplode() /*bloon is not explode*/)
             {
                 BloonFactory::BloonVector[i].Pop(_damage, _damageType);
-                cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
+                cantHitBloons.emplace_back(BloonFactory::BloonVector[i].GetId(), 0);
                 _poped+=1;
-                TRACE("%d\n", _poped);
                 if ( _poped>=_maxPop)
                 {
                     _isActive = false;

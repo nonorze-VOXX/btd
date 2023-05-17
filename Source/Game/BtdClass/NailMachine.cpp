@@ -52,6 +52,7 @@ namespace Btd
         auto nail = make_shared<Throwable>(Throwable());
         nail->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         nail->SetSpeed(5);
+        nail->SetDamageType(DamageType::Normal);
         throwablePool.push(nail);
     }
 

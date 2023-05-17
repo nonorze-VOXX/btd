@@ -8,6 +8,7 @@ namespace Btd
         throwable.SetMaxExistTime(-1);
         throwable.SetCantHtBloonTime(0);
         throwable.SetMaxPop(10);
+        throwable.SetDamageType(DamageType::Normal);
         _range = 25;
     }
 
