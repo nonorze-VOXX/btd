@@ -2,6 +2,8 @@
 #include "TowerFactory.h"
 
 #include "BoomerangMonkey.h"
+#include "Spikes.h"
+#include "Super.h"
 
 vector<shared_ptr<Btd::Spikes>> Btd::TowerFactory::SpikesVector = {};
 vector<shared_ptr<Btd::Glue>> Btd::TowerFactory::GlueVector = {};
@@ -67,9 +69,25 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             TowerVector.push_back(ice);
+            break;
         }
     case super:
-        break;
+        {
+            shared_ptr<Super> superMonkey = make_shared<Super>(Super());
+            superMonkey->LoadBitmapByString({"resources/towers/super/tower_super_1.bmp", "resources/towers/super/tower_super_2.bmp"
+                                               , "resources/towers/super/tower_super_3.bmp", "resources/towers/super/tower_super_4.bmp", "resources/towers/super/tower_super_5.bmp"
+                                               , "resources/towers/super/tower_super_6.bmp", "resources/towers/super/tower_super_7.bmp", "resources/towers/super/tower_super_1.bmp"}, RGB(0, 0, 0));
+            superMonkey->SetCenter(GetCursorPosX(), GetCursorPosY());
+            superMonkey->SetIsMove(true);
+            superMonkey->SetActive(false);
+            superMonkey->SetFrameIndexOfBitmap(6);
+            superMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            superMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            superMonkey->SetCollider({static_cast<float>(superMonkey->GetWidth())*0.4F,static_cast<float>(superMonkey->GetHeight())*0.4F});
+            superMonkey->SetMaxPop(1);
+            TowerVector.push_back(superMonkey);
+            break;
+        }
     case boomerang:
         {
             shared_ptr<BoomerangMonkey> boomerangMonkey = make_shared<BoomerangMonkey>(BoomerangMonkey());
