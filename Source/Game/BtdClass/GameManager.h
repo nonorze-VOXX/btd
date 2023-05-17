@@ -1,4 +1,6 @@
 #pragma once
+#include <unordered_map>
+
 #include "BloonDB.h"
 #include "BtdTimer.h"
 #include "map.h"
@@ -14,6 +16,7 @@ namespace Btd
         int money = 0;
         bool BloonPause = false;
         int willDecreaseMoney = 0;
+        // unordered_map<UINT,Layer> 
 
     public:
         void OnBeginState(); // 設定每次重玩所需的變數
