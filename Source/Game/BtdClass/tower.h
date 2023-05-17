@@ -42,9 +42,11 @@ namespace Btd
         void InitUpgradeBtn();
         GameObject RangeCircle;
         Button UpgradeBtn[2];
+        Button SellBtn;
         bool IsUpgrade[2];
         virtual void Upgrade(int level);
         int UpgradePrice[2] = {0, 0};
+        int SellPrice;
         void HandleUpgradeBtnFrame (int money);
         GameObject UpgradeText[2];
         void SetThrowableOffset(Vector2 offset);
