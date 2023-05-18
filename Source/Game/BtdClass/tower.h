@@ -61,6 +61,7 @@ namespace Btd
         float shootTimecounter;
         Vector2 throwLocal;
         Bloon focus();
+        GameObject upgradeText[2];
     };
 }
 #endif

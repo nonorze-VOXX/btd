@@ -15,6 +15,10 @@ namespace Btd
         };
         UpgradePrice[0] = 180;
         UpgradePrice[1] = 80;
+        upgradeText[0].LoadBitmapByString({"resources/towers/monkey/dart_upgrade_1.bmp"}, RGB(0, 0, 0));
+        upgradeText[0].SetTopLeft(750, 450);
+        upgradeText[1].LoadBitmapByString({"resources/towers/monkey/dart_upgrade_2.bmp"}, RGB(0, 0, 0));
+        upgradeText[1].SetTopLeft(860, 450);
     }
 
     void DartMonkey::Shoot(Vector2 target)
