@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "BtdUtil.h"
 #include "FactoryButton.h"
+#include "SoundButton.h"
 
 namespace Btd
 {
@@ -42,6 +43,7 @@ namespace Btd
         GameObject _sidebar;
         int buttonNumber=0;
         vector<int> priceTable = {200, 360, 650, 850, 30, 30, 3600, 400};
+        SoundButton soundButton;
     };
 }
 
