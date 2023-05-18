@@ -203,6 +203,12 @@ namespace Btd
             factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
             _factoryButton.push_back(factoryButton);
         }
+        //todo filepath change to mute icon
+        soundButton.LoadBitmapByString(filePath,RGB(255,255,255));
+        soundButton.SetTopLeft(0,0);
+        soundButton.SetMute(true);
+        soundButton.SwitchMute();
+        
     }
 
     void Map::ShowFactoryButton()
@@ -211,6 +217,7 @@ namespace Btd
         {
             _factoryButton[i].ShowBitmap(1.2);
         }
+        soundButton.ShowBitmap();
     }
 
     void Map::UpdateFactoryButton()
@@ -230,6 +237,10 @@ namespace Btd
                 _factoryButton[i].SetClicked(true);
                 return priceTable[i];
             }
+        }
+        if (soundButton.IsCursorFocus() )
+        {
+            soundButton.SwitchMute();
         }
         return 0;
     }
