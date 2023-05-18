@@ -23,6 +23,9 @@ namespace Btd
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
         IsLose = false;
+        for(int i =0;i<8;i++){
+            shortKeyMap['1'+i] = (Layer)i;
+        }
     }
 
     void GameManager::OnInit()
@@ -249,48 +252,12 @@ namespace Btd
         {
             willDecreaseMoney = map->HandleShortCut(nChar,money);
         }
+        if(shortKeyMap.find(nChar) != shortKeyMap.end())
+        {
+            BloonFactory::MakeBloon(shortKeyMap[nChar]);
+        }
         switch (nChar)
         {
-        case '1':
-            {
-                BloonFactory::MakeBloon(Layer::red);
-                break;
-            }
-        case '2':
-            {
-                BloonFactory::MakeBloon(Layer::blue);
-                break;
-            }
-        case '3':
-            {
-                BloonFactory::MakeBloon(Layer::green);
-                break;
-            }
-        case '4':
-            {
-                BloonFactory::MakeBloon(Layer::yellow);
-                break;
-            }
-        case '5':
-            {
-                BloonFactory::MakeBloon(Layer::black);
-                break;
-            }
-        case '6':
-            {
-                BloonFactory::MakeBloon(Layer::white);
-                break;
-            }
-        case '7':
-            {
-                BloonFactory::MakeBloon(Layer::rainbow);
-                break;
-            }
-        case '8':
-            {
-                BloonFactory::MakeBloon(Layer::lead);
-                break;
-            }
         case 'P':
             {
                 live = 0;

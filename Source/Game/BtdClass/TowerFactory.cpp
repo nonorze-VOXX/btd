@@ -70,7 +70,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(ice);
             break;
         }
-    case super:
+    case TowerType::super:
         {
             shared_ptr<Super> superMonkey = make_shared<Super>(Super());
             superMonkey->LoadBitmapByString({"resources/towers/super/tower_super_1.bmp", "resources/towers/super/tower_super_2.bmp"
@@ -87,7 +87,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(superMonkey);
             break;
         }
-    case boomerang:
+    case TowerType::boomerang:
         {
             shared_ptr<BoomerangMonkey> boomerangMonkey = make_shared<BoomerangMonkey>(BoomerangMonkey());
             boomerangMonkey->LoadBitmapByString({

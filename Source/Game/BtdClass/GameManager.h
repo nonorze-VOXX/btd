@@ -16,7 +16,7 @@ namespace Btd
         int money = 0;
         bool BloonPause = false;
         int willDecreaseMoney = 0;
-        // unordered_map<UINT,Layer> 
+        unordered_map<UINT,Layer> shortKeyMap;
 
     public:
         void OnBeginState(); // 設定每次重玩所需的變數
