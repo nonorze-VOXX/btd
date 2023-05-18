@@ -10,7 +10,7 @@ namespace Btd
         float Y;
     };
 
-    enum TowerType
+    enum class TowerType
     {
         dart,
         nail,
@@ -18,28 +18,25 @@ namespace Btd
         bomb,
         spikes,
         glue,
+        boomerang,
         super,
-        boomerang
     };
 
-    namespace Layer
+    enum class Layer
     {
-        enum NormalBloonLayer
-        {
-            red = 0,
-            blue,
-            green,
-            yellow,
-            black,
-            white,
-            rainbow,
-            lead,
-        };
-    }
+        red = 0,
+        blue,
+        green,
+        yellow,
+        black,
+        white,
+        rainbow,
+        lead,
+    };
 
     namespace BloonType
     {
-        enum BloonType
+        enum  BloonType
         {
             normal,
             black,
@@ -61,7 +58,7 @@ namespace Btd
 
     struct UnitRound
     {
-        Layer::NormalBloonLayer type;
+        Layer type;
         int nextTime;
     };
 
