@@ -7,6 +7,8 @@
 #include "GameObject.h"
 #include "map.h"
 
+#include "SoundManager.h"
+
 namespace Btd
 {
     void Map::SetRoutesByMap(MapType::MapType type)
@@ -203,6 +205,12 @@ namespace Btd
             factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
             _factoryButton.push_back(factoryButton);
         }
+        vector<string> soundPath = {"resources/button/button_sound.bmp", "resources/button/button_mute.bmp"};
+        soundButton.LoadBitmapByString(soundPath,RGB(255,255,255));
+        soundButton.SetTopLeft(0,0);
+        SoundManager::mute = true;
+        soundButton.SwitchMute();
+        
     }
 
     void Map::ShowFactoryButton()
@@ -211,6 +219,7 @@ namespace Btd
         {
             _factoryButton[i].ShowBitmap(1.2);
         }
+        soundButton.ShowBitmap();
     }
 
     void Map::UpdateFactoryButton()
@@ -230,6 +239,10 @@ namespace Btd
                 _factoryButton[i].SetClicked(true);
                 return priceTable[i];
             }
+        }
+        if (soundButton.IsCursorFocus() )
+        {
+            soundButton.SwitchMute();
         }
         return 0;
     }

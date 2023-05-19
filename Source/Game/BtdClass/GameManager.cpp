@@ -2,7 +2,9 @@
 #include "GameManager.h"
 
 #include "BloonFactory.h"
+#include "SoundManager.h"
 #include "TowerFactory.h"
+#include "../../Library/audio.h"
 
 
 namespace Btd
@@ -30,6 +32,7 @@ namespace Btd
 
     void GameManager::OnInit()
     {
+        SoundManager::Init();
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);

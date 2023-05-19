@@ -259,6 +259,8 @@
         <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
         <ClCompile Include="Source\Game\BtdClass\map.cpp" />
         <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\SoundButton.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\SoundManager.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Spikes.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Super.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
@@ -301,6 +303,8 @@
         <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
         <ClInclude Include="Source\Game\BtdClass\map.h" />
         <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />
+        <ClInclude Include="Source\Game\BtdClass\SoundButton.h" />
+        <ClInclude Include="Source\Game\BtdClass\SoundManager.h" />
         <ClInclude Include="Source\Game\BtdClass\Spikes.h" />
         <ClInclude Include="Source\Game\BtdClass\Super.h" />
         <ClInclude Include="Source\Game\BtdClass\Throwable.h" />

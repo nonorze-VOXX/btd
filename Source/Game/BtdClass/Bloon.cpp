@@ -3,6 +3,9 @@
 #include "Bloon.h"
 
 #include "map.h"
+#include "SoundManager.h"
+#include "../../Library/audio.h"
+
 
 namespace Btd
 {
@@ -123,6 +126,8 @@ namespace Btd
             }
             else
             {
+                SoundManager::musicPlay(BtdSound::POP,false);
+                
                 _layer -= damage;
                 _explodeTime = 30;
                 _isExplode = true;
@@ -131,6 +136,9 @@ namespace Btd
                     Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
                 }
             }
+        }else if(type == BloonType::lead)
+        {
+            SoundManager::musicPlay(BtdSound::LEAD,false);
         }
     }
 
