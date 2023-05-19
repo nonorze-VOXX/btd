@@ -68,7 +68,7 @@ namespace Btd
             bool isHited = false;
             for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
-                if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
+                if (cantHitBloons[j].first == BloonFactory::BloonVector[i].GetId())
                 {
                     isHited = true;
                     break;
@@ -78,8 +78,8 @@ namespace Btd
                 !isHited /*not in cant hit bloon*/ &&
                 !BloonFactory::BloonVector[i].IsExplode() /*bloon is not explode*/)
             {
-                BloonFactory::BloonVector[i].Pop(1, DamageType::Normal);
-                cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
+                BloonFactory::BloonVector[i].Pop(_damage, _damageType);
+                cantHitBloons.emplace_back(BloonFactory::BloonVector[i].GetId(), 0);
                 _poped+=1;
                 if ( _poped>=_maxPop)
                 {
@@ -107,12 +107,18 @@ namespace Btd
         _cantHitBloonTime = time;
     }
 
+    void Throwable::SetDamage(int damage)
+    {
+        _damage = damage;
+    }
+
     Throwable::Throwable()
     {
         _maxExistTime = -1;
         _cantHitBloonTime = 1000;
         _poped=0;
         _maxPop=1;
+        cantHitBloons = {};
     }
 
     void Throwable::SetMaxPop(int i)

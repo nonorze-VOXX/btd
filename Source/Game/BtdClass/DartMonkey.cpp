@@ -33,6 +33,7 @@ namespace Btd
         auto dart = make_shared<Throwable>(Throwable());
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
+        dart->SetDamageType(DamageType::Normal);
         throwablePool.push(dart);
     }
 

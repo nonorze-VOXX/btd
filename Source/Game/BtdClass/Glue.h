@@ -1,13 +1,12 @@
 ﻿#pragma once
 #include "Placeable.h"
-#include "Tower.h"
+#include "tower.h"
 
 namespace Btd
 {
-    class Spikes:public Placeable
+    class Glue:public Placeable
     {
     public:
-        Spikes();
+        Glue();
     };
-    
 }

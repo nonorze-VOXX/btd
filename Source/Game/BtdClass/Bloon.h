@@ -15,7 +15,7 @@ namespace Btd
         bool _isPoped = false;
         bool _isGoaled = false;
         BloonType::BloonType type = BloonType::normal;
-        int _slowerTime;
+        int _freezeTime;
         float _slowerSpeed;
         float _originSpeed;
         int route = 0;
@@ -23,6 +23,7 @@ namespace Btd
         GameObject _frost;
         int _explodeTime;
         bool _isExplode;
+        int _id = 0;  // bloon unique id
 
     public:
         int GetExplodeTime() const;
@@ -36,7 +37,7 @@ namespace Btd
         {
         }
 
-        static bool resistDamegeMap[5][3];
+        static bool resistDamegeMap[5][4];
 
         void SetNowRouteTarget(int target);
 
@@ -67,11 +68,13 @@ namespace Btd
         void SetIsPoped(bool poped);
         void SetIsGoaled(bool goaled);
         void SetLayer(int layer);
-        void SlowerInPeriod(float subSpeed, int time);
+        void FreezeInPeriod(int time);
         int GetLayer();
         void BloonShow();
         void ShowExplode();
         bool IsExplode();
         void Init();
+        void SetId(int id);
+        int GetId();
     };
 }

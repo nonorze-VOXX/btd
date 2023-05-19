@@ -15,6 +15,7 @@ namespace Btd
         static vector<UnitRound> BloonRound;
         static int BloonCounter;
         static int BloonTimer;
+        static int BloonId;
         static vector<string> balloonPath;
         static int RoundRoute;
 
@@ -91,7 +92,7 @@ namespace Btd
             case Layer::lead:
                 next.SetFrameIndexOfBitmap((int)Layer::lead);
                 next.SetLayer(0);
-                next.Setspeed(2);
+                next.Setspeed(3);
                 next.SetType(BloonType::lead);
                 break;
             default:
@@ -113,6 +114,7 @@ namespace Btd
             next.SetIsPoped(false);
             next.SetIsGoaled(false);
             next.SetRoute(route);
+            next.SetId((BloonId++)%999999);  // every bloon has an id, every 999999 a loop
             BloonPool.pop();
             BloonVector.push_back(next);
         }
