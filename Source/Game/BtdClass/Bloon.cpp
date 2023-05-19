@@ -7,7 +7,7 @@
 namespace Btd
 {
     //[bloontype][damagetype]
-    //      normal boom ice
+    //      normal boom ice  glue
     //normal
     //black
     //white
