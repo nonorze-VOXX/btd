@@ -15,7 +15,7 @@ namespace Btd
         GameFlow = Prepare;
         round = 0;
         TowerFactory::TowerVector.clear();
-        TowerFactory::SpikesVector.clear();
+        TowerFactory::PlaceableVector.clear();
         map->InitFactoryButton();
         BloonFactory::ClearActiveBloon();
         live = map->InitLives;
@@ -46,10 +46,8 @@ namespace Btd
     {
         if((TowerFactory::TowerVector.empty() ||
             !TowerFactory::TowerVector.back()->IsMovable()) &&
-            (TowerFactory::SpikesVector.empty() ||
-            !TowerFactory::SpikesVector.back()->IsMovable()) && 
-            (TowerFactory::GlueVector.empty() ||
-            !TowerFactory::GlueVector.back()->IsMovable()))
+            (TowerFactory::PlaceableVector.empty() ||
+            !TowerFactory::PlaceableVector.back()->IsMovable()) )
         {
             willDecreaseMoney = map->HandleButtonClicked(money);
         }
@@ -67,24 +65,15 @@ namespace Btd
         }
 
         // place spikes
-        if (!TowerFactory::SpikesVector.empty() &&
-             TowerFactory::SpikesVector.back()->tower.IsMovable() &&
-            TowerFactory::SpikesVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
+        if (!TowerFactory::PlaceableVector.empty() &&
+             TowerFactory::PlaceableVector.back()->tower.IsMovable() &&
+            TowerFactory::PlaceableVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
             money -= willDecreaseMoney;
-            TowerFactory::SpikesVector.back()->SetIsMove(false);
-            TowerFactory::SpikesVector.back()->SetActive(true);
+            TowerFactory::PlaceableVector.back()->SetIsMove(false);
+            TowerFactory::PlaceableVector.back()->SetActive(true);
         }
         
-        // place glue
-        if (!TowerFactory::GlueVector.empty() &&
-             TowerFactory::GlueVector.back()->tower.IsMovable() &&
-            TowerFactory::GlueVector.back()->tower.RangeCircle.GetFrameIndexOfBitmap() == 0)
-        {
-            money -= willDecreaseMoney;
-            TowerFactory::GlueVector.back()->SetIsMove(false);
-            TowerFactory::GlueVector.back()->SetActive(true);
-        }
         
         switch (GameFlow)
         {
@@ -113,16 +102,10 @@ namespace Btd
             TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
                                                         GetCursorPosY());
         }
-        if (!TowerFactory::SpikesVector.empty() &&
-            TowerFactory::SpikesVector.back()->IsMovable())
+        if (!TowerFactory::PlaceableVector.empty() &&
+            TowerFactory::PlaceableVector.back()->IsMovable())
         {
-            TowerFactory::SpikesVector.back()->SetCenter(GetCursorPosX(),
-                                                        GetCursorPosY());
-        }
-        if (!TowerFactory::GlueVector.empty() &&
-            TowerFactory::GlueVector.back()->IsMovable())
-        {
-            TowerFactory::GlueVector.back()->SetCenter(GetCursorPosX(),
+            TowerFactory::PlaceableVector.back()->SetCenter(GetCursorPosX(),
                                                         GetCursorPosY());
         }
     }
@@ -164,32 +147,19 @@ namespace Btd
             }
         }
         // spikes range circle
-        if (!TowerFactory::SpikesVector.empty())
+        if (!TowerFactory::PlaceableVector.empty())
         {
-            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::SpikesVector.back()).tower)))
+            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::PlaceableVector.back()).tower)))
             {
-                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
+                TowerFactory::PlaceableVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
             }
             else
             {
-                TowerFactory::SpikesVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
-            }
-        }
-        // glue range circle
-        if (!TowerFactory::GlueVector.empty())
-        {
-            if (map->IsOverLapRoad(static_cast<GameObject>((*TowerFactory::GlueVector.back()).tower)))
-            {
-                TowerFactory::GlueVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(0);
-            }
-            else
-            {
-                TowerFactory::GlueVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
+                TowerFactory::PlaceableVector.back()->tower.RangeCircle.SetFrameIndexOfBitmap(1);
             }
         }
         map->UpdateFactoryButton();
         TowerFactory::UpdateSpikesVector();
-        TowerFactory::UpdateGlueVector();
 
         switch (GameFlow)
         {
@@ -214,7 +184,7 @@ namespace Btd
                 break;
             }
         case Win:
-            TowerFactory::SpikesVector.clear();
+            TowerFactory::PlaceableVector.clear();
             round++;
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
@@ -237,13 +207,9 @@ namespace Btd
         {
             m->Update();
         }
-        for (auto& s : TowerFactory::SpikesVector)
+        for (auto& s : TowerFactory::PlaceableVector)
         {
             s->Update();
-        }
-        for (auto& g : TowerFactory::GlueVector)
-        {
-            g->Update();
         }
         if(!BloonPause)
         {
@@ -261,13 +227,9 @@ namespace Btd
             TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
             TowerFactory::TowerVector[i]->TowerShow();
         }
-        for (int i=0; i<static_cast<int>(TowerFactory::SpikesVector.size()); i++)
+        for (int i=0; i<static_cast<int>(TowerFactory::PlaceableVector.size()); i++)
         {
-            TowerFactory::SpikesVector[i]->ShowBitmap();
-        }
-        for (int i=0; i<static_cast<int>(TowerFactory::GlueVector.size()); i++)
-        {
-            TowerFactory::GlueVector[i]->ShowBitmap();
+            TowerFactory::PlaceableVector[i]->ShowBitmap();
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {
@@ -292,8 +254,8 @@ namespace Btd
     {
         if((TowerFactory::TowerVector.empty() ||
             !TowerFactory::TowerVector.back()->IsMovable()) &&
-            (TowerFactory::SpikesVector.empty() ||
-            !TowerFactory::SpikesVector.back()->IsMovable()))
+            (TowerFactory::PlaceableVector.empty() ||
+            !TowerFactory::PlaceableVector.back()->IsMovable()))
         {
             willDecreaseMoney = map->HandleShortCut(nChar,money);
         }

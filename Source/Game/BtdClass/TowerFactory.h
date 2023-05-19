@@ -15,12 +15,10 @@ namespace Btd
         TowerFactory() {};
         ~TowerFactory() {};
         static vector<shared_ptr<Tower>> TowerVector;
-        static vector<shared_ptr<Spikes>> SpikesVector;
-        static vector<shared_ptr<Btd::Glue>> GlueVector;
+        static vector<shared_ptr<Placeable>> PlaceableVector;
         static void MakeTower (TowerType attribute);
         static int HandleTowerClicked(int money);
         static void UpdateSpikesVector();
-        static void UpdateGlueVector();
     private: 
     };
 }

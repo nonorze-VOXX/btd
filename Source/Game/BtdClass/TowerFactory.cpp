@@ -5,8 +5,7 @@
 #include "Spikes.h"
 #include "Super.h"
 
-vector<shared_ptr<Btd::Spikes>> Btd::TowerFactory::SpikesVector = {};
-vector<shared_ptr<Btd::Glue>> Btd::TowerFactory::GlueVector = {};
+vector<shared_ptr<Btd::Placeable>> Btd::TowerFactory::PlaceableVector = {};
 
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
@@ -116,16 +115,15 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             shared_ptr<Spikes> spikes = make_shared<Spikes>(Spikes());
             spikes->LoadBitmapByString({"resources/towers/spikes.bmp"}, RGB(255, 255, 255));
             spikes->SetCenter(GetCursorPosX(), GetCursorPosY());
-            spikes->SetFrameIndexOfBitmap(0);
             spikes->SetIsMove(true);
             spikes->SetActive(false);
             spikes->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             spikes->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             spikes->throwable.SetDamageType(DamageType::Normal);
-            SpikesVector.push_back(spikes);
+            PlaceableVector.push_back(spikes);
         }
         break;
-    case glue:
+    case TowerType::glue:
         {
             shared_ptr<Glue> glue = make_shared<Glue>(Glue());
             glue->LoadBitmapByString({"resources/towers/glue.bmp"}, RGB(255, 255, 255));
@@ -135,7 +133,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             glue->throwable.SetDamageType(DamageType::Glue);
             glue->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             glue->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
-            GlueVector.push_back(glue);
+            PlaceableVector.push_back(glue);
         }      
     default:
         break;
@@ -184,24 +182,13 @@ int Btd::TowerFactory::HandleTowerClicked(int money)
 
 void Btd::TowerFactory::UpdateSpikesVector()
 {
-    for (int i=static_cast<int>(SpikesVector.size())-1; i>=0; i--)
+    for (int i=static_cast<int>(PlaceableVector.size())-1; i>=0; i--)
     {
-        if (SpikesVector[i]->tower.IsMovable() == false &&
-            SpikesVector[i]->throwable.GetActive() == false)
+        if (PlaceableVector[i]->tower.IsMovable() == false &&
+            PlaceableVector[i]->throwable.GetActive() == false)
         {
-            SpikesVector.erase(SpikesVector.begin() + i);
+            PlaceableVector.erase(PlaceableVector.begin() + i);
         }
     }
 }
 
-void Btd::TowerFactory::UpdateGlueVector()
-{
-    for (int i=static_cast<int>(GlueVector.size())-1; i>=0; i--)
-    {
-        if (GlueVector[i]->tower.IsMovable() == false &&
-            GlueVector[i]->throwable.GetActive() == false)
-        {
-            GlueVector.erase(GlueVector.begin() + i);
-        }
-    }
-}
