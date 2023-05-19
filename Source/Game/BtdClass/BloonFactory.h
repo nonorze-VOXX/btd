@@ -92,7 +92,7 @@ namespace Btd
             case Layer::lead:
                 next.SetFrameIndexOfBitmap((int)Layer::lead);
                 next.SetLayer(0);
-                next.Setspeed(2.75f);
+                next.Setspeed(3);
                 next.SetType(BloonType::lead);
                 break;
             default:
