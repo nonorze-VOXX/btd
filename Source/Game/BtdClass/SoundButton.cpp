@@ -1,31 +1,23 @@
 #include "stdafx.h"
 #include "SoundButton.h"
+
+#include "SoundManager.h"
 #include "../../Library/audio.h"
 
 namespace Btd
 {
     
-    void SoundButton::SetMute(bool status)
-    {
-        mute = status;
-    }
     
-    bool SoundButton::GetMute()
-    {
-        return mute;
-    }
-
     void SoundButton::SwitchMute()
     {
-        mute = !mute;
-        SetFrameIndexOfBitmap(mute);
-        game_framework::CAudio *audio = game_framework::CAudio::Instance();
-        if(mute)
+        SoundManager::mute = !SoundManager::mute;
+        SetFrameIndexOfBitmap(SoundManager::mute);
+        if(SoundManager::mute)
         {
-            audio->Stop((int)BtdSound::BACKGROUND);
+            SoundManager::musicStop(BtdSound::BACKGROUND);
         }else
         {
-            audio->Play((int)BtdSound::BACKGROUND,true);
+            SoundManager::musicPlay(BtdSound::BACKGROUND,true);
         }
     }
 }

@@ -7,6 +7,8 @@
 #include "GameObject.h"
 #include "map.h"
 
+#include "SoundManager.h"
+
 namespace Btd
 {
     void Map::SetRoutesByMap(MapType::MapType type)
@@ -206,7 +208,7 @@ namespace Btd
         vector<string> soundPath = {"resources/button/button_sound.bmp", "resources/button/button_mute.bmp"};
         soundButton.LoadBitmapByString(soundPath,RGB(255,255,255));
         soundButton.SetTopLeft(0,0);
-        soundButton.SetMute(true);
+        SoundManager::mute = true;
         soundButton.SwitchMute();
         
     }

@@ -3,6 +3,7 @@
 #include "Bloon.h"
 
 #include "map.h"
+#include "SoundManager.h"
 #include "../../Library/audio.h"
 
 
@@ -125,8 +126,7 @@ namespace Btd
             }
             else
             {
-                game_framework::CAudio *audio = game_framework::CAudio::Instance();
-                audio->Play((int)BtdSound::POP,false);
+                SoundManager::musicPlay(BtdSound::POP,false);
                 
                 _layer -= damage;
                 _explodeTime = 30;
@@ -138,8 +138,7 @@ namespace Btd
             }
         }else if(type == BloonType::lead)
         {
-            game_framework::CAudio *audio = game_framework::CAudio::Instance();
-            audio->Play((int)BtdSound::LEAD,false);
+            SoundManager::musicPlay(BtdSound::LEAD,false);
         }
     }
 
