@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "BtdUtil.h"
 #include "FactoryButton.h"
+#include "SoundButton.h"
 
 namespace Btd
 {
@@ -13,6 +14,7 @@ namespace Btd
         Map() = default;
         ~Map() override = default;
         void SetRoutesByMap(MapType::MapType type);
+        int HandleShortCut(UINT uint, int money);
         const int InitMoney = 650;
         const int InitLives = 40;
         virtual void InitRoad(MapType::MapType type);
@@ -41,7 +43,8 @@ namespace Btd
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
         int buttonNumber=0;
-        vector<int> priceTable = {200, 360, 650, 850, 30, 30, 3600, 400};
+        vector<int> priceTable ;
+        SoundButton soundButton;
     };
 }
 

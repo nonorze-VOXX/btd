@@ -45,7 +45,7 @@ namespace Btd
             return false;
         }
 
-        static void MakeBloon(Layer::NormalBloonLayer type)
+        static void MakeBloon(Layer type)
         {
             Vector2 position = Map::GetRoute()[RoundRoute][0];
             MakeBloonByPosition(type, position, 0, RoundRoute);
@@ -53,7 +53,7 @@ namespace Btd
             RoundRoute %= Map::GetRoute().size();
         }
 
-        static void MakeBloonByPosition(Layer::NormalBloonLayer type,
+        static void MakeBloonByPosition(Layer type,
                                         Vector2 startPosition, int nowRouteTarget, int route)
         {
             if (BloonPool.empty())
@@ -72,33 +72,33 @@ namespace Btd
             switch (type)
             {
             case Layer::black:
-                next.SetFrameIndexOfBitmap(Layer::black);
+                next.SetFrameIndexOfBitmap((int)Layer::black);
                 next.SetLayer(0);
                 next.Setspeed(3);
                 next.SetType(BloonType::black);
                 break;
             case Layer::white:
-                next.SetFrameIndexOfBitmap(Layer::white);
+                next.SetFrameIndexOfBitmap((int)Layer::white);
                 next.SetLayer(0);
                 next.Setspeed(3);
                 next.SetType(BloonType::white);
                 break;
             case Layer::rainbow:
-                next.SetFrameIndexOfBitmap(Layer::rainbow);
+                next.SetFrameIndexOfBitmap((int)Layer::rainbow);
                 next.SetLayer(0);
                 next.Setspeed(3);
                 next.SetType(BloonType::rainbow);
                 break;
             case Layer::lead:
-                next.SetFrameIndexOfBitmap(Layer::lead);
+                next.SetFrameIndexOfBitmap((int)Layer::lead);
                 next.SetLayer(0);
                 next.Setspeed(2.75f);
                 next.SetType(BloonType::lead);
                 break;
             default:
                 next.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
-                next.SetLayer(type);
-                next.SetFrameIndexOfBitmap(type);
+                next.SetLayer((int)type);
+                next.SetFrameIndexOfBitmap((int)type);
                 next.Setspeed(3);
                 next.Setspeed(
                     static_cast<float>(0.5 * static_cast<float>(next.GetLayer()) * static_cast<float>(next.GetLayer()) +

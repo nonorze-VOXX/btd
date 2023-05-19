@@ -2,7 +2,9 @@
 #include "GameManager.h"
 
 #include "BloonFactory.h"
+#include "SoundManager.h"
 #include "TowerFactory.h"
+#include "../../Library/audio.h"
 
 
 namespace Btd
@@ -23,10 +25,14 @@ namespace Btd
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
         IsLose = false;
+        for(int i =0;i<8;i++){
+            shortKeyMap['1'+i] = (Layer)i;
+        }
     }
 
     void GameManager::OnInit()
     {
+        SoundManager::Init();
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
@@ -284,48 +290,19 @@ namespace Btd
 
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
+        if((TowerFactory::TowerVector.empty() ||
+            !TowerFactory::TowerVector.back()->IsMovable()) &&
+            (TowerFactory::SpikesVector.empty() ||
+            !TowerFactory::SpikesVector.back()->IsMovable()))
+        {
+            willDecreaseMoney = map->HandleShortCut(nChar,money);
+        }
+        if(shortKeyMap.find(nChar) != shortKeyMap.end())
+        {
+            BloonFactory::MakeBloon(shortKeyMap[nChar]);
+        }
         switch (nChar)
         {
-        case 'A':
-            {
-                BloonFactory::MakeBloon(Layer::red);
-                break;
-            }
-        case 'S':
-            {
-                BloonFactory::MakeBloon(Layer::blue);
-                break;
-            }
-        case 'D':
-            {
-                BloonFactory::MakeBloon(Layer::green);
-                break;
-            }
-        case 'F':
-            {
-                BloonFactory::MakeBloon(Layer::yellow);
-                break;
-            }
-        case 'Z':
-            {
-                BloonFactory::MakeBloon(Layer::black);
-                break;
-            }
-        case 'X':
-            {
-                BloonFactory::MakeBloon(Layer::white);
-                break;
-            }
-        case 'C':
-            {
-                BloonFactory::MakeBloon(Layer::rainbow);
-                break;
-            }
-        case 'V':
-            {
-                BloonFactory::MakeBloon(Layer::lead);
-                break;
-            }
         case 'P':
             {
                 live = 0;

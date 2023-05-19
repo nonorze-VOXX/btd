@@ -38,7 +38,7 @@ namespace Btd
                     num = s.substr(0, pos);
                     s.erase(0, pos + delimiter.length());
                     int loopTimes = stoi(num);
-                    Layer::NormalBloonLayer nextLayer = Layer::red;
+                    Layer nextLayer = Layer::red;
                     if (token == "red"||token=="r")
                         nextLayer = Layer::red;
                     if (token == "blue"||token=="b")

@@ -12,7 +12,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
     switch (attribute)
     {
-    case dart:
+    case TowerType::dart:
         {
             shared_ptr<DartMonkey> dartMonkey = make_shared<DartMonkey>(DartMonkey());
             dartMonkey->LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp", "resources/towers/monkey/tower_monkey_2.bmp"
@@ -29,7 +29,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(dartMonkey);
             break;
         }
-    case bomb:
+    case TowerType::bomb:
         {
             shared_ptr<Cannon> cannon = make_shared<Cannon>(Cannon());
             cannon->LoadBitmapByString({"resources/towers/bomb/tower_bomb_1.bmp", "resources/towers/bomb/tower_bomb_2.bmp"
@@ -45,7 +45,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(cannon);
             break;
         }
-    case nail:
+    case TowerType::nail:
         {
             shared_ptr<NailMachine> nailMachine = make_shared<NailMachine>(NailMachine());
             nailMachine->LoadBitmapByString({"resources/towers/nail/tower_nail.bmp"}, RGB(0, 0, 0));
@@ -59,7 +59,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(nailMachine);
             break;
         }
-    case ice:
+    case TowerType::ice:
         {
             shared_ptr<IceTower> ice = make_shared<IceTower>(IceTower());
             ice->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
@@ -71,7 +71,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(ice);
             break;
         }
-    case super:
+    case TowerType::super:
         {
             shared_ptr<Super> superMonkey = make_shared<Super>(Super());
             superMonkey->LoadBitmapByString({"resources/towers/super/tower_super_1.bmp", "resources/towers/super/tower_super_2.bmp"
@@ -88,7 +88,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             TowerVector.push_back(superMonkey);
             break;
         }
-    case boomerang:
+    case TowerType::boomerang:
         {
             shared_ptr<BoomerangMonkey> boomerangMonkey = make_shared<BoomerangMonkey>(BoomerangMonkey());
             boomerangMonkey->LoadBitmapByString({
@@ -111,7 +111,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
         }
         
         break;
-    case spikes:
+    case TowerType::spikes:
         {
             shared_ptr<Spikes> spikes = make_shared<Spikes>(Spikes());
             spikes->LoadBitmapByString({"resources/towers/spikes.bmp"}, RGB(255, 255, 255));

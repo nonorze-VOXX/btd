@@ -7,6 +7,8 @@
 #include "GameObject.h"
 #include "map.h"
 
+#include "SoundManager.h"
+
 namespace Btd
 {
     void Map::SetRoutesByMap(MapType::MapType type)
@@ -94,6 +96,7 @@ namespace Btd
         }
     }
 
+
     void Map::InitRoad(MapType::MapType type)
     {
         int roadSize[3];
@@ -139,6 +142,16 @@ namespace Btd
         }
         _sidebar.LoadBitmapByString({"resources/map/" + roadPath[type] + "/sidebar.bmp"});
         _sidebar.SetTopLeft(732, 11);
+
+        priceTable = {0, 0, 0, 0, 0, 0, 0, 0};
+        priceTable[(int)TowerType::bomb] = 650;
+        priceTable[(int)TowerType::boomerang] = 400;
+        priceTable[(int)TowerType::dart] = 200;
+        priceTable[(int)TowerType::spikes] = 30;
+        priceTable[(int)TowerType::glue] = 30;
+        priceTable[(int)TowerType::ice] = 550;
+        priceTable[(int)TowerType::nail] = 360;
+        priceTable[(int)TowerType::super] = 3600;
     }
 
     void Map::ShowRoad()
@@ -174,7 +187,9 @@ namespace Btd
             "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_glue.bmp"
             , "resources/button/button_boomerang.bmp", "resources/button/button_super.bmp"
         };
-        vector<TowerType> attributes = {dart, nail, ice, bomb, spikes, glue, boomerang, super};
+        vector<TowerType> attributes = {
+            TowerType::dart, TowerType::nail, TowerType::ice, TowerType::bomb,
+            TowerType::spikes, TowerType::glue, TowerType::boomerang, TowerType::super};
         float start = 750, space = 56;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
@@ -190,6 +205,12 @@ namespace Btd
             factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
             _factoryButton.push_back(factoryButton);
         }
+        vector<string> soundPath = {"resources/button/button_sound.bmp", "resources/button/button_mute.bmp"};
+        soundButton.LoadBitmapByString(soundPath,RGB(255,255,255));
+        soundButton.SetTopLeft(0,0);
+        SoundManager::mute = true;
+        soundButton.SwitchMute();
+        
     }
 
     void Map::ShowFactoryButton()
@@ -198,6 +219,7 @@ namespace Btd
         {
             _factoryButton[i].ShowBitmap(1.2);
         }
+        soundButton.ShowBitmap();
     }
 
     void Map::UpdateFactoryButton()
@@ -217,6 +239,50 @@ namespace Btd
                 _factoryButton[i].SetClicked(true);
                 return priceTable[i];
             }
+        }
+        if (soundButton.IsCursorFocus() )
+        {
+            soundButton.SwitchMute();
+        }
+        return 0;
+    }
+
+    int Map::HandleShortCut(UINT uint,int money)
+    {
+        TowerType target ;
+        switch (uint)
+        {
+        case 'Q':
+            target = TowerType::dart;
+            break;
+        case 'W':
+            target = TowerType::nail;
+            break;
+        case 'E':
+            target = TowerType::ice;
+            break;
+        case 'R':
+            target = TowerType::bomb;
+            break;
+        case 'A':
+            target = TowerType::spikes;
+            break;
+        case 'S':
+            target = TowerType::glue;
+            break;
+        case 'D':
+            target = TowerType::boomerang;
+            break;
+        case 'F':
+            target = TowerType::super;
+            break;
+        default:
+            return 0;
+        }
+        if( priceTable[(int)target] <= money )
+        {
+            _factoryButton[(int)target].SetClicked(true);
+            return priceTable[(int)target];
         }
         return 0;
     }
