@@ -139,9 +139,9 @@ namespace Btd
             if (!_isMovable)
             {
                 this->UpgradeBtn[0].ShowBitmap();
-                this->upgradeText[0].ShowBitmap();
+                this->UpgradeText[0].ShowBitmap();
                 this->UpgradeBtn[1].ShowBitmap();
-                this->upgradeText[1].ShowBitmap();
+                this->UpgradeText[1].ShowBitmap();
             }
         }
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)

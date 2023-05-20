@@ -17,6 +17,8 @@ namespace Btd
             "resources/towers/monkey/dart_5.bmp", "resources/towers/monkey/dart_6.bmp",
             "resources/towers/monkey/dart_7.bmp", "resources/towers/monkey/dart_8.bmp"
             };
+            UpgradePrice[0] = 320;
+            UpgradePrice[1] = 200;
         }
         void Shoot(Vector2 target) override;
         void PushThrowablePool() override;
