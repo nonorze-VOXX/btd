@@ -144,13 +144,13 @@ namespace Btd
         _sidebar.SetTopLeft(732, 11);
 
         priceTable = {0, 0, 0, 0, 0, 0, 0, 0};
-        priceTable[(int)TowerType::bomb] = 650;
-        priceTable[(int)TowerType::boomerang] = 400;
-        priceTable[(int)TowerType::dart] = 200;
-        priceTable[(int)TowerType::spikes] = 30;
-        priceTable[(int)TowerType::glue] = 30;
-        priceTable[(int)TowerType::ice] = 550;
-        priceTable[(int)TowerType::nail] = 360;
+        priceTable[(int)TowerType::bomb] = 520;
+        priceTable[(int)TowerType::boomerang] = 475;
+        priceTable[(int)TowerType::dart] = 250;
+        priceTable[(int)TowerType::spikes] = 25;
+        priceTable[(int)TowerType::glue] = 35;
+        priceTable[(int)TowerType::ice] = 385;
+        priceTable[(int)TowerType::nail] = 340;
         priceTable[(int)TowerType::super] = 3600;
     }
 
