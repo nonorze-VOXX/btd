@@ -109,8 +109,8 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             superMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             superMonkey->SetCollider({static_cast<float>(superMonkey->GetWidth())*0.4F,static_cast<float>(superMonkey->GetHeight())*0.4F});
             superMonkey->SetMaxPop(1);
-            superMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[4][0]}, RGB(0, 0, 0));
-            superMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[4][1]}, RGB(0, 0, 0));
+            superMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[5][0]}, RGB(0, 0, 0));
+            superMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[5][1]}, RGB(0, 0, 0));
             superMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             superMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(superMonkey);
