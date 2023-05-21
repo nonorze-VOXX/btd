@@ -9,6 +9,15 @@ vector<shared_ptr<Btd::Placeable>> Btd::TowerFactory::PlaceableVector = {};
 
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
+    vector<vector<string>> upgradeTextPath = {
+        {"resources/towers/towers_upgrade_text/dart_upgrade_1.bmp", "resources/towers/towers_upgrade_text/dart_upgrade_2.bmp"},
+        {"resources/towers/towers_upgrade_text/nail_upgrade_1.bmp", "resources/towers/towers_upgrade_text/nail_upgrade_2.bmp"},
+        {"resources/towers/towers_upgrade_text/ice_upgrade_1.bmp", "resources/towers/towers_upgrade_text/ice_upgrade_2.bmp"},
+        {"resources/towers/towers_upgrade_text/bomb_upgrade_1.bmp", "resources/towers/towers_upgrade_text/bomb_upgrade_2.bmp"},
+        {"resources/towers/towers_upgrade_text/boomerang_upgrade_1.bmp", "resources/towers/towers_upgrade_text/boomerang_upgrade_2.bmp"},
+        {"resources/towers/towers_upgrade_text/super_upgrade_1.bmp", "resources/towers/towers_upgrade_text/super_upgrade_2.bmp"},
+   };
+    int upgradeTextLocate[2][2] = {{750, 342}, {860, 342}};
     switch (attribute)
     {
     case TowerType::dart:
@@ -25,6 +34,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             dartMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             dartMonkey->SetCollider({static_cast<float>(dartMonkey->GetWidth())*0.4F,static_cast<float>(dartMonkey->GetHeight())*0.4F});
             dartMonkey->SetMaxPop(1);
+            dartMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[0][0]}, RGB(0, 0, 0));
+            dartMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[0][1]}, RGB(0, 0, 0));
+            dartMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            dartMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(dartMonkey);
             break;
         }
@@ -41,6 +54,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             cannon->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             cannon->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             cannon->SetCollider({30,30});
+            cannon->UpgradeText[0].LoadBitmapByString({upgradeTextPath[3][0]}, RGB(0, 0, 0));
+            cannon->UpgradeText[1].LoadBitmapByString({upgradeTextPath[3][1]}, RGB(0, 0, 0));
+            cannon->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            cannon->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(cannon);
             break;
         }
@@ -55,6 +72,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             nailMachine->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             nailMachine->SetCollider({static_cast<float>(nailMachine->GetWidth())*0.4F,static_cast<float>(nailMachine->GetHeight())*0.4F});
             nailMachine->SetMaxPop(1);
+            nailMachine ->UpgradeText[0].LoadBitmapByString({upgradeTextPath[1][0]}, RGB(0, 0, 0));
+            nailMachine->UpgradeText[1].LoadBitmapByString({upgradeTextPath[1][1]}, RGB(0, 0, 0));
+            nailMachine->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            nailMachine->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(nailMachine);
             break;
         }
@@ -67,6 +88,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->SetActive(false);
             ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            ice->UpgradeText[0].LoadBitmapByString({upgradeTextPath[2][0]}, RGB(0, 0, 0));
+            ice->UpgradeText[1].LoadBitmapByString({upgradeTextPath[2][1]}, RGB(0, 0, 0));
+            ice->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            ice->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(ice);
             break;
         }
@@ -84,6 +109,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             superMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             superMonkey->SetCollider({static_cast<float>(superMonkey->GetWidth())*0.4F,static_cast<float>(superMonkey->GetHeight())*0.4F});
             superMonkey->SetMaxPop(1);
+            superMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[5][0]}, RGB(0, 0, 0));
+            superMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[5][1]}, RGB(0, 0, 0));
+            superMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            superMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(superMonkey);
             break;
         }
@@ -105,6 +134,10 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             boomerangMonkey->SetCollider({static_cast<float>(boomerangMonkey->GetWidth()),static_cast<float>(boomerangMonkey->GetHeight())});
             boomerangMonkey->SetMaxPop(2);
+            boomerangMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[4][0]}, RGB(0, 0, 0));
+            boomerangMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[4][1]}, RGB(0, 0, 0));
+            boomerangMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
+            boomerangMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             TowerVector.push_back(boomerangMonkey);
             
         }

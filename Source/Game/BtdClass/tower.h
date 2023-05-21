@@ -46,6 +46,7 @@ namespace Btd
         virtual void Upgrade(int level);
         int UpgradePrice[2] = {0, 0};
         void HandleUpgradeBtnFrame (int money);
+        GameObject UpgradeText[2];
 
     protected:
         bool _isMovable;

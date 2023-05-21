@@ -221,7 +221,6 @@ namespace Btd
     {
         map->ShowBackground();
         map->ShowRoad();
-        map->ShowFactoryButton();
         for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->HandleUpgradeBtnFrame(money);
@@ -231,6 +230,7 @@ namespace Btd
         {
             TowerFactory::PlaceableVector[i]->ShowBitmap();
         }
+        map->ShowFactoryButton();
         for (auto& bloon : BloonFactory::BloonVector)
         {
             bloon.BloonShow();

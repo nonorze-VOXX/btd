@@ -114,7 +114,7 @@ namespace Btd
 
     void Tower::InitUpgradeBtn()
     {
-        int location[2][2] = {{750, 450}, {860, 450}};
+        int location[2][2] = {{750, 342}, {860, 342}};
         for (int i=0; i<2; i++)
         {
             UpgradeBtn[i].LoadBitmapByString({"resources/button/cantBuy.bmp", "resources/button/notBuy.bmp"
@@ -139,7 +139,9 @@ namespace Btd
             if (!_isMovable)
             {
                 this->UpgradeBtn[0].ShowBitmap();
+                this->UpgradeText[0].ShowBitmap();
                 this->UpgradeBtn[1].ShowBitmap();
+                this->UpgradeText[1].ShowBitmap();
             }
         }
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)

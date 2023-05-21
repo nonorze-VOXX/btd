@@ -144,13 +144,13 @@ namespace Btd
         _sidebar.SetTopLeft(732, 11);
 
         priceTable = {0, 0, 0, 0, 0, 0, 0, 0};
-        priceTable[(int)TowerType::bomb] = 650;
-        priceTable[(int)TowerType::boomerang] = 400;
-        priceTable[(int)TowerType::dart] = 200;
-        priceTable[(int)TowerType::spikes] = 30;
-        priceTable[(int)TowerType::glue] = 30;
-        priceTable[(int)TowerType::ice] = 550;
-        priceTable[(int)TowerType::nail] = 360;
+        priceTable[(int)TowerType::bomb] = 520;
+        priceTable[(int)TowerType::boomerang] = 475;
+        priceTable[(int)TowerType::dart] = 250;
+        priceTable[(int)TowerType::spikes] = 25;
+        priceTable[(int)TowerType::glue] = 35;
+        priceTable[(int)TowerType::ice] = 385;
+        priceTable[(int)TowerType::nail] = 340;
         priceTable[(int)TowerType::super] = 3600;
     }
 
@@ -187,15 +187,20 @@ namespace Btd
             "resources/button/button_bomb.bmp", "resources/button/button_spikes.bmp", "resources/button/button_glue.bmp"
             , "resources/button/button_boomerang.bmp", "resources/button/button_super.bmp"
         };
+        vector<string> infoPath = {
+            "resources/towers/towers_info/dart_info.bmp", "resources/towers/towers_info/nail_info.bmp", "resources/towers/towers_info/ice_info.bmp",
+            "resources/towers/towers_info/cannon_info.bmp", "resources/towers/towers_info/spikes_info.bmp", "resources/towers/towers_info/glue_info.bmp",
+            "resources/towers/towers_info/boomerang_info.bmp", "resources/towers/towers_info/super_info.bmp",
+        };
         vector<TowerType> attributes = {
             TowerType::dart, TowerType::nail, TowerType::ice, TowerType::bomb,
             TowerType::spikes, TowerType::glue, TowerType::boomerang, TowerType::super};
         float start = 750, space = 56;
         vector<Vector2> locations = {
-            {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
-            {start + space * 3, 300}, {start, 300 + space} ,
-            {start + space * 1 , 300+space}, {start + space * 2, 300 + space},
-            {start + space * 3, 300 + space}
+            {start, 192}, {start + space * 1, 192}, {start + space * 2, 192},
+            {start + space * 3, 192}, {start, 192 + space} ,
+            {start + space * 1 , 192+space}, {start + space * 2, 192 + space},
+            {start + space * 3, 192 + space}
         };
         for (int i = 0; i < buttonNumber; i++)
         {
@@ -203,6 +208,8 @@ namespace Btd
             factoryButton.LoadBitmapByString({filePath[i]},RGB(255,255,255));
             factoryButton.SetAttribute(attributes[i]);
             factoryButton.SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
+            factoryButton.TowerInfo.LoadBitmapByString({infoPath[i]});
+            factoryButton.TowerInfo.SetTopLeft(750, 342);
             _factoryButton.push_back(factoryButton);
         }
         vector<string> soundPath = {"resources/button/button_sound.bmp", "resources/button/button_mute.bmp"};
@@ -218,6 +225,10 @@ namespace Btd
         for (int i = 0; i < buttonNumber; i++)
         {
             _factoryButton[i].ShowBitmap(1.2);
+            if (IsCursorInObj(_factoryButton[i]))
+            {
+                _factoryButton[i].TowerInfo.ShowBitmap();
+            }
         }
         soundButton.ShowBitmap();
     }
