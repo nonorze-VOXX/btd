@@ -70,16 +70,13 @@ namespace Btd
     };
 
 
-    namespace DamageType
+    enum class DamageType
     {
-        enum DamageType
-        {
-            Normal,
-            Boom,
-            Ice,
-            Glue,
-        };
-    }
+        Normal,
+        Boom,
+        Ice,
+        Glue,
+    };
 
     enum GameFlow
     {

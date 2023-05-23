@@ -114,9 +114,9 @@ namespace Btd
         return type;
     }
 
-    void Bloon::Pop(int damage, DamageType::DamageType damageType)
+    void Bloon::Pop(int damage, DamageType damageType)
     {
-        if (resistDamegeMap[type][damageType] &&
+        if (resistDamegeMap[type][(int)damageType] &&
             !(_isFreeze && damageType == DamageType::Normal)) // freeze bloon resist normal dmg
         {
             if (damageType == DamageType::Ice)

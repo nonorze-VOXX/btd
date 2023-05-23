@@ -33,7 +33,7 @@ namespace Btd
         SetTopLeft(static_cast<int>(position.X) - GetWidth() / 2, static_cast<int>(position.Y) - GetHeight() / 2);
     }
 
-    void Throwable::SetDamageType(DamageType::DamageType damageType)
+    void Throwable::SetDamageType(DamageType damageType)
     {
         _damageType = damageType;
     }

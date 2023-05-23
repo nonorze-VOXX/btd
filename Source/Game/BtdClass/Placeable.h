@@ -19,7 +19,7 @@ namespace Btd
             void ShowBitmap();
             bool IsCursorFocus();
             void SetClicked(bool clicked);
-            void SetDamageType(DamageType::DamageType damageType);
+            void SetDamageType(DamageType damageType);
             void DetectHitBalloon();
             void UpdateCantHitBloons();
             void Update();
