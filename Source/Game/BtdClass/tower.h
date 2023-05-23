@@ -47,6 +47,8 @@ namespace Btd
         int UpgradePrice[2] = {0, 0};
         void HandleUpgradeBtnFrame (int money);
         GameObject UpgradeText[2];
+        void SetThrowableOffset(Vector2 offset);
+        Vector2 GetThrowableOffset();
 
     protected:
         bool _isMovable;
@@ -55,7 +57,7 @@ namespace Btd
         int _buyMoney;
         int _sellMoney;
         int _maxPop=1;
-        Vector2 _location;
+        Vector2 _throwableOffset;
         GameObject throwableFactory;
         queue<shared_ptr<Throwable>> throwablePool;
         float shootDeltaTime;

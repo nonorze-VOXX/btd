@@ -20,9 +20,20 @@ namespace Btd
         return Normailize(c.X / 2, c.Y / 2);
     }
 
+    Vector2 Spin45WithoutNormalize(Vector2 a)
+    {
+        auto length = Vector2Distance(a,{0,0});
+        auto angle = Spin45(a);
+        return Vector2MulFloat(angle,length);
+    }
+
     Vector2 Normailize(float x, float y)
     {
         float powSum = sqrt(x * x + y * y);
+        if(powSum ==0)
+        {
+            return {0,0};
+        }
         return {x / powSum, y / powSum};
     }
 
