@@ -21,7 +21,7 @@ namespace Btd
         {true, false, true, true},
         {true, true, false, true},
         {true, true, true, true},
-        {false, true, false, true},
+        {false, true, true, true},
     };
 
     int Bloon::GetExplodeTime() const
