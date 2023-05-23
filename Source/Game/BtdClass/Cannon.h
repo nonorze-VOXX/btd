@@ -14,6 +14,7 @@ namespace Btd
             "resources/towers/bomb/bomb_2.bmp", "resources/towers/bomb/bomb_3.bmp", "resources/towers/bomb/bomb_4.bmp"};
             UpgradePrice[0] = 380;
             UpgradePrice[1] = 180;
+            SetDamageType(DamageType::Boom);
         }
         void Shoot(Vector2 target) override;
         void PushThrowablePool();

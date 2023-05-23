@@ -16,6 +16,7 @@ namespace Btd
                 "resources/towers/boomerang/Boomerang_5.bmp", "resources/towers/boomerang/Boomerang_6.bmp",
                 "resources/towers/boomerang/Boomerang_7.bmp", "resources/towers/boomerang/Boomerang_8.bmp"
             };
+            SetDamageType(DamageType::Normal);
         }
 
         void UpdateThrowable() override;

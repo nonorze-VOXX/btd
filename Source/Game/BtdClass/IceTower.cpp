@@ -13,6 +13,7 @@ namespace Btd
         _freezeTime = 450;
         UpgradePrice[0] = 270;
         UpgradePrice[1] = 180;
+        SetDamageType(DamageType::Ice);
     }
 
     void IceTower::PushThrowablePool()
@@ -20,7 +21,6 @@ namespace Btd
         shared_ptr<IceGas> iceGas = make_shared<IceGas>(IceGas());
         iceGas->LoadBitmapByString(ThrowablePath, RGB(0, 0, 0));
         iceGas->SetSpeed(0);
-        iceGas->SetMaxExistTime(70);
         iceGas->SetMaxExistTime(150);
         iceGas->SetRealCenter(GetCenter());
         iceGas->SetRange(_range);

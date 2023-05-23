@@ -37,7 +37,7 @@ namespace Btd
         {
         }
 
-        static bool resistDamegeMap[5][4];
+        static bool resistDamegeMap[5][5];
 
         void SetNowRouteTarget(int target);
 

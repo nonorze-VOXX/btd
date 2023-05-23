@@ -15,6 +15,7 @@ namespace Btd
         };
         UpgradePrice[0] = 180;
         UpgradePrice[1] = 80;
+        SetDamageType(DamageType::Normal);
     }
 
     void DartMonkey::Shoot(Vector2 target)
@@ -33,7 +34,6 @@ namespace Btd
         auto dart = make_shared<Throwable>(Throwable());
         dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         dart->SetSpeed(5);
-        dart->SetDamageType(DamageType::Normal);
         throwablePool.push(dart);
     }
 

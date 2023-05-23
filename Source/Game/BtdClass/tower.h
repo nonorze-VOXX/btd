@@ -49,6 +49,7 @@ namespace Btd
         GameObject UpgradeText[2];
         void SetThrowableOffset(Vector2 offset);
         Vector2 GetThrowableOffset();
+        void SetDamageType(DamageType damageType);
 
     protected:
         bool _isMovable;
@@ -64,6 +65,7 @@ namespace Btd
         float shootTimecounter;
         Vector2 throwLocal;
         Bloon focus();
+        DamageType _damageType;
     };
 }
 #endif
