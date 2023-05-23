@@ -13,13 +13,13 @@ namespace Btd
     public:
         Map() = default;
         ~Map() override = default;
-        void SetRoutesByMap(MapType::MapType type);
+        void SetRoutesByMap(MapType type);
         int HandleShortCut(UINT uint, int money);
         const int InitMoney = 650;
         const int InitLives = 40;
-        virtual void InitRoad(MapType::MapType type);
+        virtual void InitRoad(MapType type);
         void ShowRoad();
-        virtual void InitBackground(MapType::MapType type);
+        virtual void InitBackground(MapType type);
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();
