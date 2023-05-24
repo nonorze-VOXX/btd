@@ -293,6 +293,16 @@ namespace Btd
         case 'N':
             if (round < static_cast<int>(map->GetRounds().size() - 1))
                 round ++;
+        case 0x1B: //esc
+            if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
+            {
+                TowerFactory::TowerVector.pop_back();
+            }
+            else if (!TowerFactory::PlaceableVector.empty() && TowerFactory::PlaceableVector.back()->IsMovable())
+            {
+                TowerFactory::PlaceableVector.pop_back();
+            }
+            break;
         }
     }
 
