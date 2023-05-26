@@ -10,6 +10,7 @@ namespace Btd
         static void Init();
         static void musicStop(BtdSound type);
         static void musicPlay(BtdSound type,bool loop);
+        static void musicResume();
         static bool mute;
         
     };

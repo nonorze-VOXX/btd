@@ -21,6 +21,7 @@ namespace Btd
             char* target = new char[local.length()+1];
             strcpy(target,local.c_str());
             audio->Load(i,target);
+            delete[] target;
         }
     }
 
@@ -37,5 +38,11 @@ namespace Btd
             game_framework::CAudio *audio = game_framework::CAudio::Instance();
             audio->Play((int)type, loop);
         }
+    }
+
+    void SoundManager::musicResume()
+    {
+        game_framework::CAudio *audio = game_framework::CAudio::Instance();
+        audio->Resume();
     }
 }
