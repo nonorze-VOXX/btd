@@ -48,9 +48,9 @@ void CGameStateInit::OnInit()
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
     //
-    _mapButton[0].LoadBitmapByString({"resources/easy.bmp", "resources/play.bmp"});
-    _mapButton[1].LoadBitmapByString({"resources/medium.bmp", "resources/play.bmp"});
-    _mapButton[2].LoadBitmapByString({"resources/hard.bmp", "resources/play.bmp"});
+    _mapButton[0].LoadBitmapByString({"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"});
+    _mapButton[1].LoadBitmapByString({"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"});
+    _mapButton[2].LoadBitmapByString({"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"});
     _mapButton[0].SetCenter(210, 325);
     _mapButton[1].SetCenter(390, 325);
     _mapButton[2].SetCenter(570, 325);
