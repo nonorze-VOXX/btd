@@ -13,13 +13,13 @@ namespace Btd
     public:
         Map() = default;
         ~Map() override = default;
-        void SetRoutesByMap(MapType::MapType type);
+        void SetRoutesByMap(MapType type);
         int HandleShortCut(UINT uint, int money);
         const int InitMoney = 650;
         const int InitLives = 40;
-        virtual void InitRoad(MapType::MapType type);
+        virtual void InitRoad(MapType type);
         void ShowRoad();
-        virtual void InitBackground(MapType::MapType type);
+        virtual void InitBackground(MapType type);
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();
@@ -34,8 +34,8 @@ namespace Btd
         bool IsOverSidebar(GameObject target);
         int GetInitMoney();
         int GetInitLives();
-        MapType::MapType GetMapType();
-        void SetMapType(MapType::MapType type);
+        MapType GetMapType();
+        void SetMapType(MapType type);
 
     protected:
         std::vector<GameObject> _road;
@@ -47,7 +47,7 @@ namespace Btd
         int buttonNumber=0;
         vector<int> priceTable ;
         SoundButton soundButton;
-        MapType::MapType mapType;
+        MapType mapType;
     };
 }
 

@@ -53,15 +53,12 @@ namespace Btd
         };
     }
 
-    namespace MapType
+    enum class MapType
     {
-        enum MapType
-        {
-            easy = 0,
-            medium,
-            hard
-        };
-    }
+        easy = 0,
+        medium,
+        hard
+    };
 
     struct UnitRound
     {
@@ -70,18 +67,15 @@ namespace Btd
     };
 
 
-    namespace DamageType
+    enum class DamageType
     {
-        enum DamageType
-        {
-            Normal,
-            Boom,
-            Ice,
-            Glue,
-        };
-    }
+        Normal,
+        Boom,
+        Ice,
+        Glue,
+    };
 
-    enum GameFlow
+    enum class GameFlow
     {
         Prepare,
         Shoot,

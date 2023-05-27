@@ -37,7 +37,7 @@ namespace Btd
 
         bool GetLose();
         bool GetWin();
-        void PassMap(MapType::MapType);
+        void PassMap(MapType);
 
         static shared_ptr<Map> map;
         GameFlow GameFlow;
