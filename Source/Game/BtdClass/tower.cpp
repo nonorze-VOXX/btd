@@ -148,7 +148,7 @@ namespace Btd
     {
         if (!IsUpgrade[level])
         {
-            return;
+            _money+=UpgradePrice[level];
         }
     }
 
