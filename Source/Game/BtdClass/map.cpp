@@ -346,6 +346,16 @@ namespace Btd
         return InitLives;
     }
 
+    MapType::MapType Map::GetMapType()
+    {
+        return mapType;
+    }
+
+    void Map::SetMapType(MapType::MapType type)
+    {
+        mapType = type;
+    }
+
     vector<vector<UnitRound>> Map::GetRounds()
     {
         return _rounds;
