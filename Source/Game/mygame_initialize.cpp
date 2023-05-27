@@ -28,8 +28,8 @@ void CGameStateInit::InitSelectedMaps()
     for (int i = 0; i < 3; i++)
     {
         auto m = make_shared<Btd::Map>(Btd::Map());
-        m->InitBackground(static_cast<Btd::MapType::MapType>(i));
-        m->InitRoad(static_cast<Btd::MapType::MapType>(i));
+        m->InitBackground(static_cast<Btd::MapType>(i));
+        m->InitRoad(static_cast<Btd::MapType>(i));
         selectedMaps.push_back(m);
     }
 }
@@ -75,7 +75,7 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
         if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
         {
             _mapButton[i].SetClicked(true);
-            map->SetRoutesByMap(static_cast<Btd::MapType::MapType>(i));
+            map->SetRoutesByMap(static_cast<Btd::MapType>(i));
             Btd::GameManager::map = map;
             GotoGameState(GAME_STATE_RUN);
         }

@@ -52,7 +52,7 @@ namespace Btd
         tower.SetClicked(clicked);
     }
 
-    void Placeable::SetDamageType(DamageType::DamageType damageType)
+    void Placeable::SetDamageType(DamageType damageType)
     {
         throwable.SetDamageType(damageType);
     }

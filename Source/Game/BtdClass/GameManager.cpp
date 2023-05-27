@@ -12,7 +12,7 @@ namespace Btd
     void GameManager::OnBeginState()
     {
         BloonPause=false;
-        GameFlow = Prepare;
+        GameFlow =GameFlow::Prepare;
         round = 0;
         TowerFactory::TowerVector.clear();
         TowerFactory::PlaceableVector.clear();
@@ -33,7 +33,7 @@ namespace Btd
     void GameManager::OnInit()
     {
         SoundManager::Init();
-        GameFlow = Prepare;
+        GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
     }
@@ -77,11 +77,11 @@ namespace Btd
         
         switch (GameFlow)
         {
-        case Prepare:
+        case GameFlow::Prepare:
             {
                 if (IsCursorInObj(startButton))
                 {
-                    GameFlow = Shoot;
+                    GameFlow = GameFlow::Shoot;
                 }
                 break;
             }
@@ -163,42 +163,42 @@ namespace Btd
 
         switch (GameFlow)
         {
-        case Prepare:
+        case GameFlow::Prepare:
             break;
 
-        case Shoot:
+        case GameFlow::Shoot:
             {
                 bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
                 bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
                 if (isRoundEnd)
                 {
-                    GameFlow = Win;
+                    GameFlow = GameFlow::Win;
                 }
                 live -= BloonFactory::subLifeByGoalBloon();
                 if (live <= 0)
                 {
                     live = 0;
-                    GameFlow = GameEnd;
+                    GameFlow = GameFlow::GameEnd;
                     IsLose = true;
                 }
                 break;
             }
-        case Win:
+        case GameFlow::Win:
             TowerFactory::PlaceableVector.clear();
             round++;
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
-                GameFlow = GameEnd;
+                GameFlow = GameFlow::GameEnd;
             }
             else
             {
                 BloonFactory::SetNextRound(map->GetRounds()[round]);
-                GameFlow = Prepare;
+                GameFlow = GameFlow::Prepare;
                 money += 100;
             }
 
             break;
-        case GameEnd:
+        case GameFlow::GameEnd:
 
             break;
         default: ;
@@ -237,7 +237,7 @@ namespace Btd
         }
         switch (GameFlow)
         {
-        case Prepare:
+        case GameFlow::Prepare:
             startButton.ShowBitmap();
             break;
         default:

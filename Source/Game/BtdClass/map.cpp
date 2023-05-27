@@ -11,7 +11,7 @@
 
 namespace Btd
 {
-    void Map::SetRoutesByMap(MapType::MapType type)
+    void Map::SetRoutesByMap(MapType type)
     {
         Vector2 mapSize = {
             static_cast<float>(GetBackground().GetWidth()),
@@ -97,7 +97,7 @@ namespace Btd
     }
 
 
-    void Map::InitRoad(MapType::MapType type)
+    void Map::InitRoad(MapType type)
     {
         int roadSize[3];
         string roadPath[3] = {"easy", "medium", "hard"};
@@ -129,18 +129,18 @@ namespace Btd
         {
             roadSize[i] = static_cast<int>(location[i].size());
         }
-        for (int i = 0; i < roadSize[type]; i++)
+        for (int i = 0; i < roadSize[(int)type]; i++)
         {
             GameObject tmpRoad;
-            string filePath = "resources/map/" + roadPath[type] + "/roads/road_" + std::to_string(i + 1) + ".bmp";
+            string filePath = "resources/map/" + roadPath[(int)type] + "/roads/road_" + std::to_string(i + 1) + ".bmp";
             tmpRoad.LoadBitmapByString({filePath});
             // tmpRoad.SetHeight(tmpRoad.GetHeight() - 10);
             // tmpRoad.SetWidth(tmpRoad.GetWidth() - 10);
-            tmpRoad.SetTopLeft(static_cast<int>(location[type][i].X), static_cast<int>(location[type][i].Y));
+            tmpRoad.SetTopLeft(static_cast<int>(location[(int)type][i].X), static_cast<int>(location[(int)type][i].Y));
             tmpRoad.SetTag("road");
             _road.push_back(tmpRoad);
         }
-        _sidebar.LoadBitmapByString({"resources/map/" + roadPath[type] + "/sidebar.bmp"});
+        _sidebar.LoadBitmapByString({"resources/map/" + roadPath[(int)type] + "/sidebar.bmp"});
         _sidebar.SetTopLeft(732, 11);
 
         priceTable = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -163,14 +163,14 @@ namespace Btd
         _sidebar.ShowBitmap();
     }
 
-    void Map::InitBackground(MapType::MapType type)
+    void Map::InitBackground(MapType type)
     {
         vector<string> backGroundPath[3] = {
             {"resources/map/easy/map.bmp"},
             {"resources/map/medium/map.bmp"},
             {"resources/map/hard/map.bmp"},
         };
-        _background.LoadBitmapByString(backGroundPath[type]);
+        _background.LoadBitmapByString(backGroundPath[(int)type]);
         _background.SetTopLeft(0, 0);
     }
 
