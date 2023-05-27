@@ -20,7 +20,6 @@ namespace Btd
         BloonFactory::ClearActiveBloon();
         live = map->InitLives;
         money = map->InitMoney;
-        db.LoadRounds();
         map->SetRounds(db.GetRounds());
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
@@ -33,6 +32,7 @@ namespace Btd
 
     void GameManager::OnInit()
     {
+        db.LoadRounds();
         SoundManager::Init();
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
@@ -323,7 +323,8 @@ namespace Btd
                 break;
             }
         case 'N':
-            round ++;
+            if (round < 39)
+                round ++;
         }
     }
 
