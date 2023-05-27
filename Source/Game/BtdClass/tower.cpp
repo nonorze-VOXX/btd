@@ -18,6 +18,7 @@ namespace Btd
         shootTimecounter = 0;
         InitUpgradeBtn();
         _maxPop=1;
+        _throwableOffset={0,0};
     }
 
     bool Tower::IsMovable()
@@ -105,6 +106,16 @@ namespace Btd
                 UpgradeBtn[i].SetFrameIndexOfBitmap(1);
             }
         }
+    }
+
+    void Tower::SetThrowableOffset(Vector2 offset)
+    {
+        _throwableOffset = offset;
+    }
+
+    Vector2 Tower::GetThrowableOffset()
+    {
+        return _throwableOffset;
     }
 
     void Tower::SetShootTimeCounter(float tome)
@@ -202,7 +213,13 @@ namespace Btd
         };
         throwablePool.pop();
         next->SetActive(true);
-        next->InitByCenter(GetCenter());
+        auto offset = _throwableOffset;
+        auto offsetSpinTimes = GetFrameIndexByVector2(targetDirection);
+        for(int i =0;i<offsetSpinTimes;i++)
+        {
+            offset = Spin45WithoutNormalize(offset);
+        }
+        next->InitByCenter(Vector2Add(GetCenter(),offset));
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
         next->SetMaxPop(_maxPop);
         throwables.push_back(next);

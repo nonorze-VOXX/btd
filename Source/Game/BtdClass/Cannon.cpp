@@ -8,8 +8,10 @@ namespace Btd
     void Cannon::Shoot(Vector2 target)
     {
         Tower::Shoot(target);
-        // Vector2 targetDir = {target.X - GetCenter().X, target.Y - GetCenter().Y};
-        // this->SetFrameIndexOfBitmap(GetFrameIndexByVector2(targetDir));
+        Vector2 targetDirection = {
+            (target.X - GetCenter().X), target.Y - GetCenter().Y
+        };
+        this->SetFrameIndexOfBitmap(GetFrameIndexByVector2(targetDirection));
     }
 
     void Cannon::PushThrowablePool()

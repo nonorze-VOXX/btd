@@ -38,6 +38,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             dartMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[0][1]}, RGB(0, 0, 0));
             dartMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             dartMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            dartMonkey->SetThrowableOffset({0,20});
             TowerVector.push_back(dartMonkey);
             break;
         }
@@ -58,6 +59,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             cannon->UpgradeText[1].LoadBitmapByString({upgradeTextPath[3][1]}, RGB(0, 0, 0));
             cannon->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             cannon->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            cannon->SetThrowableOffset({40,0});
             TowerVector.push_back(cannon);
             break;
         }
@@ -76,6 +78,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             nailMachine->UpgradeText[1].LoadBitmapByString({upgradeTextPath[1][1]}, RGB(0, 0, 0));
             nailMachine->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             nailMachine->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            nailMachine->SetThrowableOffset({20,0});
             TowerVector.push_back(nailMachine);
             break;
         }
@@ -92,6 +95,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->UpgradeText[1].LoadBitmapByString({upgradeTextPath[2][1]}, RGB(0, 0, 0));
             ice->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             ice->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            ice->SetThrowableOffset({0,0});
             TowerVector.push_back(ice);
             break;
         }
@@ -113,6 +117,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             superMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[5][1]}, RGB(0, 0, 0));
             superMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             superMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            superMonkey->SetThrowableOffset({0,20});
             TowerVector.push_back(superMonkey);
             break;
         }
@@ -138,6 +143,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[4][1]}, RGB(0, 0, 0));
             boomerangMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             boomerangMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
+            boomerangMonkey->SetThrowableOffset({0,0});
             TowerVector.push_back(boomerangMonkey);
             
         }
