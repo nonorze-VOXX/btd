@@ -12,6 +12,7 @@ namespace Btd
     {
     private:
         bool IsLose = false;
+        bool IsWin = true;
         int live = 10;
         int money = 0;
         bool BloonPause = false;
@@ -35,6 +36,8 @@ namespace Btd
         int GetRound() const { return round; }
 
         bool GetLose();
+        bool GetWin();
+        void PassMap(MapType::MapType);
 
         static shared_ptr<Map> map;
         GameFlow GameFlow;

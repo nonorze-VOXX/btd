@@ -148,6 +148,10 @@ void CGameStateRun::OnShow()
             GotoGameState(GAME_STATE_INIT);
         }
     }
+    if (gm.GetWin())
+    {
+        GotoGameState(GAME_STATE_INIT);    
+    }
 #ifdef UNIT_TEST
     ut.UnitShow();
 #endif

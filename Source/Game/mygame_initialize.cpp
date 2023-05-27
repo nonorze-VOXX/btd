@@ -30,6 +30,7 @@ void CGameStateInit::InitSelectedMaps()
         auto m = make_shared<Btd::Map>(Btd::Map());
         m->InitBackground(static_cast<Btd::MapType::MapType>(i));
         m->InitRoad(static_cast<Btd::MapType::MapType>(i));
+        m->SetMapType(static_cast<Btd::MapType::MapType>(i));
         selectedMaps.push_back(m);
     }
 }
@@ -48,19 +49,12 @@ void CGameStateInit::OnInit()
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
     //
-    vector<vector<string>> medalPath = {
-        {"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"},
-        {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
-        {"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"}
-    };
     vector<pair<int, int>> medalLoc = {
         {210, 325}, {390, 325}, {570, 325}
     };
     for (int i=0; i<3; i++)
     {
-        _mapButton[i].LoadBitmapByString(medalPath[i]);
         _mapButton[i].SetCenter(medalLoc[i].first, medalLoc[i].second);
-        _mapButton[i].SetFrameIndexOfBitmap((int)passedMap[i]);
     }
     InitSelectedMaps();
     map = make_shared<Btd::Map>(Btd::Map());
@@ -70,6 +64,16 @@ void CGameStateInit::OnInit()
 void CGameStateInit::OnBeginState()
 {
     LoadPassedMap();
+    vector<vector<string>> medalPath = {
+        {"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"}
+    };
+    for (int i=0; i<3; i++)
+    {
+        _mapButton[i].LoadBitmapByString(medalPath[i]);
+        _mapButton[i].SetFrameIndexOfBitmap(passedMap[i]);
+    }
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -99,10 +103,7 @@ void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
         {
             if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
             {
-                if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
-                {
-                    map = selectedMaps[i];
-                }
+                map = selectedMaps[i];
             }
         }
     }

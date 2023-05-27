@@ -83,7 +83,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         Btd::Button _mapButton[3];
-        bool passedMap[3] = {0, 0, 0};
+        int passedMap[3] = {0, 0, 0};
     };
 
     /////////////////////////////////////////////////////////////////////////////

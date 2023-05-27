@@ -25,6 +25,7 @@ namespace Btd
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
         IsLose = false;
+        IsWin = false;
         for(int i =0;i<8;i++){
             shortKeyMap['1'+i] = (Layer)i;
         }
@@ -186,9 +187,11 @@ namespace Btd
         case Win:
             TowerFactory::PlaceableVector.clear();
             round++;
-            if (round >= static_cast<int>(map->GetRounds().size()))
+            if (round >= static_cast<int>(map->GetRounds().size()-1))
             {
                 GameFlow = GameEnd;
+                IsWin = true;
+                PassMap(map->GetMapType());
             }
             else
             {
@@ -199,7 +202,6 @@ namespace Btd
 
             break;
         case GameEnd:
-
             break;
         default: ;
         }
@@ -250,6 +252,46 @@ namespace Btd
         return IsLose;
     }
 
+    bool GameManager::GetWin()
+    {
+        return IsWin;
+    }
+
+    void GameManager::PassMap(MapType::MapType)
+    {
+        int passedMap[3] = {0, 0, 0};
+        std::string delimiter = ",";
+        std::fstream fin("resources/medal/passedMap.csv");
+        while (fin)
+        {
+            std::string s;
+            getline(fin, s);
+            size_t pos = 0;
+            std::string tmp;
+            while ((pos = s.find(delimiter)) != std::string::npos)
+            {
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[0] = stoi(tmp);
+                
+                pos = s.find(delimiter);
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[1] = stoi(tmp);
+                
+                pos = s.find(delimiter);
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[2] = stoi(tmp);
+                fin.close();
+            }
+        }
+        passedMap[static_cast<int>(map->GetMapType())] = 1;
+        std::fstream f("resources/medal/passedMap.csv");
+        f << passedMap[0] << ',' << passedMap[1] << ',' << passedMap[2];
+        f.close();
+    }
+
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
         if((TowerFactory::TowerVector.empty() ||
@@ -280,6 +322,8 @@ namespace Btd
                 money = 48763;
                 break;
             }
+        case 'N':
+            round ++;
         }
     }
 
