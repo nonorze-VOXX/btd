@@ -48,12 +48,20 @@ void CGameStateInit::OnInit()
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
     //
-    _mapButton[0].LoadBitmapByString({"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"});
-    _mapButton[1].LoadBitmapByString({"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"});
-    _mapButton[2].LoadBitmapByString({"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"});
-    _mapButton[0].SetCenter(210, 325);
-    _mapButton[1].SetCenter(390, 325);
-    _mapButton[2].SetCenter(570, 325);
+    vector<vector<string>> medalPath = {
+        {"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"}
+    };
+    vector<pair<int, int>> medalLoc = {
+        {210, 325}, {390, 325}, {570, 325}
+    };
+    for (int i=0; i<3; i++)
+    {
+        _mapButton[i].LoadBitmapByString(medalPath[i]);
+        _mapButton[i].SetCenter(medalLoc[i].first, medalLoc[i].second);
+        _mapButton[i].SetFrameIndexOfBitmap((int)passedMap[i]);
+    }
     InitSelectedMaps();
     map = make_shared<Btd::Map>(Btd::Map());
     map = selectedMaps[0];
@@ -61,6 +69,7 @@ void CGameStateInit::OnInit()
 
 void CGameStateInit::OnBeginState()
 {
+    LoadPassedMap();
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -112,6 +121,36 @@ void showInfoText(Btd::Map map)
     CTextDraw::Print(pDC, 749, 152, "____________");
 
     CDDraw::ReleaseBackCDC();
+}
+
+void CGameStateInit::LoadPassedMap()
+{
+    std::string delimiter = ",";
+    std::ifstream fin("resources/medal/passedMap.csv");
+    while (fin)
+    {
+        std::string s;
+        getline(fin, s);
+        size_t pos = 0;
+        std::string tmp;
+        while ((pos = s.find(delimiter)) != std::string::npos)
+        {
+            tmp = s.substr(0, pos);
+            s.erase(0, pos + delimiter.length());
+            passedMap[0] = stoi(tmp);
+            
+            pos = s.find(delimiter);
+            tmp = s.substr(0, pos);
+            s.erase(0, pos + delimiter.length());
+            passedMap[1] = stoi(tmp);
+            
+            pos = s.find(delimiter);
+            tmp = s.substr(0, pos);
+            s.erase(0, pos + delimiter.length());
+            passedMap[2] = stoi(tmp);
+        }
+        fin.close();
+    }
 }
 
 void CGameStateInit::OnShow()
