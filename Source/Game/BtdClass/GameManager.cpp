@@ -165,6 +165,7 @@ namespace Btd
         switch (GameFlow)
         {
         case Prepare:
+            BloonFactory::SetNextRound(map->GetRounds()[round]);
             break;
 
         case Shoot:
@@ -195,7 +196,6 @@ namespace Btd
             }
             else
             {
-                BloonFactory::SetNextRound(map->GetRounds()[round]);
                 GameFlow = Prepare;
                 money += 100;
             }
