@@ -18,10 +18,7 @@ namespace Btd
         {
             string path = "Resources/sound/";
             string local = path+soundName[i];
-            char* target = new char[local.length()+1];
-            strcpy(target,local.c_str());
-            audio->Load(i,target);
-            delete[] target;
+            audio->Load(i,const_cast<char*>(local.c_str())); // Probably bad API design
         }
     }
 
