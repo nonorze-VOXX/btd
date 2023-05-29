@@ -1,3 +1,4 @@
+#pragma once
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -6,7 +7,7 @@
 
 namespace Btd
 {
-    class BloonDB
+    class DB
     {
     private:
         vector<vector<UnitRound>> _roundses;
@@ -68,5 +69,44 @@ namespace Btd
             return _roundses;
         }
         
+        void LoadPassedMap (int passedMap[3])
+        {
+            std::string delimiter = ",";
+            std::ifstream fin("resources/medal/passedMap.csv");
+            while (fin)
+            {
+                std::string s;
+                getline(fin, s);
+                size_t pos = 0;
+                std::string tmp;
+                while ((pos = s.find(delimiter)) != std::string::npos)
+                {
+                    tmp = s.substr(0, pos);
+                    s.erase(0, pos + delimiter.length());
+                    passedMap[0] = stoi(tmp);
+                    
+                    pos = s.find(delimiter);
+                    tmp = s.substr(0, pos);
+                    s.erase(0, pos + delimiter.length());
+                    passedMap[1] = stoi(tmp);
+                    
+                    pos = s.find(delimiter);
+                    tmp = s.substr(0, pos);
+                    s.erase(0, pos + delimiter.length());
+                    passedMap[2] = stoi(tmp);
+                }
+                fin.close();
+            }
+        }
+
+        void PassMap (MapType type)
+        {
+            int passedMap[3];
+            LoadPassedMap(passedMap);
+            passedMap[static_cast<int>(type)] = 1;
+            std::fstream f("resources/medal/passedMap.csv");
+            f << passedMap[0] << ',' << passedMap[1] << ',' << passedMap[2];
+            f.close();
+        }
     };
 } // namespace Btd

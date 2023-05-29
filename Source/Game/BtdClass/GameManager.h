@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 
-#include "BloonDB.h"
+#include "DB.h"
 #include "BtdTimer.h"
 #include "map.h"
 #include "Tower.h"
@@ -37,13 +37,12 @@ namespace Btd
 
         bool GetLose();
         bool GetWin();
-        void PassMap(MapType);
 
         static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
         int round = 0;
         GameObject startButton;
-        BloonDB db;
+        DB db;
     };
 }

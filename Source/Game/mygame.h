@@ -77,13 +77,12 @@ namespace game_framework
         void InitSelectedMaps();
         vector<shared_ptr<Btd::Map>> selectedMaps;
         shared_ptr<Btd::Map> map;
-        void LoadPassedMap();
 
     protected:
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         Btd::Button _mapButton[3];
-        int passedMap[3] = {0, 0, 0};
+        Btd::DB db;
     };
 
     /////////////////////////////////////////////////////////////////////////////

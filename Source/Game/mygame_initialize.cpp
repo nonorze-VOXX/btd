@@ -8,6 +8,7 @@
 #include "../Library/gamecore.h"
 #include "mygame.h"
 #include "BtdClass/BtdUtil.h"
+#include "BtdClass/DB.h"
 
 using namespace game_framework;
 /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +64,8 @@ void CGameStateInit::OnInit()
 
 void CGameStateInit::OnBeginState()
 {
-    LoadPassedMap();
+    int passedMap[3];
+    db.LoadPassedMap(passedMap);
     vector<vector<string>> medalPath = {
         {"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"},
         {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
@@ -122,36 +124,6 @@ void showInfoText(Btd::Map map)
     CTextDraw::Print(pDC, 749, 152, "____________");
 
     CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateInit::LoadPassedMap()
-{
-    std::string delimiter = ",";
-    std::ifstream fin("resources/medal/passedMap.csv");
-    while (fin)
-    {
-        std::string s;
-        getline(fin, s);
-        size_t pos = 0;
-        std::string tmp;
-        while ((pos = s.find(delimiter)) != std::string::npos)
-        {
-            tmp = s.substr(0, pos);
-            s.erase(0, pos + delimiter.length());
-            passedMap[0] = stoi(tmp);
-            
-            pos = s.find(delimiter);
-            tmp = s.substr(0, pos);
-            s.erase(0, pos + delimiter.length());
-            passedMap[1] = stoi(tmp);
-            
-            pos = s.find(delimiter);
-            tmp = s.substr(0, pos);
-            s.erase(0, pos + delimiter.length());
-            passedMap[2] = stoi(tmp);
-        }
-        fin.close();
-    }
 }
 
 void CGameStateInit::OnShow()
