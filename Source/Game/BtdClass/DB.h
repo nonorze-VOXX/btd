@@ -73,30 +73,27 @@ namespace Btd
         {
             std::string delimiter = ",";
             std::ifstream fin("resources/medal/passedMap.csv");
-            while (fin)
+            std::string s;
+            getline(fin, s);
+            size_t pos = 0;
+            std::string tmp;
+            while ((pos = s.find(delimiter)) != std::string::npos)
             {
-                std::string s;
-                getline(fin, s);
-                size_t pos = 0;
-                std::string tmp;
-                while ((pos = s.find(delimiter)) != std::string::npos)
-                {
-                    tmp = s.substr(0, pos);
-                    s.erase(0, pos + delimiter.length());
-                    passedMap[0] = stoi(tmp);
-                    
-                    pos = s.find(delimiter);
-                    tmp = s.substr(0, pos);
-                    s.erase(0, pos + delimiter.length());
-                    passedMap[1] = stoi(tmp);
-                    
-                    pos = s.find(delimiter);
-                    tmp = s.substr(0, pos);
-                    s.erase(0, pos + delimiter.length());
-                    passedMap[2] = stoi(tmp);
-                }
-                fin.close();
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[0] = stoi(tmp);
+                
+                pos = s.find(delimiter);
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[1] = stoi(tmp);
+                
+                pos = s.find(delimiter);
+                tmp = s.substr(0, pos);
+                s.erase(0, pos + delimiter.length());
+                passedMap[2] = stoi(tmp);
             }
+            fin.close();
         }
 
         void PassMap (MapType type)
