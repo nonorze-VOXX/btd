@@ -271,3 +271,6 @@ _Pvt_Extensions
 *.exe
 *.out
 *.app
+
+# DB
+Resources/medal/passedMap.csv

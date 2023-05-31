@@ -289,7 +289,7 @@ namespace Btd
                 break;
             }
         case 'N':
-            if (round < 39)
+            if (round < static_cast<int>(map->GetRounds().size()-2))
                 round ++;
         }
     }
