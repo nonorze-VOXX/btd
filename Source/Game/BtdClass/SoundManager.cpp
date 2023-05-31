@@ -6,20 +6,15 @@ namespace Btd
 {
     
     bool SoundManager::mute = false;
+    vector<string> SoundManager::soundName ;
+    int SoundManager::index = 0;
+    vector<soundCounter> SoundManager::soundTimePool = vector<soundCounter>();
 
     void SoundManager::Init()
     {
-        vector<string> soundName ;
         soundName.push_back("background.mp3");
         soundName.push_back("pop.mp3");
         soundName.push_back("lead.mp3");
-        game_framework::CAudio *audio = game_framework::CAudio::Instance();
-        for (int i =0 ;i< (int)soundName.size();i++)
-        {
-            string path = "Resources/sound/";
-            string local = path+soundName[i];
-            audio->Load(i,const_cast<char*>(local.c_str())); // Probably bad API design
-        }
     }
 
     void SoundManager::musicStop(BtdSound type)
@@ -32,8 +27,23 @@ namespace Btd
     {
         if(!mute)
         {
+            soundCounter next ={-1,type,-1,false};
+            int tmp = soundTimePool.size();
+            for(auto&s:soundTimePool )
+            {
+                if(s.type==type&&s.counter<=0)
+                {
+                    next = s;
+                    s.counter=soundTime;
+                    break;
+                }
+            }
+            if(next.index==-1)
+            {
+                next = makeNewSound(type,loop);
+            }
             game_framework::CAudio *audio = game_framework::CAudio::Instance();
-            audio->Play((int)type, loop);
+            audio->Play(next.index, next.loop);
         }
     }
 
@@ -41,5 +51,28 @@ namespace Btd
     {
         game_framework::CAudio *audio = game_framework::CAudio::Instance();
         audio->Resume();
+    }
+
+    void SoundManager::Update()
+    {
+        for(auto&s : soundTimePool)
+        {
+            if(s.counter>0)
+            {
+                s.counter-=1;
+            }
+        }
+    }
+
+    soundCounter SoundManager::makeNewSound(BtdSound type, bool loop)
+    {
+        soundCounter s = {soundTime,type,index,loop};
+        game_framework::CAudio *audio = game_framework::CAudio::Instance();
+        string path = "Resources/sound/";
+        string local = path+soundName[(int)type];
+        audio->Load(index,const_cast<char*>(local.c_str())); // Probably bad API design
+        soundTimePool.push_back(s);
+        index++;
+        return s;
     }
 }
