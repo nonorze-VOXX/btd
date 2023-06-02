@@ -219,8 +219,8 @@ bool HandleSellBtnClicked(int towerIndex, int *willDecreaseMoney)
         Btd::TowerFactory::TowerVector[towerIndex]->SellBtn.IsCursorFocus())
     {
         isBtnClicked = true;
+        (*willDecreaseMoney) = (-1) * static_cast<int>(0.9 * Btd::TowerFactory::TowerVector[towerIndex]->GetMoney());
         Btd::TowerFactory::TowerVector.erase(Btd::TowerFactory::TowerVector.begin() + towerIndex);
-        (*willDecreaseMoney) = -40;
     }
     return  isBtnClicked;
 }

@@ -128,6 +128,11 @@ namespace Btd
         _money = price;
     }
 
+    int Tower::GetMoney()
+    {
+        return _money;
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;

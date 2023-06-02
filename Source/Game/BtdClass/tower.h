@@ -53,6 +53,7 @@ namespace Btd
         Vector2 GetThrowableOffset();
         void SetDamageType(DamageType damageType);
         void SetMoney(int price);
+        int GetMoney();
 
     protected:
         bool _isMovable;
