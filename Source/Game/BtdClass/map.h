@@ -34,7 +34,6 @@ namespace Btd
         bool IsOverSidebar(GameObject target);
         int GetInitMoney();
         int GetInitLives();
-        int GetPriceTable(TowerType type);
         MapType GetMapType();
         void SetMapType(MapType type);
         vector<int> GetPriceTable();;

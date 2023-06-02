@@ -346,11 +346,6 @@ namespace Btd
         return InitLives;
     }
 
-    int Map::GetPriceTable(TowerType type)
-    {
-        return priceTable[(int)type];
-    }
-
     MapType Map::GetMapType()
     {
         return mapType;
