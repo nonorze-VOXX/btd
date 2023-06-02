@@ -188,7 +188,7 @@ namespace Btd
         case GameFlow::Win:
             TowerFactory::PlaceableVector.clear();
             round++;
-            if (round >= static_cast<int>(map->GetRounds().size()-1))
+            if (round >= static_cast<int>(map->GetRounds().size()))
             {
                 GameFlow = GameFlow::GameEnd;
                 IsWin = true;
@@ -289,7 +289,7 @@ namespace Btd
                 break;
             }
         case 'N':
-            if (round < static_cast<int>(map->GetRounds().size()-2))
+            if (round < static_cast<int>(map->GetRounds().size() - 1))
                 round ++;
         }
     }

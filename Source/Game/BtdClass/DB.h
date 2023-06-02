@@ -60,7 +60,10 @@ namespace Btd
                         nextRound.push_back(nextBloon);
                     }
                 }
-                _roundses.push_back(nextRound);
+                if( !nextRound.empty() )
+                {
+                    _roundses.push_back(nextRound);
+                }
             }
             fin.close();
         }
