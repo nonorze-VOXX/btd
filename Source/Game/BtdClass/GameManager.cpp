@@ -20,11 +20,11 @@ namespace Btd
         BloonFactory::ClearActiveBloon();
         live = map->InitLives;
         money = map->InitMoney;
-        db.LoadRounds();
         map->SetRounds(db.GetRounds());
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
         IsLose = false;
+        IsWin = false;
         for(int i =0;i<8;i++){
             shortKeyMap['1'+i] = (Layer)i;
         }
@@ -32,6 +32,7 @@ namespace Btd
 
     void GameManager::OnInit()
     {
+        db.LoadRounds();
         SoundManager::Init();
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
@@ -164,6 +165,7 @@ namespace Btd
         switch (GameFlow)
         {
         case GameFlow::Prepare:
+            BloonFactory::SetNextRound(map->GetRounds()[round]);
             break;
 
         case GameFlow::Shoot:
@@ -189,10 +191,11 @@ namespace Btd
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
                 GameFlow = GameFlow::GameEnd;
+                IsWin = true;
+                db.PassMap(map->GetMapType());
             }
             else
             {
-                BloonFactory::SetNextRound(map->GetRounds()[round]);
                 GameFlow = GameFlow::Prepare;
                 money += 100;
             }
@@ -250,6 +253,11 @@ namespace Btd
         return IsLose;
     }
 
+    bool GameManager::GetWin()
+    {
+        return IsWin;
+    }
+
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
         if((TowerFactory::TowerVector.empty() ||
@@ -280,6 +288,9 @@ namespace Btd
                 money = 48763;
                 break;
             }
+        case 'N':
+            if (round < static_cast<int>(map->GetRounds().size() - 1))
+                round ++;
         }
     }
 

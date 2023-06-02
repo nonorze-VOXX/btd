@@ -288,7 +288,7 @@
         <ClInclude Include="Source\Game\BtdClass\Bloon.h" />
         <ClInclude Include="Source\Game\BtdClass\BloonFactory.h" />
         <ClCompile Include="Source\Game\BtdClass\BloonFactory.cpp" />
-        <ClInclude Include="Source\Game\BtdClass\BloonDB.h" />
+        <ClInclude Include="Source\Game\BtdClass\DB.h" />
         <ClInclude Include="Source\Game\BtdClass\Boomerang.h" />
         <ClInclude Include="Source\Game\BtdClass\BoomerangMonkey.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />

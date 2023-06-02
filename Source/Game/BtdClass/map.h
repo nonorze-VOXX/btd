@@ -34,6 +34,8 @@ namespace Btd
         bool IsOverSidebar(GameObject target);
         int GetInitMoney();
         int GetInitLives();
+        MapType GetMapType();
+        void SetMapType(MapType type);
 
     protected:
         std::vector<GameObject> _road;
@@ -45,6 +47,7 @@ namespace Btd
         int buttonNumber=0;
         vector<int> priceTable ;
         SoundButton soundButton;
+        MapType mapType;
     };
 }
 

@@ -8,6 +8,7 @@
 #include "../Library/gamecore.h"
 #include "mygame.h"
 #include "BtdClass/BtdUtil.h"
+#include "BtdClass/DB.h"
 
 using namespace game_framework;
 /////////////////////////////////////////////////////////////////////////////
@@ -30,6 +31,7 @@ void CGameStateInit::InitSelectedMaps()
         auto m = make_shared<Btd::Map>(Btd::Map());
         m->InitBackground(static_cast<Btd::MapType>(i));
         m->InitRoad(static_cast<Btd::MapType>(i));
+        m->SetMapType(static_cast<Btd::MapType>(i));
         selectedMaps.push_back(m);
     }
 }
@@ -48,12 +50,13 @@ void CGameStateInit::OnInit()
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
     //
-    _mapButton[0].LoadBitmapByString({"resources/easy.bmp", "resources/play.bmp"});
-    _mapButton[1].LoadBitmapByString({"resources/medium.bmp", "resources/play.bmp"});
-    _mapButton[2].LoadBitmapByString({"resources/hard.bmp", "resources/play.bmp"});
-    _mapButton[0].SetCenter(210, 325);
-    _mapButton[1].SetCenter(390, 325);
-    _mapButton[2].SetCenter(570, 325);
+    vector<pair<int, int>> medalLoc = {
+        {210, 325}, {390, 325}, {570, 325}
+    };
+    for (int i=0; i<3; i++)
+    {
+        _mapButton[i].SetCenter(medalLoc[i].first, medalLoc[i].second);
+    }
     InitSelectedMaps();
     map = make_shared<Btd::Map>(Btd::Map());
     map = selectedMaps[0];
@@ -61,6 +64,18 @@ void CGameStateInit::OnInit()
 
 void CGameStateInit::OnBeginState()
 {
+    int passedMap[3];
+    db.LoadPassedMap(passedMap);
+    vector<vector<string>> medalPath = {
+        {"resources/medal/easy.bmp", "resources/medal/easy_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
+        {"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"}
+    };
+    for (int i=0; i<3; i++)
+    {
+        _mapButton[i].LoadBitmapByString(medalPath[i]);
+        _mapButton[i].SetFrameIndexOfBitmap(passedMap[i]);
+    }
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -90,10 +105,7 @@ void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
         {
             if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
             {
-                if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
-                {
-                    map = selectedMaps[i];
-                }
+                map = selectedMaps[i];
             }
         }
     }

@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 
-#include "BloonDB.h"
+#include "DB.h"
 #include "BtdTimer.h"
 #include "map.h"
 #include "Tower.h"
@@ -12,6 +12,7 @@ namespace Btd
     {
     private:
         bool IsLose = false;
+        bool IsWin = true;
         int live = 10;
         int money = 0;
         bool BloonPause = false;
@@ -35,12 +36,13 @@ namespace Btd
         int GetRound() const { return round; }
 
         bool GetLose();
+        bool GetWin();
 
         static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
         int round = 0;
         GameObject startButton;
-        BloonDB db;
+        DB db;
     };
 }
