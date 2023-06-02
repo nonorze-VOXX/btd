@@ -143,7 +143,7 @@ namespace Btd
             UpgradeBtn[i].SetTopLeft(location[i][0], location[i][1]);
         }
         SellBtn.LoadBitmapByString({"resources/button/sell.bmp"});
-        SellBtn.SetTopLeft(748, 563);
+        SellBtn.SetTopLeft(753, 563);
     }
 
     void Tower::Upgrade(int level)
