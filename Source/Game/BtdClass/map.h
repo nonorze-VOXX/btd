@@ -37,6 +37,7 @@ namespace Btd
         int GetPriceTable(TowerType type);
         MapType GetMapType();
         void SetMapType(MapType type);
+        vector<int> GetPriceTable();;
 
     protected:
         std::vector<GameObject> _road;

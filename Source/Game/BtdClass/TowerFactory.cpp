@@ -2,11 +2,12 @@
 #include "TowerFactory.h"
 
 #include "BoomerangMonkey.h"
-#include "GameManager.h"
 #include "Spikes.h"
 #include "Super.h"
 
 vector<shared_ptr<Btd::Placeable>> Btd::TowerFactory::PlaceableVector = {};
+
+vector<int> Btd::TowerFactory::PriceTable = {};
 
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
@@ -19,7 +20,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
         {"resources/towers/towers_upgrade_text/super_upgrade_1.bmp", "resources/towers/towers_upgrade_text/super_upgrade_2.bmp"},
    };
     int upgradeTextLocate[2][2] = {{750, 342}, {860, 342}};
-    int price = GameManager::map->GetPriceTable(attribute);
+    int price = PriceTable[(int)attribute];
     switch (attribute)
     {
     case TowerType::dart:
@@ -239,5 +240,10 @@ void Btd::TowerFactory::UpdateSpikesVector()
             PlaceableVector.erase(PlaceableVector.begin() + i);
         }
     }
+}
+
+void Btd::TowerFactory::SetPriceTable(vector<int> priceTable)
+{
+    PriceTable = priceTable;
 }
 

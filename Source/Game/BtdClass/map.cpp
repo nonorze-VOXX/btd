@@ -361,6 +361,11 @@ namespace Btd
         mapType = type;
     }
 
+    vector<int> Map::GetPriceTable()
+    {
+        return priceTable;
+    }
+
     vector<vector<UnitRound>> Map::GetRounds()
     {
         return _rounds;

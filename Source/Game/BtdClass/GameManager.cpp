@@ -37,6 +37,7 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
+        TowerFactory::SetPriceTable(map->GetPriceTable());
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
