@@ -23,6 +23,7 @@ namespace Btd
         map->SetRounds(db.GetRounds());
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         BloonFactory::RoundRoute = 0;
+        TowerFactory::SetPriceTable(map->GetPriceTable());
         IsLose = false;
         IsWin = false;
         for(int i =0;i<8;i++){
@@ -37,7 +38,6 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
-        TowerFactory::SetPriceTable(map->GetPriceTable());
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
