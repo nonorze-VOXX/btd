@@ -10,18 +10,18 @@
 namespace Btd
 {
     //[bloontype][damagetype]
-    //      normal boom ice  glue
+    //      normal boom ice  glue sonicBoomerang
     //normal
     //black
     //white
     //rainbow
     //lead
-    bool Bloon::resistDamegeMap[5][4] = {
-        {true, true, true, true},
-        {true, false, true, true},
-        {true, true, false, true},
-        {true, true, true, true},
-        {false, true, true, true},
+    bool Bloon::resistDamegeMap[5][5] = {
+        {true, true, true, true,true},
+        {true, false, true, true,true},
+        {true, true, false, true, true},
+        {true, true, true, true, true},
+        {false, true, true, true, false},
     };
 
     int Bloon::GetExplodeTime() const

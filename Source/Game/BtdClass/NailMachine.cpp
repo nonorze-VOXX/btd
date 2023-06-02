@@ -12,6 +12,7 @@ namespace Btd
         ThrowablePath = {"resources/towers/nail/nail.bmp"};
         UpgradePrice[0] = 180;
         UpgradePrice[1] = 90;
+        SetDamageType(DamageType::Normal);
     }
 
     void NailMachine::Update()
@@ -52,7 +53,6 @@ namespace Btd
         auto nail = make_shared<Throwable>(Throwable());
         nail->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         nail->SetSpeed(5);
-        nail->SetDamageType(DamageType::Normal);
         throwablePool.push(nail);
     }
 

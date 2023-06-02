@@ -118,6 +118,11 @@ namespace Btd
         return _throwableOffset;
     }
 
+    void Tower::SetDamageType(DamageType damageType)
+    {
+        _damageType = damageType;
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;
@@ -213,6 +218,7 @@ namespace Btd
         };
         throwablePool.pop();
         next->SetActive(true);
+        next->SetDamageType(_damageType);
         auto offset = _throwableOffset;
         auto offsetSpinTimes = GetFrameIndexByVector2(targetDirection);
         for(int i =0;i<offsetSpinTimes;i++)

@@ -73,6 +73,7 @@ namespace Btd
         Boom,
         Ice,
         Glue,
+        SonicBoomerang,
     };
 
     enum class GameFlow

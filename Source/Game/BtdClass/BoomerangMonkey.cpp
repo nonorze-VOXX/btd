@@ -56,7 +56,6 @@ namespace Btd
         auto boomerang = make_shared<Boomerang>(Boomerang());
         boomerang->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         boomerang->SetAnimation(30,false);
-        boomerang->SetDamageType(DamageType::Normal);
         boomerang->SetRoute({{100, 500}, {500, 0}, {0, 500}, {100, 500}});
         throwablePool.push(boomerang);
     }
@@ -70,7 +69,7 @@ namespace Btd
             SetMaxPop(4);
             break;
         case 1:
-            //TODO pop ice bloon
+            SetDamageType(DamageType::SonicBoomerang);
             break;
         default:
             break;

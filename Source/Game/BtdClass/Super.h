@@ -19,6 +19,7 @@ namespace Btd
             };
             UpgradePrice[0] = 320;
             UpgradePrice[1] = 200;
+            SetDamageType(DamageType::Normal);
         }
         void Shoot(Vector2 target) override;
         void PushThrowablePool() override;
