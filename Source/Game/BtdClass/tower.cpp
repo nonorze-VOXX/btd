@@ -123,6 +123,11 @@ namespace Btd
         _damageType = damageType;
     }
 
+    void Tower::SetMoney(int price)
+    {
+        _money = price;
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;
@@ -143,7 +148,7 @@ namespace Btd
     {
         if (!IsUpgrade[level])
         {
-            return;
+            _money+=UpgradePrice[level];
         }
     }
 

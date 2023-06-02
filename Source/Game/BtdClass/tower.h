@@ -50,13 +50,13 @@ namespace Btd
         void SetThrowableOffset(Vector2 offset);
         Vector2 GetThrowableOffset();
         void SetDamageType(DamageType damageType);
+        void SetMoney(int price);
 
     protected:
         bool _isMovable;
         // int _speed;
         int _range;
-        int _buyMoney;
-        int _sellMoney;
+        int _money;
         int _maxPop=1;
         Vector2 _throwableOffset;
         GameObject throwableFactory;

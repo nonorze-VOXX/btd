@@ -36,6 +36,7 @@ namespace Btd
         int GetInitLives();
         MapType GetMapType();
         void SetMapType(MapType type);
+        vector<int> GetPriceTable();;
 
     protected:
         std::vector<GameObject> _road;

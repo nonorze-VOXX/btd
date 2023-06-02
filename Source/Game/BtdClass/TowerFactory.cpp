@@ -7,6 +7,8 @@
 
 vector<shared_ptr<Btd::Placeable>> Btd::TowerFactory::PlaceableVector = {};
 
+vector<int> Btd::TowerFactory::PriceTable = {};
+
 void Btd::TowerFactory::MakeTower(TowerType attribute)
 {
     vector<vector<string>> upgradeTextPath = {
@@ -18,6 +20,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
         {"resources/towers/towers_upgrade_text/super_upgrade_1.bmp", "resources/towers/towers_upgrade_text/super_upgrade_2.bmp"},
    };
     int upgradeTextLocate[2][2] = {{750, 342}, {860, 342}};
+    int price = PriceTable[(int)attribute];
     switch (attribute)
     {
     case TowerType::dart:
@@ -39,6 +42,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             dartMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             dartMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             dartMonkey->SetThrowableOffset({0,20});
+            dartMonkey->SetMoney(price);
             TowerVector.push_back(dartMonkey);
             break;
         }
@@ -60,6 +64,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             cannon->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             cannon->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             cannon->SetThrowableOffset({40,0});
+            cannon->SetMoney(price);
             TowerVector.push_back(cannon);
             break;
         }
@@ -79,6 +84,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             nailMachine->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             nailMachine->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             nailMachine->SetThrowableOffset({20,0});
+            nailMachine->SetMoney(price);
             TowerVector.push_back(nailMachine);
             break;
         }
@@ -96,6 +102,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             ice->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             ice->SetThrowableOffset({0,0});
+            ice->SetMoney(price);
             TowerVector.push_back(ice);
             break;
         }
@@ -118,6 +125,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             superMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             superMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             superMonkey->SetThrowableOffset({0,20});
+            superMonkey->SetMoney(price);
             TowerVector.push_back(superMonkey);
             break;
         }
@@ -144,6 +152,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->UpgradeText[0].SetTopLeft(upgradeTextLocate[0][0], upgradeTextLocate[0][1]);
             boomerangMonkey->UpgradeText[1].SetTopLeft(upgradeTextLocate[1][0], upgradeTextLocate[1][1]);
             boomerangMonkey->SetThrowableOffset({0,0});
+            boomerangMonkey->SetMoney(price);
             TowerVector.push_back(boomerangMonkey);
             
         }
@@ -159,6 +168,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             spikes->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             spikes->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
             spikes->throwable.SetDamageType(DamageType::Normal);
+            spikes->tower.SetMoney(price);
             PlaceableVector.push_back(spikes);
         }
         break;
@@ -172,6 +182,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             glue->throwable.SetDamageType(DamageType::Glue);
             glue->tower.RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             glue->tower.RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            glue->tower.SetMoney(price);
             PlaceableVector.push_back(glue);
         }      
     default:
@@ -229,5 +240,10 @@ void Btd::TowerFactory::UpdateSpikesVector()
             PlaceableVector.erase(PlaceableVector.begin() + i);
         }
     }
+}
+
+void Btd::TowerFactory::SetPriceTable(vector<int> priceTable)
+{
+    PriceTable = priceTable;
 }
 
