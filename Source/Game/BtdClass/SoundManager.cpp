@@ -15,6 +15,7 @@ namespace Btd
         soundName.push_back("background.mp3");
         soundName.push_back("pop.mp3");
         soundName.push_back("lead.mp3");
+        soundName.push_back("bomb.mp3");
     }
 
     void SoundManager::musicStop(BtdSound type)

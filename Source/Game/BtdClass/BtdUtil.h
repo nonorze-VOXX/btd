@@ -39,6 +39,7 @@ namespace Btd
         BACKGROUND,
         POP,
         LEAD,
+        BOMB,
     };
 
     namespace BloonType
