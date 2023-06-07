@@ -2,6 +2,7 @@
 #include "Bomb.h"
 
 #include "BloonFactory.h"
+#include "SoundManager.h"
 
 namespace Btd
 {
@@ -34,6 +35,8 @@ namespace Btd
                 }
                 else
                 {
+
+                    SoundManager::musicPlay(BtdSound::BOMB,false);
                     BloonFactory::BloonVector[i].Pop(1, _damageType);
                     cantHitBloons.push_back({BloonFactory::BloonVector[i].GetId(), 0});
                 }
