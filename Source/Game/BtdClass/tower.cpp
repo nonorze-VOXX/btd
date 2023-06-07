@@ -245,7 +245,10 @@ namespace Btd
     {
         ThrowablePath = name;
     }
-
+    void Tower::SetOriginPos(Vector2 pos)
+    {
+		_originPos = pos;
+	}
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
@@ -260,12 +263,11 @@ namespace Btd
         static mt19937 gen(rd());
         static uniform_real_distribution<float> dis(50, 150);
         static Vector2 smoothMoving = {0.0f, 0.0f};
-        static Vector2 originPos = GetCenter();
         static float speed = dis(gen) * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f);
-        if (🍌->GetActive() == false) {
-			return No🍌😭(originPos);
+        if (Vector2Distance(GetCenter(), 🍌->GetCenter()) < 10.0f) {
+			🍌->SetActive(false);
 		}
-        Vector2 VecMove = Normailize({🍌->GetCenter().X - GetCenter().X, 🍌->GetCenter().Y - GetCenter().Y});
+        Vector2 VecMove = Normailize({🍌->GetCenter().X - _originPos.X, 🍌->GetCenter().Y - _originPos.Y});
         VecMove.X = VecMove.X * speed + GetCenter().X;
         VecMove.Y = VecMove.Y * speed + GetCenter().Y;
         int x = static_cast<int>(VecMove.X);
@@ -285,10 +287,13 @@ namespace Btd
         SetCenter(x, y);
         return true;
     }
-    bool Tower::No🍌😭(Vector2 originPos) {
+    bool Tower::No🍌😭() {
+        if (Vector2Distance(GetCenter(), _originPos) < 10.0f) {
+            return true;
+        }
         static Vector2 smoothMoving = { 0.0f, 0.0f };
         const float speed = 100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f); // they are sad and slow
-        Vector2 VecMove = Normailize({ originPos.X - GetCenter().X, originPos.Y - GetCenter().Y });
+        Vector2 VecMove = Normailize({ _originPos.X - GetCenter().X, _originPos.Y - GetCenter().Y });
         VecMove.X = VecMove.X * speed + GetCenter().X;
         VecMove.Y = VecMove.Y * speed + GetCenter().Y;
         int x = static_cast<int>(VecMove.X);
@@ -306,6 +311,6 @@ namespace Btd
             smoothMoving.Y -= static_cast<int>(smoothMoving.Y);
         }
         SetCenter(x, y);
-        return Vector2Distance(GetCenter(), originPos) < 5.0f;
+        return Vector2Distance(GetCenter(), _originPos) < 5.0f;
     }
 }

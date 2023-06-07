@@ -81,9 +81,14 @@ namespace Btd {
 		}
 		for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
 		{
+			if(TowerFactory::TowerVector[i]->GetActive() == false)
+				continue;
 			for (auto& 🍌 : _🍌s) {
 				if (Vector2Distance(TowerFactory::TowerVector[i]->GetCenter(), 🍌.GetCenter()) <= TowerFactory::TowerVector[i]->GetRange()) {
-					_actions.push_back(bind(&Tower::Yes🍌😄, TowerFactory::TowerVector[i], &🍌));
+					TowerFactory::TowerVector[i]->Yes🍌😄(&🍌);
+				}
+				else {
+					TowerFactory::TowerVector[i]->No🍌😭();
 				}
 			}
 		}
@@ -96,14 +101,10 @@ namespace Btd {
 				it = _🍌s.erase(it);
 			}
 		}
-		for (auto it = _actions.begin(); it != _actions.end(); ) {
-			if ((*it)()) {
-				it++;
-			}
-			else {
-				it = _actions.erase(it);
-			}
+		for (auto &🐒🍌 : _actions) {
+			🐒🍌();
 		}
+		_actions.clear();
 		_isMirror = (fabs(preX - GetCenter().X) < 1.0f) ? _isMirror : (preX > GetCenter().X);
 		// TRACE(_T("diff: %f\n"), preX - GetCenter().X);
 	}
@@ -177,5 +178,4 @@ namespace Btd {
 	bool Cavallo::Banana::IsAlive() {
 		return _isAlive;
 	}
-
 }

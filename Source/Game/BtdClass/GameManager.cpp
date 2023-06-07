@@ -65,6 +65,7 @@ namespace Btd
             money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
+            TowerFactory::TowerVector.back()->SetOriginPos(TowerFactory::TowerVector.back()->GetCenter());
         }
 
         // place spikes

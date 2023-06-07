@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <functional>
 #include <random>
+#include <set>
 #include "BtdUtil.h"
 #include "../../Library/gameutil.h"
 #include "../config.h"

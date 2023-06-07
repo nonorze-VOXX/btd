@@ -53,7 +53,8 @@ namespace Btd
         void SetDamageType(DamageType damageType);
         void SetMoney(int price);
         bool Yes🍌😄(Cavallo::Banana* 🍌);
-        bool No🍌😭(Vector2 originPos);
+        bool No🍌😭();
+        void SetOriginPos(Vector2 pos);
     protected:
         bool _isMovable;
         // int _speed;
@@ -66,6 +67,7 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
+        Vector2 _originPos;
         Bloon focus();
         DamageType _damageType;
     };
