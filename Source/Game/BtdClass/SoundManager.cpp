@@ -29,7 +29,6 @@ namespace Btd
         if(!mute)
         {
             soundCounter next ={-1,type,-1,false};
-            int tmp = soundTimePool.size();
             for(auto&s:soundTimePool )
             {
                 if(s.type==type&&s.counter<=0)
