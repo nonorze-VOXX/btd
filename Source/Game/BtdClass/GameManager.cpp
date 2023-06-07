@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GameManager.h"
 
 #include "BloonFactory.h"
@@ -38,6 +38,7 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
+        🐼.Init(nullptr);
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -217,7 +218,8 @@ namespace Btd
         }
         if(!BloonPause)
         {
-        BloonFactory::UpdateBloon();
+            BloonFactory::UpdateBloon();
+            🐼.Move();
         }
     }
 
@@ -247,6 +249,7 @@ namespace Btd
         default:
             break;
         }
+        🐼.Draw();
     }
 
     bool GameManager::GetLose()

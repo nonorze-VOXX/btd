@@ -5,6 +5,7 @@
 #include "BtdTimer.h"
 #include "map.h"
 #include "Tower.h"
+#include "Cavallo.h"
 
 namespace Btd
 {
@@ -44,5 +45,6 @@ namespace Btd
         int round = 0;
         GameObject startButton;
         DB db;
+        Cavallo 🐼;
     };
 }

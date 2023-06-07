@@ -1,8 +1,9 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "BloonFactory.h"
 #include "BtdUtil.h"
 #include "map.h"
 #include "Tower.h"
+#include "Cavallo.h"
 
 #include "BoomerangMonkey.h"
 
@@ -252,5 +253,10 @@ namespace Btd
         tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
                                 ,RGB(255, 255, 255));
         throwablePool.push(tmp);
+    }
+    void Tower::Yes🍌😄(GameObject* 🍌) {
+
+    }
+    void Tower::No🍌😭() {
     }
 }

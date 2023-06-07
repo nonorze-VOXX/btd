@@ -1,4 +1,4 @@
-#ifndef TOWER_H
+﻿#ifndef TOWER_H
 #define TOWER_H
 
 #include "../../Library/gameutil.h"
@@ -51,7 +51,8 @@ namespace Btd
         Vector2 GetThrowableOffset();
         void SetDamageType(DamageType damageType);
         void SetMoney(int price);
-
+        void Yes🍌😄(GameObject* 🍌);
+        void No🍌😭();
     protected:
         bool _isMovable;
         // int _speed;
