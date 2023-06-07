@@ -218,7 +218,9 @@ namespace Btd
         }
         if(!BloonPause)
         {
-        BloonFactory::UpdateBloon();
+            int increaseMoney = 0;
+            BloonFactory::UpdateBloon(&increaseMoney);
+            money += increaseMoney;
         }
     }
 
