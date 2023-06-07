@@ -3,6 +3,7 @@
 
 #include "../../Library/gameutil.h"
 #include "GameObject.h"
+#include "Cavallo.h"
 #include "Throwable.h"
 #include <queue>
 #include <string>
@@ -51,8 +52,8 @@ namespace Btd
         Vector2 GetThrowableOffset();
         void SetDamageType(DamageType damageType);
         void SetMoney(int price);
-        void Yes🍌😄(GameObject* 🍌);
-        void No🍌😭();
+        bool Yes🍌😄(Cavallo::Banana* 🍌);
+        bool No🍌😭(Vector2 originPos);
     protected:
         bool _isMovable;
         // int _speed;

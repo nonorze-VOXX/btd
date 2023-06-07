@@ -254,9 +254,58 @@ namespace Btd
                                 ,RGB(255, 255, 255));
         throwablePool.push(tmp);
     }
-    void Tower::Yes🍌😄(GameObject* 🍌) {
-
+    bool Tower::Yes🍌😄(Cavallo::Banana* 🍌) {
+        // go to the 🍌
+        static random_device rd;
+        static mt19937 gen(rd());
+        static uniform_real_distribution<float> dis(50, 150);
+        static Vector2 smoothMoving = {0.0f, 0.0f};
+        static Vector2 originPos = GetCenter();
+        static float speed = dis(gen) * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f);
+        if (🍌->GetActive() == false) {
+			return No🍌😭(originPos);
+		}
+        Vector2 VecMove = Normailize({🍌->GetCenter().X - GetCenter().X, 🍌->GetCenter().Y - GetCenter().Y});
+        VecMove.X = VecMove.X * speed + GetCenter().X;
+        VecMove.Y = VecMove.Y * speed + GetCenter().Y;
+        int x = static_cast<int>(VecMove.X);
+        int y = static_cast<int>(VecMove.Y);
+        smoothMoving.X += VecMove.X - x;
+        smoothMoving.Y += VecMove.Y - y;
+        if (fabs(smoothMoving.X) >= 1.0f)
+        {
+			x += static_cast<int>(smoothMoving.X);
+			smoothMoving.X -= static_cast<int>(smoothMoving.X);
+		}
+        if (fabs(smoothMoving.Y) >= 1.0f)
+        {
+            y += static_cast<int>(smoothMoving.Y);
+            smoothMoving.Y -= static_cast<int>(smoothMoving.Y);
+        }
+        SetCenter(x, y);
+        return true;
     }
-    void Tower::No🍌😭() {
+    bool Tower::No🍌😭(Vector2 originPos) {
+        static Vector2 smoothMoving = { 0.0f, 0.0f };
+        const float speed = 100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f); // they are sad and slow
+        Vector2 VecMove = Normailize({ originPos.X - GetCenter().X, originPos.Y - GetCenter().Y });
+        VecMove.X = VecMove.X * speed + GetCenter().X;
+        VecMove.Y = VecMove.Y * speed + GetCenter().Y;
+        int x = static_cast<int>(VecMove.X);
+        int y = static_cast<int>(VecMove.Y);
+        smoothMoving.X += VecMove.X - x;
+        smoothMoving.Y += VecMove.Y - y;
+        if (fabs(smoothMoving.X) >= 1.0f)
+        {
+            x += static_cast<int>(smoothMoving.X);
+            smoothMoving.X -= static_cast<int>(smoothMoving.X);
+        }
+        if (fabs(smoothMoving.Y) >= 1.0f)
+        {
+            y += static_cast<int>(smoothMoving.Y);
+            smoothMoving.Y -= static_cast<int>(smoothMoving.Y);
+        }
+        SetCenter(x, y);
+        return Vector2Distance(GetCenter(), originPos) < 5.0f;
     }
 }

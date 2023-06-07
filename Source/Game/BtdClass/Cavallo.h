@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <functional>
+#include <random>
 #include "BtdUtil.h"
 #include "../../Library/gameutil.h"
 #include "../config.h"
@@ -17,7 +18,6 @@ namespace Btd {
         void Draw();
         void SetDest(Vector2);
         function<void()> Eat🍌;
-    private:
         class Banana : public GameObject{
         public:
             void Load();
@@ -25,19 +25,22 @@ namespace Btd {
             void Move();
             void Draw();
             void SetDest(Vector2);
+            bool IsAlive();
             void SetOwnerPos(int X, int Y);
         private:
             int 🐵X;
             int 🐵Y;
             clock_t _lastMoveTime;
             Vector2 _dest;
+            bool _isAlive;
             bool _gotCarry;
             bool _isFlying;
         };
+    private:
         float _GetRandomFloat(float lower = 48.0f, float upper = 763.0f);
         bool _isMirror;
         int _frameIndex;
-        vector<function<void()>> _actions;
+        vector<function<bool()>> _actions;
         Vector2 _dest;
         Vector2 _smoothMoving;
         clock_t _lastThrowTime;

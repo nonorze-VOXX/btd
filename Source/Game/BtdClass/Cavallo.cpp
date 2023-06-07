@@ -86,18 +86,25 @@ namespace Btd {
 					_actions.push_back(bind(&Tower::Yes🍌😄, TowerFactory::TowerVector[i], &🍌));
 				}
 			}
-			
 		}
 		for (auto it = _🍌s.begin(); it != _🍌s.end(); ) {
 			it->Move();
-			if (it->GetActive()) {
+			if (it->IsAlive()) {
 				it++;
 			}
 			else {
 				it = _🍌s.erase(it);
 			}
 		}
-		_isMirror = (fabsf(preX - GetCenter().X) < 1.0f) ? _isMirror : (preX > GetCenter().X);
+		for (auto it = _actions.begin(); it != _actions.end(); ) {
+			if ((*it)()) {
+				it++;
+			}
+			else {
+				it = _actions.erase(it);
+			}
+		}
+		_isMirror = (fabs(preX - GetCenter().X) < 1.0f) ? _isMirror : (preX > GetCenter().X);
 		// TRACE(_T("diff: %f\n"), preX - GetCenter().X);
 	}
 	void Cavallo::Draw() {
@@ -133,10 +140,13 @@ namespace Btd {
 		_gotCarry = false;
 		_isFlying = true;
 		_isActive = true;
+		_isAlive = true;
 		_lastMoveTime = clock();
 	}
 	void Cavallo::Banana::Move() {
+		// click to eliminate 🍌
 		if (IsCursorFocus() && (GetKeyState(VK_LBUTTON) & 0x8000) != 0) {
+			_isAlive = false;
 			_isActive = false;
 			return;
 		}
@@ -151,9 +161,8 @@ namespace Btd {
 				_isFlying = false;
 			}
 		}
-		if (!_gotCarry)
-			return;
-		SetCenter(🐵X, 🐵Y);
+		if (_gotCarry)
+			SetCenter(🐵X, 🐵Y);
 	}
 	void Cavallo::Banana::Draw() {
 		ShowBitmap();
@@ -164,6 +173,9 @@ namespace Btd {
 	void Cavallo::Banana::SetOwnerPos(int X, int Y) {
 		🐵X = X;
 		🐵Y = Y;
+	}
+	bool Cavallo::Banana::IsAlive() {
+		return _isAlive;
 	}
 
 }
