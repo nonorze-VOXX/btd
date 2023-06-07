@@ -10,7 +10,7 @@ namespace Btd
         Super()
         {
             _range = 100;
-            shootDeltaTime = 0;
+            shootDeltaTime = 0.3f;
             ThrowablePath = {
             "resources/towers/monkey/dart_1.bmp", "resources/towers/monkey/dart_2.bmp",
             "resources/towers/monkey/dart_3.bmp", "resources/towers/monkey/dart_4.bmp",

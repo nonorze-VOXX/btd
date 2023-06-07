@@ -131,7 +131,11 @@ namespace Btd
             }
             else
             {
-                SoundManager::musicPlay(BtdSound::POP,false);
+                if (damageType == DamageType::Normal)
+                {
+                    SoundManager::musicPlay(BtdSound::POP,false);
+                }
+
                 
                 _layer -= damage;
                 _explodeTime = 30;

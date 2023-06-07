@@ -134,6 +134,7 @@ namespace Btd
 
     void GameManager::OnMove()
     {
+        SoundManager::Update();
         // tower range circle
         if (!TowerFactory::TowerVector.empty())
         {
