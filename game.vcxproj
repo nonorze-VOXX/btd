@@ -296,7 +296,6 @@
         <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
         <ClInclude Include="Source\Game\BtdClass\Button.h" />
         <ClInclude Include="Source\Game\BtdClass\Cannon.h" />
-        <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
         <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
         <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
         <ClInclude Include="Source\Game\BtdClass\GameManager.h" />
