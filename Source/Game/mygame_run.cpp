@@ -12,7 +12,6 @@
 #include "BtdClass/TowerFactory.h"
 
 using namespace game_framework;
-#define PRINT_MOUSE
 // #define UNIT_TEST
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,6 +35,10 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
     gm.OnMove();
+    if(gm.GetGoToInit())
+    {
+        GotoGameState(GAME_STATE_INIT);
+    }
 #ifdef UNIT_TEST
     ut.UnitTest();
 #endif
@@ -90,72 +93,18 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
     gm.OnRButtonUp(nFlags, point);
 }
 
-void ShowGameStatusUI(int round, int lives, int money)
-{
-    CDC* pDC = CDDraw::GetBackCDC();
-    CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
-    CTextDraw::Print(pDC, 749, 25, "Round:   " + to_string(round + 1));
-    CTextDraw::Print(pDC, 749, 61, "Money: " + to_string(money));
-    CTextDraw::Print(pDC, 749, 97, "Lives:  " + to_string(lives));
-
-    CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
-    CTextDraw::Print(pDC, 749, 152, "Build Towers");
-    CTextDraw::Print(pDC, 749, 152, "____________");
-
-    CDDraw::ReleaseBackCDC();
-}
-
-void GameOver(int size)
-{
-    int screenCenterX = SIZE_X / 2;
-    int screenCenterY = SIZE_Y / 2;
-    int textLeft = screenCenterX - static_cast<int>(2.5 * size);
-    int textTop = screenCenterY - size;
-    int delta = size / 30;
-    auto cdc = CDDraw::GetBackCDC();
-    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
-    CTextDraw::Print(cdc, textLeft + delta, textTop + delta, "game  over");
-    CTextDraw::Print(cdc, textLeft - delta, textTop + delta, "game  over");
-    CTextDraw::Print(cdc, textLeft + delta, textTop - delta, "game  over");
-    CTextDraw::Print(cdc, textLeft - delta, textTop - delta, "game  over");
-
-    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(0, 0, 0), 800);
-    CTextDraw::Print(cdc, textLeft, textTop, "game  over");
-    CDDraw::ReleaseBackCDC();
-}
-
-void PrintMouseLocal(Btd::Vector2 position)
-{
-    CDC* pDC = CDDraw::GetBackCDC();
-    CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
-
-    CTextDraw::Print(pDC, 10, 682, "X: " + to_string(position.X));
-    CTextDraw::Print(pDC, 10, 702, "Y: " + to_string(position.Y));
-
-    CDDraw::ReleaseBackCDC();
-}
-
 void CGameStateRun::OnShow()
 {
     gm.OnShow();
-    ShowGameStatusUI(gm.GetRound(), gm.GetLive(), gm.GetMoney());
-
-    if (gm.GetLose())
+    vector<Btd::GameText> texts = gm.GetGameText();
+    CDC* pDC = CDDraw::GetBackCDC();
+    for(Btd::GameText t : texts)
     {
-        GameOver(gameOverCounter++);
-        if (gameOverCounter >= 180)
-        {
-            GotoGameState(GAME_STATE_INIT);
-        }
+        CTextDraw::ChangeFontLog(pDC, t.size, "Courier New", t.color,620);
+        CTextDraw::Print(pDC, (int)t.position.X, (int)t.position.Y, t.text);
     }
-    if (gm.GetWin())
-    {
-        GotoGameState(GAME_STATE_INIT);    
-    }
+    CDDraw::ReleaseBackCDC();
 #ifdef UNIT_TEST
     ut.UnitShow();
-#endif
-#ifdef PRINT_MOUSE
-    PrintMouseLocal(mouseLocal);
 #endif
 }

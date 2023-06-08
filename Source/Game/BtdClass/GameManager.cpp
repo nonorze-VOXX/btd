@@ -11,6 +11,7 @@ namespace Btd
 {
     void GameManager::OnBeginState()
     {
+        gameOverCounter=0;
         BloonPause=false;
         GameFlow =GameFlow::Prepare;
         round = 0;
