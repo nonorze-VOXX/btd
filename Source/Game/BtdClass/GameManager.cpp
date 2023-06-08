@@ -38,7 +38,8 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
-        🐼.Init(nullptr);
+        if (CAVALLO)
+            🐼.Init();
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -169,10 +170,15 @@ namespace Btd
         {
         case GameFlow::Prepare:
             BloonFactory::SetNextRound(map->GetRounds()[round]);
+            if (CAVALLO)
+                🐼.Move🐒🍌();
             break;
 
         case GameFlow::Shoot:
             {
+                if (CAVALLO)
+                    🐼.Move();
+
                 bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
                 bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
                 if (isRoundEnd)
@@ -220,7 +226,6 @@ namespace Btd
         if(!BloonPause)
         {
             BloonFactory::UpdateBloon();
-            🐼.Move();
         }
     }
 
@@ -246,11 +251,14 @@ namespace Btd
         {
         case GameFlow::Prepare:
             startButton.ShowBitmap();
+            if (CAVALLO)
+                🐼.DrawBanana();
             break;
         default:
+            if (CAVALLO)
+                🐼.Draw();
             break;
         }
-        🐼.Draw();
     }
 
     bool GameManager::GetLose()

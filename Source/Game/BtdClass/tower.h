@@ -67,9 +67,9 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
-        Vector2 _originPos;
         Bloon focus();
         DamageType _damageType;
+        MonkeyBananaStats 🐒🍌Stats;
     };
 }
 #endif

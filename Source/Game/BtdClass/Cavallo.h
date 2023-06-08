@@ -6,19 +6,25 @@
 #include "../../Library/gameutil.h"
 #include "../config.h"
 #include "GameObject.h"
-const int 🐼🎦delay = 200;
-constexpr float 🐼speed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0));
-constexpr float 🍌speed = (300.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0));
 namespace Btd {
+    const bool CAVALLO = true;
+    const int 🐼🎦delay = 200;
+    const int 🐼🍌cooldown = 4000;
+    constexpr float 🐼speed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
+    constexpr float 🍌speed = (300.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
+    constexpr float 🐵Maxspeed = (200.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
+    constexpr float 🐵Minspeed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
+    constexpr float 🐵Backspeed = (50.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f)); // they are sad and slow
     class Cavallo : public GameObject
     {
     public:
-        void Init(function<void()> 🍴🍌);
+        void Init();
         void Throw();
         void Move();
+        void Move🐒🍌();
         void Draw();
+        void DrawBanana();
         void SetDest(Vector2);
-        function<void()> Eat🍌;
         class Banana : public GameObject{
         public:
             void Load();
@@ -27,6 +33,7 @@ namespace Btd {
             void Draw();
             void SetDest(Vector2);
             bool IsAlive();
+            bool GotCarry();
             void SetOwnerPos(int X, int Y);
         private:
             int 🐵X;
@@ -40,8 +47,9 @@ namespace Btd {
     private:
         float _GetRandomFloat(float lower = 48.0f, float upper = 763.0f);
         bool _isMirror;
+        bool _isStuckX;
+        bool _isStuckY;
         int _frameIndex;
-        vector<function<bool()>> _actions;
         Vector2 _dest;
         Vector2 _smoothMoving;
         clock_t _lastThrowTime;

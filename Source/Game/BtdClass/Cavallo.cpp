@@ -4,7 +4,7 @@
 
 #include <random>
 namespace Btd {
-	void Cavallo::Init(function<void()> 🍴🍌) {
+	void Cavallo::Init() {
 		LoadBitmapByString({ 
 			"Resources/Cavallo/Cavallo_01.bmp", 
 			"Resources/Cavallo/Cavallo_02.bmp", 
@@ -19,12 +19,13 @@ namespace Btd {
 		_smoothMoving = { 0.0f, 0.0f };
 		_lastThrowTime = clock();
 		_lastFrameTime = clock();
-		_coolDown = 3000;
+		_coolDown = 🐼🍌cooldown;
+		_isStuckX = false;
+		_isStuckY = false;
 		_frameIndex = 0;
 		SetCenter(600, 600);
 		SetDest({ _GetRandomFloat(), _GetRandomFloat() });
 		_base🍌.Load();
-		Eat🍌 = 🍴🍌;
 	}
 	float Cavallo::_GetRandomFloat(float lower, float upper) {
 		static random_device rd;
@@ -47,26 +48,28 @@ namespace Btd {
 		}
 	}
 	void Cavallo::Move() {
-		auto preX = GetCenter().X;
+		int originX = static_cast<int>(GetCenter().X), originY = static_cast<int>( GetCenter().Y);
+		int x, y;
 		if (IsCursorFocus() && (GetKeyState(VK_LBUTTON) & 0x8000) != 0) {
-			SetCenter(GetCursorPosX(), GetCursorPosY());
+			x = GetCursorPosX(), y = GetCursorPosY();
+			if (x <= GetCollider().X + 10 || x >= SIZE_X - GetCollider().X - 10) {
+				x = originX;
+			}
+			if (y <= GetCollider().Y + 10 || y >= SIZE_Y - GetCollider().Y - 10) {
+				y = originY;
+			}
+			SetCenter(x, y);
 		}
 		else {
 			Throw();
 			// TRACE(_T("pos: %f %f\n"), GetCenter().X, GetCenter().Y);
-			if (GetCenter().X <  GetCollider().X || GetCenter().X > SIZE_X - GetCollider().X) {
-				_dest.X = -_dest.X;
-			}
-			if (GetCenter().Y <  GetCollider().Y || GetCenter().Y > SIZE_Y - GetCollider().Y) {
-				_dest.Y = -_dest.Y;
-			}
-			if (_GetRandomFloat() < 10.0f) {
-				SetDest({ _GetRandomFloat(), _GetRandomFloat() });
+			if (_GetRandomFloat() < 20.0f) {
+				SetDest({ _GetRandomFloat() - 500.0f, _GetRandomFloat() - 500.0f });
 			}
 			Vector2 vec = _dest;
 			auto Length = sqrt(vec.X * vec.X + vec.Y * vec.Y);
 			vec = { vec.X / Length * 🐼speed, vec.Y / Length * 🐼speed };
-			int x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
+			x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
 			_smoothMoving.X += vec.X - static_cast<int>(vec.X);
 			_smoothMoving.Y += vec.Y - static_cast<int>(vec.Y);
 			if (fabsf(_smoothMoving.X) > 1.0f) {
@@ -77,22 +80,51 @@ namespace Btd {
 				y += static_cast<int>(_smoothMoving.Y);
 				_smoothMoving.Y -= static_cast<int>(_smoothMoving.Y);
 			}
+			if (GetCenter().X <=  GetCollider().X || GetCenter().X >= SIZE_X - GetCollider().X) {
+				if (!_isStuckX)
+					_dest.X = -_dest.X;
+				_isStuckX = true;
+			}
+			else {
+				_isStuckX = false;
+			}
+			if (GetCenter().Y <= GetCollider().Y || GetCenter().Y >= SIZE_Y - GetCollider().Y) {
+				if (!_isStuckY)
+					_dest.Y = -_dest.Y;
+				_isStuckY = true;
+			} 
+			else {
+				_isStuckY = false;
+			}
 			SetCenter(x, y);
 		}
+		_isMirror = (fabs(originX - GetCenter().X) < 1.0f) ? _isMirror : (originX > GetCenter().X);
+		Move🐒🍌();
+	}
+	void Cavallo::Move🐒🍌() {
 		for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
 		{
-			if(TowerFactory::TowerVector[i]->GetActive() == false)
+			if (TowerFactory::TowerVector[i]->GetActive() == false)
 				continue;
+			Banana* target = nullptr;
+			float minDis = 999999;
 			for (auto& 🍌 : _🍌s) {
-				if (Vector2Distance(TowerFactory::TowerVector[i]->GetCenter(), 🍌.GetCenter()) <= TowerFactory::TowerVector[i]->GetRange()) {
-					TowerFactory::TowerVector[i]->Yes🍌😄(&🍌);
+				if (🍌.GotCarry() && !🍌.GetActive()) continue;
+				float dis = Vector2Distance(TowerFactory::TowerVector[i]->GetCenter(), 🍌.GetBottomCenter());
+				if (dis < minDis && dis <= TowerFactory::TowerVector[i]->GetRange()) {
+					target = &🍌;
+					minDis = dis;
 				}
-				else {
-					TowerFactory::TowerVector[i]->No🍌😭();
-				}
+			}
+			if (target == nullptr) {
+				TowerFactory::TowerVector[i]->No🍌😭();
+			}
+			else {
+				TowerFactory::TowerVector[i]->Yes🍌😄(target);
 			}
 		}
 		for (auto it = _🍌s.begin(); it != _🍌s.end(); ) {
+			it->SetActive(true);
 			it->Move();
 			if (it->IsAlive()) {
 				it++;
@@ -101,12 +133,6 @@ namespace Btd {
 				it = _🍌s.erase(it);
 			}
 		}
-		for (auto &🐒🍌 : _actions) {
-			🐒🍌();
-		}
-		_actions.clear();
-		_isMirror = (fabs(preX - GetCenter().X) < 1.0f) ? _isMirror : (preX > GetCenter().X);
-		// TRACE(_T("diff: %f\n"), preX - GetCenter().X);
 	}
 	void Cavallo::Draw() {
 		if (clock() - _lastFrameTime > 🐼🎦delay) {
@@ -127,13 +153,18 @@ namespace Btd {
 			🍌.Draw();
 		}
 	}
+	void Cavallo::DrawBanana() {
+		for (auto& 🍌 : _🍌s) {
+			if (🍌.IsAlive())
+				🍌.Draw();
+		}
+	}
 	void Cavallo::SetDest(Vector2 dest) {
 		_dest = dest;
 	}
 	void Cavallo::Banana::Load() {
 		LoadBitmapByString({ "Resources/Cavallo/banana/Banana.bmp" }, RGB(214, 197, 216));
-		SetCenter(60, 60);
-		SetCollider({ 0,0 });
+		SetCollider({ 60, 60});
 		SetTag("🍌");
 	}
 
@@ -151,7 +182,9 @@ namespace Btd {
 			_isActive = false;
 			return;
 		}
-		if (_isFlying) {
+		if (_gotCarry)
+			SetBottomCenter(🐵X, 🐵Y);
+		else if (_isFlying) {
 			_lastMoveTime = clock();
 			Vector2 vec = { _dest.X - GetCenter().X, _dest.Y - GetCenter().Y};
 			auto Length = sqrt(vec.X * vec.X + vec.Y * vec.Y);
@@ -162,8 +195,6 @@ namespace Btd {
 				_isFlying = false;
 			}
 		}
-		if (_gotCarry)
-			SetCenter(🐵X, 🐵Y);
 	}
 	void Cavallo::Banana::Draw() {
 		ShowBitmap();
@@ -174,6 +205,10 @@ namespace Btd {
 	void Cavallo::Banana::SetOwnerPos(int X, int Y) {
 		🐵X = X;
 		🐵Y = Y;
+		_gotCarry = true;
+	}
+	bool Cavallo::Banana::GotCarry() {
+		return _gotCarry;
 	}
 	bool Cavallo::Banana::IsAlive() {
 		return _isAlive;
