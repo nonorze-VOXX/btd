@@ -32,11 +32,11 @@ namespace Btd
                     ToggleAnimation();
                     _existTime = 0;
                     _maxExistTime = 75;
+                    SoundManager::musicPlay(BtdSound::BOMB,false);
+                    break;
                 }
                 else
                 {
-
-                    SoundManager::musicPlay(BtdSound::BOMB,false);
                     BloonFactory::BloonVector[i].Pop(1, _damageType);
                     cantHitBloons.push_back({BloonFactory::BloonVector[i].GetId(), 0});
                 }
