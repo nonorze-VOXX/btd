@@ -52,6 +52,10 @@ namespace Btd
                         nextLayer = Layer::black;
                     if (token == "white"||token=="w")
                         nextLayer = Layer::white;
+                    if (token == "rainbow"||token=="ra")
+                        nextLayer = Layer::rainbow;
+                    if (token == "lead"||token=="l")
+                        nextLayer = Layer::lead;
                     for(int j=0;j<loopTimes;j++)
                     {
                         UnitRound nextBloon{};
