@@ -135,7 +135,7 @@ namespace Btd
                 Bloon b = BloonVector[i];
                 if (BloonVector[i].IsPoped())
                 {
-                    (*increaseMoney) = 1;
+                    (*increaseMoney) += 1;
                     BloonType::BloonType type = BloonVector[i].GetType();
                     if (type == BloonType::black || type == BloonType::white)
                     {
