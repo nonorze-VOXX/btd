@@ -128,6 +128,11 @@ namespace Btd
         _money = price;
     }
 
+    int Tower::GetMoney()
+    {
+        return _money;
+    }
+
     void Tower::SetShootTimeCounter(float tome)
     {
         shootTimecounter = tome;
@@ -142,6 +147,8 @@ namespace Btd
             , "resources/button/alreadyBought.bmp"});
             UpgradeBtn[i].SetTopLeft(location[i][0], location[i][1]);
         }
+        SellBtn.LoadBitmapByString({"resources/button/sell.bmp"});
+        SellBtn.SetTopLeft(753, 563);
     }
 
     void Tower::Upgrade(int level)
@@ -163,6 +170,7 @@ namespace Btd
                 this->UpgradeText[0].ShowBitmap();
                 this->UpgradeBtn[1].ShowBitmap();
                 this->UpgradeText[1].ShowBitmap();
+                this->SellBtn.ShowBitmap();
             }
         }
         for (int i = 0; i < static_cast<int>(throwables.size()); i++)

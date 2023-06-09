@@ -212,11 +212,28 @@ bool handleUpgradeButtonClicked (int towerIndex, int money, int *willDecreaseMon
     return  isBtnClicked;
 }
 
+bool HandleSellBtnClicked(int towerIndex, int *willDecreaseMoney)
+{
+    bool isBtnClicked = false;
+    if (Btd::TowerFactory::TowerVector[towerIndex]->IsClicked() &&
+        Btd::TowerFactory::TowerVector[towerIndex]->SellBtn.IsCursorFocus())
+    {
+        isBtnClicked = true;
+        (*willDecreaseMoney) = (-1) * static_cast<int>(0.9 * Btd::TowerFactory::TowerVector[towerIndex]->GetMoney());
+        Btd::TowerFactory::TowerVector.erase(Btd::TowerFactory::TowerVector.begin() + towerIndex);
+    }
+    return  isBtnClicked;
+}
+
 int Btd::TowerFactory::HandleTowerClicked(int money)
 {
     int willDecreaseMoney = 0;
-    for (int i=0; i<(int)TowerVector.size(); i++)
+    for (int i=static_cast<int>(TowerVector.size())-1; i>=0; i--)
     {
+        if (HandleSellBtnClicked(i, &willDecreaseMoney))
+        {
+            break;
+        }
         if (TowerVector[i]->IsCursorFocus() ||
             handleUpgradeButtonClicked(i, money, &willDecreaseMoney))
         {
