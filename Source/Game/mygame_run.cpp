@@ -12,7 +12,6 @@
 #include "BtdClass/TowerFactory.h"
 
 using namespace game_framework;
-// #define UNIT_TEST
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
@@ -29,7 +28,6 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
     gm.OnBeginState();
-    gameOverCounter = 0;
 }
 
 void CGameStateRun::OnMove() // 移動遊戲元素
@@ -39,18 +37,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
         GotoGameState(GAME_STATE_INIT);
     }
-#ifdef UNIT_TEST
-    ut.UnitTest();
-#endif
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
     gm.OnInit();
-#ifdef UNIT_TEST
-    ut.SetState(Btd::Bez);
-    ut.UnitInit();
-#endif
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -104,7 +95,4 @@ void CGameStateRun::OnShow()
         CTextDraw::Print(pDC, (int)t.position.X, (int)t.position.Y, t.text);
     }
     CDDraw::ReleaseBackCDC();
-#ifdef UNIT_TEST
-    ut.UnitShow();
-#endif
 }
