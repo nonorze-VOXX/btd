@@ -199,7 +199,7 @@ namespace Btd
             else
             {
                 GameFlow = GameFlow::Prepare;
-                money += 100;
+                money += int(sqrt(round) * 100) + 50;
             }
 
             break;
