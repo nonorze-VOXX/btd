@@ -298,7 +298,7 @@ namespace Btd
     bool Tower::No🍌😭() {
         🐒🍌Stats.Got🍌 = false;
         🐒🍌Stats.Target = nullptr;
-        if (Vector2Distance(GetCenter(), 🐒🍌Stats.OriginPos) < 3.0f) {
+        if (Vector2Distance(GetCenter(), 🐒🍌Stats.OriginPos) < 10.0f) {
             return false;
         }
         const float speed = 🐵Backspeed; 
