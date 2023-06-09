@@ -143,15 +143,18 @@ namespace Btd
         // tower range circle
         if (!TowerFactory::TowerVector.empty())
         {
-            if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
-                map->IsOverSidebar(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
-                isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
+            if (TowerFactory::TowerVector.back()->IsMovable())
             {
-                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
-            }
-            else
-            {
-                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+                if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                    map->IsOverSidebar(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                    isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back()))                    )
+                {
+                    TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
+                }
+                else
+                {
+                    TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+                }
             }
         }
         // spikes range circle
@@ -204,7 +207,7 @@ namespace Btd
             else
             {
                 GameFlow = GameFlow::Prepare;
-                money += 100;
+                money += int(sqrt(round) * 100) + 50;
             }
 
             break;
@@ -223,7 +226,9 @@ namespace Btd
         }
         if(!BloonPause)
         {
-        BloonFactory::UpdateBloon();
+            int increaseMoney = 0;
+            BloonFactory::UpdateBloon(&increaseMoney);
+            money += increaseMoney;
         }
     }
 
@@ -327,6 +332,16 @@ namespace Btd
         case 'N':
             if (round < static_cast<int>(map->GetRounds().size() - 1))
                 round ++;
+        case 0x1B: //esc
+            if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
+            {
+                TowerFactory::TowerVector.pop_back();
+            }
+            else if (!TowerFactory::PlaceableVector.empty() && TowerFactory::PlaceableVector.back()->IsMovable())
+            {
+                TowerFactory::PlaceableVector.pop_back();
+            }
+            break;
         }
     }
 

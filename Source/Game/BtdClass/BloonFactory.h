@@ -119,22 +119,23 @@ namespace Btd
             BloonVector.push_back(next);
         }
 
-        static void UpdateBloon()
+        static void UpdateBloon(int *increaseMoney)
         {
             for (Bloon& b : BloonVector)
             {
                 b.Update();
             }
-            handlePopBalloon();
+            handlePopBalloon(increaseMoney);
         }
 
-        static void handlePopBalloon()
+        static void handlePopBalloon(int *increaseMoney)
         {
             for (int i = 0; i < static_cast<int>(BloonVector.size()); i++)
             {
                 Bloon b = BloonVector[i];
                 if (BloonVector[i].IsPoped())
                 {
+                    (*increaseMoney) += 1;
                     BloonType::BloonType type = BloonVector[i].GetType();
                     if (type == BloonType::black || type == BloonType::white)
                     {
