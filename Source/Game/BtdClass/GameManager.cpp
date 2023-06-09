@@ -143,15 +143,18 @@ namespace Btd
         // tower range circle
         if (!TowerFactory::TowerVector.empty())
         {
-            if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
-                map->IsOverSidebar(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
-                isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
+            if (TowerFactory::TowerVector.back()->IsMovable())
             {
-                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
-            }
-            else
-            {
-                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+                if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                    map->IsOverSidebar(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                    isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back()))                    )
+                {
+                    TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
+                }
+                else
+                {
+                    TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+                }
             }
         }
         // spikes range circle
