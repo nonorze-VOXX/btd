@@ -42,7 +42,6 @@
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include "BtdClass/GameManager.h"
-#include "BtdClass/TestEverything.h"
 
 namespace game_framework
 {
@@ -111,8 +110,6 @@ namespace game_framework
     private:
         Btd::Vector2 mouseLocal = {0, 0};
         Btd::GameManager gm;
-        Btd::TestEverything ut;
-        int gameOverCounter;
     };
 
     /////////////////////////////////////////////////////////////////////////////

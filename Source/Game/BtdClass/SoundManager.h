@@ -1,7 +1,7 @@
 #pragma once
 #include "BtdUtil.h"
 
-#define soundTime 200
+#define soundTime 100
 namespace Btd
 {
     struct soundCounter
