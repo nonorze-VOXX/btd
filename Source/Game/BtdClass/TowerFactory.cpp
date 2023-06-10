@@ -145,7 +145,7 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             boomerangMonkey->SetShootDeltaTime(3);
             boomerangMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
             boomerangMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
-            boomerangMonkey->SetCollider({static_cast<float>(boomerangMonkey->GetWidth()),static_cast<float>(boomerangMonkey->GetHeight())});
+            boomerangMonkey->SetCollider({static_cast<float>(boomerangMonkey->GetWidth())*0.7f,static_cast<float>(boomerangMonkey->GetHeight())*0.7f});
             boomerangMonkey->SetMaxPop(2);
             boomerangMonkey->UpgradeText[0].LoadBitmapByString({upgradeTextPath[4][0]}, RGB(0, 0, 0));
             boomerangMonkey->UpgradeText[1].LoadBitmapByString({upgradeTextPath[4][1]}, RGB(0, 0, 0));
