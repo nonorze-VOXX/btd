@@ -207,7 +207,7 @@ namespace Btd
             else
             {
                 GameFlow = GameFlow::Prepare;
-                money += int(sqrt(round) * 70);
+                money += static_cast<int>(sqrt(round) * 60) + 15 * static_cast<int>(map->GetMapType());
             }
 
             break;
