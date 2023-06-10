@@ -192,8 +192,11 @@ namespace Btd
 
     void Tower::Update()
     {
-        RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
-                              static_cast<int>(GetCenter().Y) - (_range - 100));
+        if (_isMovable)
+        {
+            RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                                  static_cast<int>(GetCenter().Y) - (_range - 100));
+        }
         if (_isActive)
         {
             UpdateThrowable();
