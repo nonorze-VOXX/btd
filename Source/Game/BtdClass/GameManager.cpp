@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GameManager.h"
 
 #include "BloonFactory.h"
@@ -207,7 +207,7 @@ namespace Btd
             else
             {
                 GameFlow = GameFlow::Prepare;
-                money += int(sqrt(round) * 100) + 50;
+                money += static_cast<int>(sqrt(round) * 80);
             }
 
             break;
@@ -342,6 +342,11 @@ namespace Btd
                 TowerFactory::PlaceableVector.pop_back();
             }
             break;
+        case VK_SPACE: //space
+            if (GameFlow == GameFlow::Prepare)
+            {
+                GameFlow = GameFlow::Shoot;
+            }
         }
     }
 

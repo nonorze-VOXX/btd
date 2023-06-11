@@ -5,6 +5,17 @@
 
 namespace Btd
 {
+    Cannon::Cannon()
+    {
+        _range = 200;
+        shootDeltaTime = 6;
+        ThrowablePath = {"resources/towers/bomb/bomb.bmp", "resources/towers/bomb/bomb_1.bmp",
+            "resources/towers/bomb/bomb_2.bmp", "resources/towers/bomb/bomb_3.bmp", "resources/towers/bomb/bomb_4.bmp"};
+        UpgradePrice[0] = 380;
+        UpgradePrice[1] = 180;
+        SetDamageType(DamageType::Boom);
+    }
+
     void Cannon::Shoot(Vector2 target)
     {
         Tower::Shoot(target);
@@ -18,7 +29,7 @@ namespace Btd
     {
         auto bomb = make_shared<Bomb>(Bomb());
         bomb->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
-        bomb->SetSpeed(5);
+        bomb->SetSpeed(8);
         throwablePool.push(bomb);
     }
 
@@ -33,6 +44,8 @@ namespace Btd
             break;
         case 1:
             _range = 250;
+            RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                                  static_cast<int>(GetCenter().Y) - (_range - 100));
             break;
         default:
             break;
