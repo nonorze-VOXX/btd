@@ -137,17 +137,18 @@ namespace Btd
                 {
                     (*increaseMoney) += 1;
                     BloonType::BloonType type = BloonVector[i].GetType();
+                    Vector2 offset = {15,15};
                     if (type == BloonType::black || type == BloonType::white)
                     {
                         int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
                         Vector2 position = b.GetBottomCenter();
-                        MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
+                        MakeBloonByPosition(Layer::yellow, Vector2Add(position,offset), nowRouteTarget, b.Getroute());
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
                     }else if (type == BloonType::rainbow || type == BloonType::lead)
                     {
                         int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
                         Vector2 position = b.GetBottomCenter();
-                        MakeBloonByPosition(Layer::black, position, nowRouteTarget, b.Getroute());
+                        MakeBloonByPosition(Layer::black, Vector2Add(position,offset), nowRouteTarget, b.Getroute());
                         MakeBloonByPosition(Layer::white, position, nowRouteTarget, b.Getroute());
                     }
                     BloonPool.push(BloonVector[i]);
