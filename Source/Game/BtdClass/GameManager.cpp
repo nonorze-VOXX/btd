@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GameManager.h"
 
 #include "BloonFactory.h"
@@ -207,7 +207,7 @@ namespace Btd
             else
             {
                 GameFlow = GameFlow::Prepare;
-                money += static_cast<int>(sqrt(round) * 60) + 15 * static_cast<int>(map->GetMapType());
+                money += static_cast<int>(sqrt(round) * 80);
             }
 
             break;
