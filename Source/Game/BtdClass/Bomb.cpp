@@ -30,6 +30,7 @@ namespace Btd
                 if (GetFrameIndexOfBitmap() == 0)
                 {
                     ToggleAnimation();
+                    SetFrameIndexOfBitmap(1);
                     _existTime = 0;
                     _maxExistTime = 75;
                     SoundManager::musicPlay(BtdSound::BOMB,false);
