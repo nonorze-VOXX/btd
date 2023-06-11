@@ -342,6 +342,11 @@ namespace Btd
                 TowerFactory::PlaceableVector.pop_back();
             }
             break;
+        case VK_SPACE: //space
+            if (GameFlow == GameFlow::Prepare)
+            {
+                GameFlow = GameFlow::Shoot;
+            }
         }
     }
 
