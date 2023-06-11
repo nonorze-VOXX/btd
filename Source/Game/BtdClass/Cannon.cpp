@@ -33,6 +33,8 @@ namespace Btd
             break;
         case 1:
             _range = 250;
+            RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                                  static_cast<int>(GetCenter().Y) - (_range - 100));
             break;
         default:
             break;
