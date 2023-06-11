@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Btd::Bloon" Collapsed="true">
+    <Position X="8.75" Y="9.25" Width="1.5" />
+    <InheritanceLine Type="Btd::GameObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="6.191" />
+        <Point X="7.75" Y="8.875" />
+        <Point X="9.2" Y="8.875" />
+        <Point X="9.2" Y="9.268" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>hETgKQCAAIAIIAgIBgBgACJAQAH5AAEQJkAiAAIAQAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Bloon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::BloonFactory" Collapsed="true">
+    <Position X="8.75" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QgAjAAgAAAAAAgABAAAACEAAAAIAAAEAQABAAACAAgA=</HashCode>
+      <FileName>Source\Game\BtdClass\BloonFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::GameObject" Collapsed="true">
+    <Position X="7" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KBSAAAFACAEAAAgAAIAAAAIQIAYAAAAQAAAoAIAAIAQ=</HashCode>
+      <FileName>Source\Game\BtdClass\GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::CGameStateInit" Collapsed="true">
+    <Position X="12.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAACQBAAAAAAAAAAAABAAAgQAQAAABCAUAAA=</HashCode>
+      <FileName>Source\Game\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::CGameStateRun" Collapsed="true">
+    <Position X="12.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAQAAAACAAEAAAAAQAABAABIAAgQAAAAAAAAUAAA=</HashCode>
+      <FileName>Source\Game\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::CGameStateOver" Collapsed="true">
+    <Position X="12.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAABAAgUAAAAAAAAEAAA=</HashCode>
+      <FileName>Source\Game\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Bomb" Collapsed="true">
+    <Position X="5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Bomb.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Boomerang" Collapsed="true">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAABAAACABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Boomerang.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::BoomerangMonkey" Collapsed="true">
+    <Position X="0.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAEAAAAAAABAAAAAAgQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BoomerangMonkey.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::BtdTimer" Collapsed="true">
+    <Position X="8.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Button" Collapsed="true">
+    <Position X="3.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Cannon" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAABAAAAAAgAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Cannon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::DartMonkey" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAABBAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\DartMonkey.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::DB" Collapsed="true">
+    <Position X="8.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAIAAAAAAACAAAAAAAAACAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\DB.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::FactoryButton" Collapsed="true">
+    <Position X="2.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQACEAAAAAAAABAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\FactoryButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::GameManager" Collapsed="true">
+    <Position X="13.75" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAUAEAgIAgCQAEAEgAAAAEBAABIQAgQgCgEBQACVEAA=</HashCode>
+      <FileName>Source\Game\BtdClass\GameManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Glue" Collapsed="true">
+    <Position X="3" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Glue.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::IceGas" Collapsed="true">
+    <Position X="5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAEAAAAABAQBAAAoQAAQAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\IceGas.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::IceTower" Collapsed="true">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAIAAAAgAAAAQAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\IceTower.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Map" Collapsed="true">
+    <Position X="7" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAASIQNAABlAgBABABBAIAAQCjFAADAAIQTQAAAI=</HashCode>
+      <FileName>Source\Game\BtdClass\map.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::NailMachine" Collapsed="true">
+    <Position X="0.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\NailMachine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Placeable" Collapsed="true">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAACAAAAgAEABAAAICIAIAABAAAQAgIICAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Placeable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::SoundButton" Collapsed="true">
+    <Position X="2.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\SoundButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::SoundManager" Collapsed="true">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAWAAAAAAAAIAAACAAAAAAAAAEACAABAAAACAAABAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\SoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Spikes" Collapsed="true">
+    <Position X="4.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Spikes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Super" Collapsed="true">
+    <Position X="0.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAIBAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Super.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Throwable" Collapsed="true">
+    <Position X="6" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAADAAJCCgEAQAAAAIBAgAAcEAAAAFQIAqAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\Throwable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::Tower" Collapsed="true">
+    <Position X="1.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECZCIEBAECAEhQYhUAogQAACAAQIwhAEABsCMAQggSA=</HashCode>
+      <FileName>Source\Game\BtdClass\Tower.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Btd::TowerFactory" Collapsed="true">
+    <Position X="1.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAhIAAAAAAAAAAAAAAAgCIAAAAAAAAABAAAABAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\TowerFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Btd::Vector2" Collapsed="true">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Btd::GameText" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAIAAAAAAAAACIAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Btd::UnitRound" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Btd::soundCounter" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAABAAEAAAAAAAABAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\SoundManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="game_framework::AUDIO_ID" Collapsed="true">
+    <Position X="20.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\mygame.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::TowerType" Collapsed="true">
+    <Position X="12.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAgAAAAAMAAAAACBAAAAAAgAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::Layer" Collapsed="true">
+    <Position X="15.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAIEAAAQAAAAAAgAIAAAAAAABgA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::BtdSound" Collapsed="true">
+    <Position X="15.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAACAAAAAAAAAAAAAAIAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::MapType" Collapsed="true">
+    <Position X="14" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::DamageType" Collapsed="true">
+    <Position X="14" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQABAAAAAAAABIAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::GameFlow" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAARAABAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Btd::BloonType::BloonType" Collapsed="true">
+    <Position X="15.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAgQAAAAAAgAAAAAAAAABAA=</HashCode>
+      <FileName>Source\Game\BtdClass\BtdUtil.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
