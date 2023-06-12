@@ -23,10 +23,12 @@ namespace Btd {
         void Move🐒🍌();
         void Draw();
         void DrawBanana();
+        void Harder();
         void SetDest(Vector2);
         void OnClick();
         void Release();
         static bool CAVALLO;
+        static float Multiplier;
         class Banana : public GameObject{
         public:
             void Load();
@@ -61,7 +63,6 @@ namespace Btd {
         clock_t _lastFrameTime;
         vector<Banana> _🍌s;
         Banana _base🍌;
-
     };
 }
 

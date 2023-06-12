@@ -210,6 +210,8 @@ namespace Btd
                 GameFlow = GameFlow::GameEnd;
                 IsWin = true;
                 db.PassMap(map->GetMapType());
+                if (Cavallo::CAVALLO)
+                    🐼.Harder();
             }
             else
             {

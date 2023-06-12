@@ -265,7 +265,7 @@ namespace Btd
         }
         static random_device rd;
         static mt19937 gen(rd());
-        static uniform_real_distribution<float> dis(🐵Minspeed, 🐵Maxspeed);
+        static uniform_real_distribution<float> dis(🐵Minspeed * Cavallo::Multiplier, 🐵Maxspeed * Cavallo::Multiplier);
         🐒🍌Stats.Speed = dis(gen) ;
         if (🍌->GotCarry() && !🐒🍌Stats.Got🍌) return No🍌😭();
         Vector2 VecMove = 🐒🍌Stats.Got🍌 ? 🐒🍌Stats.PreMove : Normailize({🍌->GetCenter().X - GetCenter().X, 🍌->GetCenter().Y - GetCenter().Y});
@@ -301,11 +301,10 @@ namespace Btd
         if (Vector2Distance(GetCenter(), 🐒🍌Stats.OriginPos) < 10.0f) {
             return false;
         }
-        const float speed = 🐵Backspeed; 
         Vector2 VecMove = Normailize({ 🐒🍌Stats.OriginPos.X - GetCenter().X, 🐒🍌Stats.OriginPos.Y - GetCenter().Y });
         SetFrameIndexOfBitmap(min(GetFrameSizeOfBitmap() - 1, GetFrameIndexByVector2(VecMove)));
-        VecMove.X = VecMove.X * speed + GetCenter().X;
-        VecMove.Y = VecMove.Y * speed + GetCenter().Y;
+        VecMove.X = VecMove.X * 🐵Backspeed / Cavallo::Multiplier + GetCenter().X;
+        VecMove.Y = VecMove.Y * 🐵Backspeed / Cavallo::Multiplier + GetCenter().Y;
         int x = static_cast<int>(VecMove.X);
         int y = static_cast<int>(VecMove.Y);
         🐒🍌Stats.SmoothMoving.X += VecMove.X - x;

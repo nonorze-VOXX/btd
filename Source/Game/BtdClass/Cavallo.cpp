@@ -38,7 +38,7 @@ namespace Btd {
 		return dis(gen);
 	}
 	void Cavallo::Throw() {
-		if (clock() - _lastThrowTime > _coolDown) {
+		if (clock() - _lastThrowTime > static_cast<clock_t>(_coolDown / Multiplier)) {
 			_lastThrowTime = clock();
 			Banana 🍌 = _base🍌;
 			🍌.SetCenter(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
@@ -69,7 +69,7 @@ namespace Btd {
 			}
 			Vector2 vec = _dest;
 			auto Length = sqrt(vec.X * vec.X + vec.Y * vec.Y);
-			vec = { vec.X / Length * 🐼speed, vec.Y / Length * 🐼speed };
+			vec = { vec.X / Length * 🐼speed * Multiplier, vec.Y / Length * 🐼speed * Multiplier };
 			x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
 			_smoothMoving.X += vec.X - static_cast<int>(vec.X);
 			_smoothMoving.Y += vec.Y - static_cast<int>(vec.Y);
@@ -151,7 +151,7 @@ namespace Btd {
 		SetClicked(false);
 	}
 	void Cavallo::Draw() {
-		if (clock() - _lastFrameTime > 🐼🎦delay) {
+		if (clock() - _lastFrameTime > static_cast<clock_t>(🐼🎦delay / Multiplier)) {
 			_lastFrameTime = clock();
 			_frameIndex++;
 			if (_frameIndex > 3) {
@@ -178,12 +178,14 @@ namespace Btd {
 	void Cavallo::SetDest(Vector2 dest) {
 		_dest = dest;
 	}
+	void Cavallo::Harder() {
+		Multiplier += 0.1f;
+	}
 	void Cavallo::Banana::Load() {
 		LoadBitmapByString({ "Resources/Cavallo/banana/Banana.bmp" }, RGB(214, 197, 216));
 		SetCollider({ 60, 60});
 		SetTag("🍌");
 	}
-
 	void Cavallo::Banana::Init() {
 		_gotCarry = false;
 		_isFlying = true;
@@ -199,7 +201,7 @@ namespace Btd {
 			_lastMoveTime = clock();
 			Vector2 vec = { _dest.X - GetCenter().X, _dest.Y - GetCenter().Y};
 			auto Length = sqrt(vec.X * vec.X + vec.Y * vec.Y);
-			vec = { vec.X / Length * 🍌speed , vec.Y / Length * 🍌speed  };
+			vec = { vec.X / Length * 🍌speed * Multiplier, vec.Y / Length * 🍌speed * Multiplier};
 			int x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
 			SetCenter(x, y);
 			if (Vector2Distance(GetCenter(), _dest) < 10.0f) {
@@ -234,4 +236,5 @@ namespace Btd {
 		return _isAlive;
 	}
 	bool Cavallo::CAVALLO = false;
+	float Cavallo::Multiplier = 1.0;
 }
