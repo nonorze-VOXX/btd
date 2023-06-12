@@ -29,13 +29,9 @@ namespace Btd
         int GetExplodeTime() const;
         void SetExplodeTime(int explodeTime);
 
-        Bloon()
-        {
-        };
+        Bloon();;
 
-        Bloon(int layer): _layer(layer)
-        {
-        }
+        Bloon(int layer);
 
         static bool resistDamegeMap[5][5];
 
@@ -43,10 +39,7 @@ namespace Btd
 
         void Setspeed(float speed);
 
-        void SetType(BloonType::BloonType t)
-        {
-            type = t;
-        }
+        void SetType(BloonType::BloonType t);
 
         void Update() override;
         void SetRoute(int n);
@@ -58,10 +51,7 @@ namespace Btd
 
         void Pop(int damage, DamageType damageType);
 
-        int GetNowRouteTarget()
-        {
-            return nowRouteTarget;
-        }
+        int GetNowRouteTarget();
 
         bool IsPoped();
         bool IsGoaled();

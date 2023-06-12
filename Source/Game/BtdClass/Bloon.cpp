@@ -34,6 +34,14 @@ namespace Btd
         _explodeTime = explodeTime;
     }
 
+    Bloon::Bloon()
+    {
+    }
+
+    Bloon::Bloon(int layer): _layer(layer)
+    {
+    }
+
     void Bloon::SetNowRouteTarget(int target)
     {
         nowRouteTarget = target;
@@ -44,6 +52,11 @@ namespace Btd
         _speed = speed;
         _originSpeed = speed;
         _slowerSpeed = _originSpeed * 0.35F + 0.3F;  // if too slow, some bloons won't move
+    }
+
+    void Bloon::SetType(BloonType::BloonType t)
+    {
+        type = t;
     }
 
     void Bloon::Update()
@@ -131,7 +144,11 @@ namespace Btd
             }
             else
             {
-                SoundManager::musicPlay(BtdSound::POP,false);
+                if (damageType == DamageType::Normal)
+                {
+                    SoundManager::musicPlay(BtdSound::POP,false);
+                }
+
                 
                 _layer -= damage;
                 _explodeTime = 30;
@@ -145,6 +162,11 @@ namespace Btd
         {
             SoundManager::musicPlay(BtdSound::LEAD,false);
         }
+    }
+
+    int Bloon::GetNowRouteTarget()
+    {
+        return nowRouteTarget;
     }
 
     bool Bloon::IsPoped()

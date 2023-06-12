@@ -43,15 +43,19 @@ namespace Btd
         void InitUpgradeBtn();
         GameObject RangeCircle;
         Button UpgradeBtn[2];
+        Button SellBtn;
         bool IsUpgrade[2];
         virtual void Upgrade(int level);
         int UpgradePrice[2] = {0, 0};
+        int SellPrice;
         void HandleUpgradeBtnFrame (int money);
         GameObject UpgradeText[2];
         void SetThrowableOffset(Vector2 offset);
         Vector2 GetThrowableOffset();
         void SetDamageType(DamageType damageType);
         void SetMoney(int price);
+        int GetMoney();
+
         bool Yes🍌😄(Cavallo::Banana* 🍌);
         bool No🍌😭();
         void SetOriginPos(Vector2 pos);

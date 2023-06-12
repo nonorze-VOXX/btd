@@ -7,6 +7,8 @@
 #include "Tower.h"
 #include "Cavallo.h"
 
+#define SCREEN_SIZE_X 1000
+#define SCREEN_SIZE_Y 770
 namespace Btd
 {
     class GameManager
@@ -38,7 +40,10 @@ namespace Btd
 
         bool GetLose();
         bool GetWin();
+        bool GetGoToInit();
 
+        vector<GameText> GetGameText();
+        int gameOverCounter =0;
         static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;

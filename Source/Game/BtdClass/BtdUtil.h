@@ -9,6 +9,13 @@ namespace Btd
         float X;
         float Y;
     };
+    struct GameText
+    {
+        string text;
+        Vector2 position;
+        int color;
+        int size;
+    };
 
     enum class TowerType
     {
@@ -39,6 +46,7 @@ namespace Btd
         BACKGROUND,
         POP,
         LEAD,
+        BOMB,
     };
 
     namespace BloonType
