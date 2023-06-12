@@ -24,6 +24,7 @@ namespace Btd {
 		_isStuckY = false;
 		_frameIndex = 0;
 		SetCenter(600, 600);
+		SetCollider({ 85.0f, 85.0f });
 		SetDest({ _GetRandomFloat(), _GetRandomFloat() });
 		_base🍌.Load();
 	}
@@ -47,7 +48,7 @@ namespace Btd {
 			_lastThrowTime = clock();
 			Banana 🍌 = _base🍌;
 			🍌.SetCenter(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
-			🍌.SetDest({ _GetRandomFloat(🍌.GetCollider().X, SIZE_X - 🍌.GetCollider().X), _GetRandomFloat(🍌.GetCollider().Y, SIZE_Y - 🍌.GetCollider().Y) });
+			🍌.SetDest({ _GetRandomFloat(🍌.GetCollider().X, SIZE_X - 🍌.GetCollider().X - 300), _GetRandomFloat(🍌.GetCollider().Y, SIZE_Y - 🍌.GetCollider().Y) });
 			🍌.Init();
 			_🍌s.push_back(🍌);
 		}
@@ -57,10 +58,10 @@ namespace Btd {
 		int x, y;
 		if (IsCursorFocus() && IsClicked()) {
 			x = GetCursorPosX(), y = GetCursorPosY();
-			if (x <= GetCollider().X || x >= SIZE_X - GetCollider().X) {
+			if (x <= 0 || x >= SIZE_X ) {
 				x = originX;
 			}
-			if (y <= GetCollider().Y || y >= SIZE_Y - GetCollider().Y) {
+			if (y <= 0 || y >= SIZE_Y ) {
 				y = originY;
 			}
 			SetCenter(x, y);
@@ -74,6 +75,7 @@ namespace Btd {
 			}
 			Vector2 vec = _dest;
 			auto Length = sqrt(vec.X * vec.X + vec.Y * vec.Y);
+			int orix = static_cast<int>(GetCenter().X), oriy = static_cast<int>(GetCenter().Y);
 			vec = { vec.X / Length * 🐼speed * Multiplier, vec.Y / Length * 🐼speed * Multiplier };
 			x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
 			_smoothMoving.X += vec.X - static_cast<int>(vec.X);
@@ -86,22 +88,15 @@ namespace Btd {
 				y += static_cast<int>(_smoothMoving.Y);
 				_smoothMoving.Y -= static_cast<int>(_smoothMoving.Y);
 			}
-			if (GetCenter().X <=  GetCollider().X || GetCenter().X >= SIZE_X - GetCollider().X) {
-				if (!_isStuckX)
-					_dest.X = -_dest.X;
-				_isStuckX = true;
+			if (x <=  0 || x >= SIZE_X) {
+				x = orix - static_cast<int>(1.5f * vec.X);
+				_dest.X = -_dest.X;
 			}
-			else {
-				_isStuckX = false;
-			}
-			if (GetCenter().Y <= GetCollider().Y || GetCenter().Y >= SIZE_Y - GetCollider().Y) {
-				if (!_isStuckY)
-					_dest.Y = -_dest.Y;
-				_isStuckY = true;
+			if (y <= 0 || y >= SIZE_Y) {
+				y = oriy - static_cast<int>(1.5f * vec.Y);
+				_dest.Y = -_dest.Y;
 			} 
-			else {
-				_isStuckY = false;
-			}
+		
 			SetCenter(x, y);
 			
 		}

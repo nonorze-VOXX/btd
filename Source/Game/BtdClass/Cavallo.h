@@ -14,7 +14,7 @@ namespace Btd {
     constexpr float 🍌speed = (300.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
     constexpr float 🐵Maxspeed = (200.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
     constexpr float 🐵Minspeed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
-    constexpr float 🐵Backspeed = (50.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f)); // they are sad and slow
+    constexpr float 🐵Backspeed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f)); // they are sad and slow
     class Cavallo : public GameObject
     {
     public:
