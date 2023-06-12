@@ -79,7 +79,7 @@ namespace Btd
             TowerFactory::PlaceableVector.back()->SetActive(true);
         }
         
-        
+        if (Cavallo::CAVALLO) money += 🐼.OnClick();
         switch (GameFlow)
         {
         case GameFlow::Prepare:
@@ -91,7 +91,6 @@ namespace Btd
                 break;
             }
         default:
-            🐼.OnClick();
             break;
         }
     }

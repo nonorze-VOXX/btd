@@ -140,12 +140,14 @@ namespace Btd {
 			}
 		}
 	}
-	void Cavallo::OnClick() {
+	int Cavallo::OnClick() {
+		int total = 0;
 		if (IsCursorFocus())
 			SetClicked(true);
 		for (auto& 🍌 : _🍌s) {
-			🍌.OnClick();
+			total += 🍌.OnClick();
 		}
+		return static_cast<int>(total * 🍌💰 * Multiplier);
 	}
 	void Cavallo::Release() {
 		SetClicked(false);
@@ -215,11 +217,13 @@ namespace Btd {
 	void Cavallo::Banana::SetDest(Vector2 dest) {
 		_dest = dest;
 	}
-	void Cavallo::Banana::OnClick() {
+	bool Cavallo::Banana::OnClick() {
 		if (IsCursorFocus()) {
 			_isAlive = false;
 			_isActive = false;
+			return true;
 		}
+		return false;
 	}
 	void Cavallo::Banana::SetOwnerPos(int X, int Y) {
 		🐵X = X;

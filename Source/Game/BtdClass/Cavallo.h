@@ -7,6 +7,7 @@
 #include "../config.h"
 #include "GameObject.h"
 namespace Btd {
+    const int 🍌💰 = 10;
     const int 🐼🎦delay = 200;
     const int 🐼🍌cooldown = 4000;
     constexpr float 🐼speed = (100.0f * (static_cast<float>(GAME_CYCLE_TIME) / 1000.0f));
@@ -25,7 +26,7 @@ namespace Btd {
         void DrawBanana();
         void Harder();
         void SetDest(Vector2);
-        void OnClick();
+        int OnClick();
         void Release();
         static bool CAVALLO;
         static float Multiplier;
@@ -39,7 +40,7 @@ namespace Btd {
             bool IsAlive();
             bool GotCarry();
             void SetOwnerPos(int X, int Y);
-            void OnClick();
+            bool OnClick();
             void 💀();
         private:
             int 🐵X;
