@@ -6,6 +6,7 @@
 #include "map.h"
 #include "Tower.h"
 #include "Cavallo.h"
+#include "Proxy.h"
 
 #define SCREEN_SIZE_X 1000
 #define SCREEN_SIZE_Y 770
@@ -23,6 +24,7 @@ namespace Btd
         unordered_map<UINT,Layer> shortKeyMap;
 
     public:
+        GameManager() : Proxy🐼(🐼, false) {}; // magic
         void OnBeginState(); // 設定每次重玩所需的變數
         void OnInit(); // 遊戲的初值及圖形設定
         void OnKeyDown(UINT, UINT, UINT);
@@ -51,5 +53,6 @@ namespace Btd
         GameObject startButton;
         DB db;
         Cavallo 🐼;
+        Proxy<Cavallo> Proxy🐼;
     };
 }

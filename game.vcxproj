@@ -233,6 +233,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\BtdClass\Proxy.cpp" />
     <ClCompile Include="Source\Core\game.cpp" />
     <ClCompile Include="Source\Core\gameDoc.cpp" />
     <ClCompile Include="Source\Core\gameView.cpp" />
@@ -277,6 +278,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\BtdClass\Proxy.h" />
     <ClInclude Include="Source\Core\Game.h" />
     <ClInclude Include="Source\Core\gameDoc.h" />
     <ClInclude Include="Source\Core\gameView.h" />

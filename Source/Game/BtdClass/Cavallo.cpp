@@ -27,6 +27,11 @@ namespace Btd {
 		SetDest({ _GetRandomFloat(), _GetRandomFloat() });
 		_base🍌.Load();
 	}
+	void Cavallo::Reset()
+	{
+		_🍌s.clear();
+		Multiplier = 1.0;
+	}
 	float Cavallo::_GetRandomFloat(float lower, float upper) {
 		static random_device rd;
 		static mt19937 gen(rd());
@@ -52,10 +57,10 @@ namespace Btd {
 		int x, y;
 		if (IsCursorFocus() && IsClicked()) {
 			x = GetCursorPosX(), y = GetCursorPosY();
-			if (x <= GetCollider().X + 10 || x >= SIZE_X - GetCollider().X - 10) {
+			if (x <= GetCollider().X || x >= SIZE_X - GetCollider().X) {
 				x = originX;
 			}
-			if (y <= GetCollider().Y + 10 || y >= SIZE_Y - GetCollider().Y - 10) {
+			if (y <= GetCollider().Y || y >= SIZE_Y - GetCollider().Y) {
 				y = originY;
 			}
 			SetCenter(x, y);

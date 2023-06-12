@@ -79,7 +79,7 @@ namespace Btd
             TowerFactory::PlaceableVector.back()->SetActive(true);
         }
         
-        if (Cavallo::CAVALLO) money += 🐼.OnClick();
+        money += Proxy🐼.Invoke(&Cavallo::OnClick);
         switch (GameFlow)
         {
         case GameFlow::Prepare:
@@ -102,7 +102,7 @@ namespace Btd
         case GameFlow::Prepare:
             break;
         default:
-            🐼.Release();
+            Proxy🐼.Invoke(&Cavallo::Release);
             break;
         }
     }
@@ -186,14 +186,12 @@ namespace Btd
         {
         case GameFlow::Prepare:
             BloonFactory::SetNextRound(map->GetRounds()[round]);
-            if (Cavallo::CAVALLO)
-                🐼.Move🐒🍌();
+            Proxy🐼.Invoke(&Cavallo::Move🐒🍌);
             break;
 
         case GameFlow::Shoot:
             {
-                if (Cavallo::CAVALLO)
-                    🐼.Move();
+                Proxy🐼.Invoke(&Cavallo::Move);
 
                 bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
                 bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
@@ -213,13 +211,12 @@ namespace Btd
         case GameFlow::Win:
             TowerFactory::PlaceableVector.clear();
             round++;
+            Proxy🐼.Invoke(&Cavallo::Harder);
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
                 GameFlow = GameFlow::GameEnd;
                 IsWin = true;
                 db.PassMap(map->GetMapType());
-                if (Cavallo::CAVALLO)
-                    🐼.Harder();
             }
             else
             {
@@ -229,7 +226,7 @@ namespace Btd
 
             break;
         case GameFlow::GameEnd:
-
+            Proxy🐼.Invoke(&Cavallo::Reset);
             break;
         default: ;
         }
@@ -271,12 +268,10 @@ namespace Btd
         {
         case GameFlow::Prepare:
             startButton.ShowBitmap();
-            if (Cavallo::CAVALLO)
-                🐼.DrawBanana();
+            Proxy🐼.Invoke(&Cavallo::DrawBanana);
             break;
         default:
-            if (Cavallo::CAVALLO)
-                🐼.Draw();
+            Proxy🐼.Invoke(&Cavallo::Draw);
             break;
         }
     }
@@ -378,7 +373,7 @@ namespace Btd
             s = s.substr(1, 7);
 		}
         if (s == "CAVALLO") {
-            Cavallo::CAVALLO = true;
+            Proxy🐼.SetEnable(true);
         }
     }
 

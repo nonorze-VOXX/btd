@@ -19,6 +19,7 @@ namespace Btd {
     {
     public:
         void Init();
+        void Reset();
         void Throw();
         void Move();
         void Move🐒🍌();
