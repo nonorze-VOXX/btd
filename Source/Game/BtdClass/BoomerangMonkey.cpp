@@ -16,6 +16,8 @@ namespace Btd
             "resources/towers/boomerang/Boomerang_5.bmp", "resources/towers/boomerang/Boomerang_6.bmp",
             "resources/towers/boomerang/Boomerang_7.bmp", "resources/towers/boomerang/Boomerang_8.bmp"
         };
+        UpgradePrice[0] = 270;
+        UpgradePrice[1] = 135;
         SetDamageType(DamageType::Normal);
     }
 
