@@ -48,9 +48,9 @@ namespace Btd {
 		}
 	}
 	void Cavallo::Move() {
-		int originX = static_cast<int>(GetCenter().X), originY = static_cast<int>( GetCenter().Y);
+		int originX = static_cast<int>(GetCenter().X), originY = static_cast<int>(GetCenter().Y);
 		int x, y;
-		if (IsCursorFocus() && (GetKeyState(VK_LBUTTON) & 0x8000) != 0) {
+		if (IsCursorFocus() && IsClicked()) {
 			x = GetCursorPosX(), y = GetCursorPosY();
 			if (x <= GetCollider().X + 10 || x >= SIZE_X - GetCollider().X - 10) {
 				x = originX;
@@ -60,7 +60,8 @@ namespace Btd {
 			}
 			SetCenter(x, y);
 		}
-		else {
+		else{
+			SetClicked(false);
 			Throw();
 			// TRACE(_T("pos: %f %f\n"), GetCenter().X, GetCenter().Y);
 			if (_GetRandomFloat() < 20.0f) {
@@ -97,6 +98,7 @@ namespace Btd {
 				_isStuckY = false;
 			}
 			SetCenter(x, y);
+			
 		}
 		_isMirror = (fabs(originX - GetCenter().X) < 1.0f) ? _isMirror : (originX > GetCenter().X);
 		Move🐒🍌();
@@ -120,6 +122,10 @@ namespace Btd {
 				TowerFactory::TowerVector[i]->No🍌😭();
 			}
 			else {
+				if (Vector2Distance(TowerFactory::TowerVector[i]->GetCenter(), GetCenter()) > 2000) {
+					TowerFactory::TowerVector[i]->SetActive(false);
+					target->💀();
+				}
 				TowerFactory::TowerVector[i]->Yes🍌😄(target);
 			}
 		}
@@ -133,6 +139,16 @@ namespace Btd {
 				it = _🍌s.erase(it);
 			}
 		}
+	}
+	void Cavallo::OnClick() {
+		if (IsCursorFocus())
+			SetClicked(true);
+		for (auto& 🍌 : _🍌s) {
+			🍌.OnClick();
+		}
+	}
+	void Cavallo::Release() {
+		SetClicked(false);
 	}
 	void Cavallo::Draw() {
 		if (clock() - _lastFrameTime > 🐼🎦delay) {
@@ -177,11 +193,6 @@ namespace Btd {
 	}
 	void Cavallo::Banana::Move() {
 		// click to eliminate 🍌
-		if (IsCursorFocus() && (GetKeyState(VK_LBUTTON) & 0x8000) != 0) {
-			_isAlive = false;
-			_isActive = false;
-			return;
-		}
 		if (_gotCarry)
 			SetBottomCenter(🐵X, 🐵Y);
 		else if (_isFlying) {
@@ -202,6 +213,12 @@ namespace Btd {
 	void Cavallo::Banana::SetDest(Vector2 dest) {
 		_dest = dest;
 	}
+	void Cavallo::Banana::OnClick() {
+		if (IsCursorFocus()) {
+			_isAlive = false;
+			_isActive = false;
+		}
+	}
 	void Cavallo::Banana::SetOwnerPos(int X, int Y) {
 		🐵X = X;
 		🐵Y = Y;
@@ -210,7 +227,11 @@ namespace Btd {
 	bool Cavallo::Banana::GotCarry() {
 		return _gotCarry;
 	}
+	void Cavallo::Banana::💀() {
+		_isAlive = false;
+	}
 	bool Cavallo::Banana::IsAlive() {
 		return _isAlive;
 	}
+	bool Cavallo::CAVALLO = false;
 }

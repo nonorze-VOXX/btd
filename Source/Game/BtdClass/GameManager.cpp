@@ -38,8 +38,7 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
-        if (CAVALLO)
-            🐼.Init();
+        🐼.Init();
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -91,12 +90,21 @@ namespace Btd
                 break;
             }
         default:
+            🐼.OnClick();
             break;
         }
     }
 
     void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
     {
+        switch (GameFlow)
+        {
+        case GameFlow::Prepare:
+            break;
+        default:
+            🐼.Release();
+            break;
+        }
     }
 
     void GameManager::OnMouseMove(UINT nFlags, CPoint point)
@@ -170,13 +178,13 @@ namespace Btd
         {
         case GameFlow::Prepare:
             BloonFactory::SetNextRound(map->GetRounds()[round]);
-            if (CAVALLO)
+            if (Cavallo::CAVALLO)
                 🐼.Move🐒🍌();
             break;
 
         case GameFlow::Shoot:
             {
-                if (CAVALLO)
+                if (Cavallo::CAVALLO)
                     🐼.Move();
 
                 bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
@@ -251,11 +259,11 @@ namespace Btd
         {
         case GameFlow::Prepare:
             startButton.ShowBitmap();
-            if (CAVALLO)
+            if (Cavallo::CAVALLO)
                 🐼.DrawBanana();
             break;
         default:
-            if (CAVALLO)
+            if (Cavallo::CAVALLO)
                 🐼.Draw();
             break;
         }
@@ -304,6 +312,17 @@ namespace Btd
         case 'N':
             if (round < static_cast<int>(map->GetRounds().size() - 1))
                 round ++;
+        }
+        if (Cavallo::CAVALLO)
+            return;
+        // secret active way
+        static string s = "";
+        s += static_cast<char>(nChar);
+        if (s.size() > 7) {
+            s = s.substr(1, 7);
+		}
+        if (s == "CAVALLO") {
+            Cavallo::CAVALLO = true;
         }
     }
 
