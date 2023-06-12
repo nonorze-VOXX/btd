@@ -30,6 +30,7 @@ namespace Btd {
 	}
 	void Cavallo::Reset()
 	{
+		CAVALLO = false;
 		_🍌s.clear();
 		Multiplier = 1.0;
 	}

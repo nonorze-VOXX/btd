@@ -227,6 +227,7 @@ namespace Btd
             break;
         case GameFlow::GameEnd:
             Proxy🐼.Invoke(&Cavallo::Reset);
+            Proxy🐼.SetEnable(false);
             break;
         default: ;
         }
@@ -373,6 +374,7 @@ namespace Btd
             s = s.substr(1, 7);
 		}
         if (s == "CAVALLO") {
+            Cavallo::CAVALLO = true;
             Proxy🐼.SetEnable(true);
         }
     }

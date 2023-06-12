@@ -193,7 +193,7 @@ namespace Btd
 
     void Tower::Update()
     {
-        if (_isMovable)
+        if (_isMovable || Cavallo::CAVALLO)
         {
             RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
                                   static_cast<int>(GetCenter().Y) - (_range - 100));
