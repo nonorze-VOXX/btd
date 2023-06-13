@@ -17,6 +17,8 @@ namespace Btd
     private:
         bool IsLose = false;
         bool IsWin = true;
+        bool enableNextRound =false;
+        int reverse = 1;
         int live = 10;
         int money = 0;
         bool BloonPause = false;

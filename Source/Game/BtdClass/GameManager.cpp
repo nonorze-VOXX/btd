@@ -326,6 +326,7 @@ namespace Btd
 
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
+        int roundAdd= 0;
         if((TowerFactory::TowerVector.empty() ||
             !TowerFactory::TowerVector.back()->IsMovable()) &&
             (TowerFactory::PlaceableVector.empty() ||
@@ -355,10 +356,20 @@ namespace Btd
                 break;
             }
         case 'N':
-            if (round < static_cast<int>(map->GetRounds().size() - 1)) {
-                round ++;
-                Proxy🐼.Invoke(&Cavallo::Harder);
-            }
+            roundAdd = 1;
+            break;
+        case 'B':
+            roundAdd = 5;
+            break;
+        case 'V':
+            roundAdd = 10;
+            break;
+        case 'C':
+            reverse *=-1;
+            break;
+        case 'I':
+            enableNextRound = true;
+            break;
         case 0x1B: //esc
             if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
             {
@@ -374,6 +385,16 @@ namespace Btd
             {
                 GameFlow = GameFlow::Shoot;
             }
+        }
+        roundAdd *= reverse;
+        if (enableNextRound &&roundAdd!=0) {
+            int nextRound = min(round+roundAdd,static_cast<int>(map->GetRounds().size() - 1));
+            nextRound = max(nextRound,0);
+            for(int i =0 ; i<nextRound-round ;i++)
+            {
+                Proxy🐼.Invoke(&Cavallo::Harder);
+            }
+            round = nextRound;
         }
         if (Cavallo::CAVALLO)
             return;
