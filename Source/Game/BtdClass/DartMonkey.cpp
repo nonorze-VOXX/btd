@@ -43,7 +43,7 @@ namespace Btd
         switch (level)
         {
         case 0:
-            SetMaxPop(2);
+            SetMaxPop(3);
             break;
         case 1:
             _range = 180;
