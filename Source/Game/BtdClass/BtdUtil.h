@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../../Library/gameutil.h"
 #include  <cmath>
 
@@ -91,7 +91,15 @@ namespace Btd
         Win,
         GameEnd
     };
-
+    struct MonkeyBananaStats {
+        Vector2 OriginPos = {-48763, 0};
+        Vector2 PreMove = {0.0f, 0.0f};
+        Vector2 SmoothMoving = {0.0f, 0.0f};
+        bool Got🍌 = false;
+        void* Target = nullptr;
+        bool Tracing;
+        float Speed;
+    };
     Vector2 Normailize(float x, float y);
     Vector2 Normailize(Vector2);
     bool CompareVector2(Vector2 a, Vector2 b);
