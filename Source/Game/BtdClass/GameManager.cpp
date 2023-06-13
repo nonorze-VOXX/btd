@@ -39,6 +39,7 @@ namespace Btd
         GameFlow =GameFlow::Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
+        🐼.Init();
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -65,6 +66,7 @@ namespace Btd
             money -= willDecreaseMoney;
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
+            TowerFactory::TowerVector.back()->SetOriginPos(TowerFactory::TowerVector.back()->GetCenter());
         }
 
         // place spikes
@@ -77,7 +79,7 @@ namespace Btd
             TowerFactory::PlaceableVector.back()->SetActive(true);
         }
         
-        
+        money += Proxy🐼.Invoke(&Cavallo::OnClick);
         switch (GameFlow)
         {
         case GameFlow::Prepare:
@@ -95,6 +97,14 @@ namespace Btd
 
     void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
     {
+        switch (GameFlow)
+        {
+        case GameFlow::Prepare:
+            break;
+        default:
+            Proxy🐼.Invoke(&Cavallo::Release);
+            break;
+        }
     }
 
     void GameManager::OnMouseMove(UINT nFlags, CPoint point)
@@ -184,10 +194,13 @@ namespace Btd
         {
         case GameFlow::Prepare:
             BloonFactory::SetNextRound(map->GetRounds()[round]);
+            Proxy🐼.Invoke(&Cavallo::Move🐒🍌);
             break;
 
         case GameFlow::Shoot:
             {
+                Proxy🐼.Invoke(&Cavallo::Move);
+
                 bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
                 bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
                 if (isRoundEnd)
@@ -206,6 +219,7 @@ namespace Btd
         case GameFlow::Win:
             TowerFactory::PlaceableVector.clear();
             round++;
+            Proxy🐼.Invoke(&Cavallo::Harder);
             if (round >= static_cast<int>(map->GetRounds().size()))
             {
                 GameFlow = GameFlow::GameEnd;
@@ -220,7 +234,8 @@ namespace Btd
 
             break;
         case GameFlow::GameEnd:
-
+            Proxy🐼.Invoke(&Cavallo::Reset);
+            Proxy🐼.SetEnable(false);
             break;
         default: ;
         }
@@ -262,8 +277,10 @@ namespace Btd
         {
         case GameFlow::Prepare:
             startButton.ShowBitmap();
+            Proxy🐼.Invoke(&Cavallo::DrawBanana);
             break;
         default:
+            Proxy🐼.Invoke(&Cavallo::Draw);
             break;
         }
     }
@@ -338,8 +355,10 @@ namespace Btd
                 break;
             }
         case 'N':
-            if (round < static_cast<int>(map->GetRounds().size() - 1))
+            if (round < static_cast<int>(map->GetRounds().size() - 1)) {
                 round ++;
+                Proxy🐼.Invoke(&Cavallo::Harder);
+            }
         case 0x1B: //esc
             if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
             {
@@ -355,6 +374,18 @@ namespace Btd
             {
                 GameFlow = GameFlow::Shoot;
             }
+        }
+        if (Cavallo::CAVALLO)
+            return;
+        // secret active way
+        static string s = "";
+        s += static_cast<char>(nChar);
+        if (s.size() > 7) {
+            s = s.substr(1, 7);
+		}
+        if (s == "CAVALLO") {
+            Cavallo::CAVALLO = true;
+            Proxy🐼.SetEnable(true);
         }
     }
 
