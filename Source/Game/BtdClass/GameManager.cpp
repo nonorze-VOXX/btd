@@ -115,6 +115,14 @@ namespace Btd
 
     void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
     {
+        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
+        {
+            TowerFactory::TowerVector.pop_back();
+        }
+        else if (!TowerFactory::PlaceableVector.empty() && TowerFactory::PlaceableVector.back()->IsMovable())
+        {
+            TowerFactory::PlaceableVector.pop_back();
+        }
     }
 
     void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
