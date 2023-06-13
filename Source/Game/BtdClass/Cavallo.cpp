@@ -207,7 +207,7 @@ namespace Btd {
 			vec = { vec.X / Length * 🍌speed * Multiplier, vec.Y / Length * 🍌speed * Multiplier};
 			int x = static_cast<int>(GetCenter().X + vec.X), y = static_cast<int>(GetCenter().Y + vec.Y);
 			SetCenter(x, y);
-			if (Vector2Distance(GetCenter(), _dest) < 10.0f) {
+			if (Vector2Distance(GetCenter(), _dest) < 30.0f) {
 				_isFlying = false;
 			}
 		}
