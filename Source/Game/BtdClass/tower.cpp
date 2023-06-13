@@ -1,8 +1,9 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "BloonFactory.h"
 #include "BtdUtil.h"
 #include "map.h"
 #include "Tower.h"
+#include "Cavallo.h"
 
 #include "BoomerangMonkey.h"
 
@@ -192,7 +193,7 @@ namespace Btd
 
     void Tower::Update()
     {
-        if (_isMovable)
+        if (_isMovable || Cavallo::CAVALLO)
         {
             RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
                                   static_cast<int>(GetCenter().Y) - (_range - 100));
@@ -255,7 +256,10 @@ namespace Btd
     {
         ThrowablePath = name;
     }
-
+    void Tower::SetOriginPos(Vector2 pos)
+    {
+        🐒🍌Stats.OriginPos = pos;
+	}
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
@@ -263,5 +267,70 @@ namespace Btd
         tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
                                 ,RGB(255, 255, 255));
         throwablePool.push(tmp);
+    }
+    bool Tower::Yes🍌😄(Cavallo::Banana* 🍌) {
+        // go to the 🍌
+        if (🐒🍌Stats.Target != 🍌 && !IsOverlap(*this, *🍌)) {
+            🐒🍌Stats.Got🍌 = false;
+            🐒🍌Stats.Target = 🍌;
+        }
+        static random_device rd;
+        static mt19937 gen(rd());
+        static uniform_real_distribution<float> dis(🐵Minspeed * Cavallo::Multiplier, 🐵Maxspeed * Cavallo::Multiplier);
+        🐒🍌Stats.Speed = dis(gen) ;
+        if (🍌->GotCarry() && !🐒🍌Stats.Got🍌) return No🍌😭();
+        Vector2 VecMove = 🐒🍌Stats.Got🍌 ? 🐒🍌Stats.PreMove : Normailize({🍌->GetCenter().X - GetCenter().X, 🍌->GetCenter().Y - GetCenter().Y});
+        SetFrameIndexOfBitmap(min(GetFrameSizeOfBitmap() - 1 , GetFrameIndexByVector2(VecMove)));
+        🐒🍌Stats.PreMove = VecMove;
+        VecMove.X = VecMove.X * 🐒🍌Stats.Speed + GetCenter().X;
+        VecMove.Y = VecMove.Y * 🐒🍌Stats.Speed + GetCenter().Y;
+        int x = static_cast<int>(VecMove.X);
+        int y = static_cast<int>(VecMove.Y);
+        🐒🍌Stats.SmoothMoving.X += VecMove.X - x;
+        🐒🍌Stats.SmoothMoving.Y += VecMove.Y - y;
+        if (fabs(🐒🍌Stats.SmoothMoving.X) >= 1.0f)
+        {
+			x += static_cast<int>(🐒🍌Stats.SmoothMoving.X);
+            🐒🍌Stats.SmoothMoving.X -= static_cast<int>(🐒🍌Stats.SmoothMoving.X);
+		}
+        if (fabs(🐒🍌Stats.SmoothMoving.Y) >= 1.0f)
+        {
+            y += static_cast<int>(🐒🍌Stats.SmoothMoving.Y);
+            🐒🍌Stats.SmoothMoving.Y -= static_cast<int>(🐒🍌Stats.SmoothMoving.Y);
+        }
+        SetCenter(x, y);
+        if (IsOverlap(*this, *🍌)) {
+            🍌->SetOwnerPos(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
+			🍌->SetActive(false);
+            🐒🍌Stats.Got🍌 = true;
+		}
+        return true;
+    }
+    bool Tower::No🍌😭() {
+        🐒🍌Stats.Got🍌 = false;
+        🐒🍌Stats.Target = nullptr;
+        if (Vector2Distance(GetCenter(), 🐒🍌Stats.OriginPos) < 10.0f) {
+            return false;
+        }
+        Vector2 VecMove = Normailize({ 🐒🍌Stats.OriginPos.X - GetCenter().X, 🐒🍌Stats.OriginPos.Y - GetCenter().Y });
+        SetFrameIndexOfBitmap(min(GetFrameSizeOfBitmap() - 1, GetFrameIndexByVector2(VecMove)));
+        VecMove.X = VecMove.X * 🐵Backspeed / Cavallo::Multiplier + GetCenter().X;
+        VecMove.Y = VecMove.Y * 🐵Backspeed / Cavallo::Multiplier + GetCenter().Y;
+        int x = static_cast<int>(VecMove.X);
+        int y = static_cast<int>(VecMove.Y);
+        🐒🍌Stats.SmoothMoving.X += VecMove.X - x;
+        🐒🍌Stats.SmoothMoving.Y += VecMove.Y - y;
+        if (fabs(🐒🍌Stats.SmoothMoving.X) >= 1.0f)
+        {
+            x += static_cast<int>(🐒🍌Stats.SmoothMoving.X);
+            🐒🍌Stats.SmoothMoving.X -= static_cast<int>(🐒🍌Stats.SmoothMoving.X);
+        }
+        if (fabs(🐒🍌Stats.SmoothMoving.Y) >= 1.0f)
+        {
+            y += static_cast<int>(🐒🍌Stats.SmoothMoving.Y);
+            🐒🍌Stats.SmoothMoving.Y -= static_cast<int>(🐒🍌Stats.SmoothMoving.Y);
+        }
+        SetCenter(x, y);
+        return false;
     }
 }

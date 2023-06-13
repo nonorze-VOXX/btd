@@ -1,8 +1,9 @@
-#ifndef TOWER_H
+﻿#ifndef TOWER_H
 #define TOWER_H
 
 #include "../../Library/gameutil.h"
 #include "GameObject.h"
+#include "Cavallo.h"
 #include "Throwable.h"
 #include <queue>
 #include <string>
@@ -55,6 +56,9 @@ namespace Btd
         void SetMoney(int price);
         int GetMoney();
 
+        bool Yes🍌😄(Cavallo::Banana* 🍌);
+        bool No🍌😭();
+        void SetOriginPos(Vector2 pos);
     protected:
         bool _isMovable;
         // int _speed;
@@ -69,6 +73,7 @@ namespace Btd
         Vector2 throwLocal;
         Bloon focus();
         DamageType _damageType;
+        MonkeyBananaStats 🐒🍌Stats;
     };
 }
 #endif
