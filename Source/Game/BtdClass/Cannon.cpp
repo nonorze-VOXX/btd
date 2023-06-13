@@ -7,7 +7,7 @@ namespace Btd
 {
     Cannon::Cannon()
     {
-        _range = 200;
+        _range = 170;
         shootDeltaTime = 6;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp", "resources/towers/bomb/bomb_1.bmp",
             "resources/towers/bomb/bomb_2.bmp", "resources/towers/bomb/bomb_3.bmp", "resources/towers/bomb/bomb_4.bmp"};
@@ -43,7 +43,7 @@ namespace Btd
                                          "resources/towers/bomb/bomb_2_big.bmp", "resources/towers/bomb/bomb_3_big.bmp", "resources/towers/bomb/bomb_4_big.bmp"};
             break;
         case 1:
-            _range = 250;
+            _range = 220;
             RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
                                   static_cast<int>(GetCenter().Y) - (_range - 100));
             break;
