@@ -373,6 +373,9 @@ namespace Btd
         case 'Z':
             roundAdd = 32;
             break;
+        case 'I':
+            enableNextRound = true;
+            break;
         case 0x1B: //esc
             if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
             {
@@ -389,7 +392,7 @@ namespace Btd
                 GameFlow = GameFlow::Shoot;
             }
         }
-        if (roundAdd!=0&&round < static_cast<int>(map->GetRounds().size() - 1)) {
+        if (enableNextRound &&roundAdd!=0&&round < static_cast<int>(map->GetRounds().size() - 1)) {
             int nextRound = min(round+roundAdd,static_cast<int>(map->GetRounds().size() - 1));
             for(int i =0 ; i<nextRound-round ;i++)
             {
