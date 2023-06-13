@@ -347,8 +347,10 @@ namespace Btd
                 break;
             }
         case 'N':
-            if (round < static_cast<int>(map->GetRounds().size() - 1))
+            if (round < static_cast<int>(map->GetRounds().size() - 1)) {
                 round ++;
+                Proxy🐼.Invoke(&Cavallo::Harder);
+            }
         case 0x1B: //esc
             if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
             {
