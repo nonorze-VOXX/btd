@@ -359,19 +359,13 @@ namespace Btd
             roundAdd = 1;
             break;
         case 'B':
-            roundAdd = 2;
+            roundAdd = 5;
             break;
         case 'V':
-            roundAdd = 4;
+            roundAdd = 10;
             break;
         case 'C':
-            roundAdd = 8;
-            break;
-        case 'X':
-            roundAdd = 16;
-            break;
-        case 'Z':
-            roundAdd = 32;
+            reverse *=-1;
             break;
         case 'I':
             enableNextRound = true;
@@ -392,8 +386,10 @@ namespace Btd
                 GameFlow = GameFlow::Shoot;
             }
         }
-        if (enableNextRound &&roundAdd!=0&&round < static_cast<int>(map->GetRounds().size() - 1)) {
+        roundAdd *= reverse;
+        if (enableNextRound &&roundAdd!=0) {
             int nextRound = min(round+roundAdd,static_cast<int>(map->GetRounds().size() - 1));
+            nextRound = max(nextRound,0);
             for(int i =0 ; i<nextRound-round ;i++)
             {
                 Proxy🐼.Invoke(&Cavallo::Harder);
