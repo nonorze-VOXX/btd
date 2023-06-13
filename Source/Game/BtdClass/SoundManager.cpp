@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "SoundManager.h"
+
+#include <array>
+
 #include "../../Library/audio.h"
 
 namespace Btd
@@ -9,6 +12,7 @@ namespace Btd
     vector<string> SoundManager::soundName ;
     int SoundManager::index = 0;
     vector<soundCounter> SoundManager::soundTimePool = vector<soundCounter>();
+    array<bool,4> SoundManager::soundUsed = {false,false,false,false};
 
     void SoundManager::Init()
     {
@@ -28,6 +32,10 @@ namespace Btd
     {
         if(!mute)
         {
+            if(soundUsed[(int)type])
+            {
+                return;
+            }
             soundCounter next ={-1,type,-1,false};
             for(auto&s:soundTimePool )
             {
@@ -44,6 +52,7 @@ namespace Btd
             }
             game_framework::CAudio *audio = game_framework::CAudio::Instance();
             audio->Play(next.index, next.loop);
+            soundUsed[(int)type]=true;
         }
     }
 
@@ -55,6 +64,11 @@ namespace Btd
 
     void SoundManager::Update()
     {
+        for(auto &s:soundUsed)
+        {
+            s=false;
+        }
+        
         for(auto&s : soundTimePool)
         {
             if(s.counter>0)

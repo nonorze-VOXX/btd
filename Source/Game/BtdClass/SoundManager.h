@@ -1,7 +1,7 @@
 #pragma once
 #include "BtdUtil.h"
 
-#define soundTime 100
+#define soundTime 30
 namespace Btd
 {
     struct soundCounter
@@ -16,6 +16,7 @@ namespace Btd
         static int index;
         static vector<soundCounter> soundTimePool;
         static vector<string> soundName ;
+        static array<bool,4> soundUsed;
     public:
         static void Init();
         static void musicStop(BtdSound type);
