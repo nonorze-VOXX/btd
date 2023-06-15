@@ -81,6 +81,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         Btd::Button _mapButton[3];
+        Btd::GameObject ButtonBack;
         Btd::DB db;
     };
 

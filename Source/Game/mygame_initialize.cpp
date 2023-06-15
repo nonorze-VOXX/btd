@@ -71,9 +71,11 @@ void CGameStateInit::OnBeginState()
         {"resources/medal/medium.bmp", "resources/medal/medium_medal.bmp", "resources/medal/play.bmp"},
         {"resources/medal/hard.bmp", "resources/medal/hard_medal.bmp", "resources/medal/play.bmp"}
     };
+    ButtonBack.LoadBitmapByString({"resources/medal/back.bmp"}, RGB(0, 0, 0));
+    ButtonBack.SetCenter(390, 325);
     for (int i=0; i<3; i++)
     {
-        _mapButton[i].LoadBitmapByString(medalPath[i]);
+        _mapButton[i].LoadBitmapByString(medalPath[i], RGB(255, 255, 255));
         _mapButton[i].SetFrameIndexOfBitmap(passedMap[i]);
     }
 }
@@ -130,6 +132,7 @@ void CGameStateInit::OnShow()
 {
     map->ShowBackground();
     map->ShowRoad();
+    ButtonBack.ShowBitmap();
     for (int i = 0; i < 3; i++)
     {
         _mapButton[i].ShowBitmap();
